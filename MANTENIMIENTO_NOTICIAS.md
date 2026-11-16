@@ -27,15 +27,15 @@ No copiar artículos completos. Solo resumir y enlazar.
 
 ## Dónde se edita
 Archivo:
-`src/App.jsx`
+`src/content/news.js`
 
 Buscar:
-`const news = [`
+`export const news = [`
 
 Agregar o actualizar objetos dentro de esa lista.
 
 ## Proceso de publicación
-1. Editar la noticia en `src/App.jsx`.
-2. Ejecutar `npm run build` para validar.
+1. Editar la noticia en `src/content/news.js` (el slug define la URL `/noticias/<slug>`).
+2. Ejecutar `npm run build`: además de compilar, genera el HTML con metadatos de cada noticia y el `sitemap.xml`.
 3. Subir cambios a GitHub.
 4. Vercel publicará automáticamente el cambio.

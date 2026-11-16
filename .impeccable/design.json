@@ -1,50 +1,309 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-16T00:00:00Z",
+  "generatedAt": "2026-11-16T22:28:44.874Z",
   "title": "Design System: CBR Auditores & Consultores",
   "extensions": {
     "colorMeta": {
-      "blue": { "role": "primary", "displayName": "Azul CBR", "tonalRamp": ["#001a3d", "#002b66", "#003f8f", "#0052b8", "#3a78cc", "#7aa3dd", "#b6cdee", "#e6eefa"] },
-      "blue-deep": { "role": "primary", "displayName": "Azul CBR Profundo", "tonalRamp": ["#00142e", "#00214d", "#002f6e", "#003f8f", "#2f63a8", "#6f92c4", "#adc3e0", "#e3ebf5"] },
-      "gold": { "role": "secondary", "displayName": "Oro de Archivo", "tonalRamp": ["#33281a", "#54432a", "#7e6334", "#a8874f", "#c9a96a", "#dcc497", "#ece0c6", "#f8f3ea"] },
-      "gold-text": { "role": "secondary", "displayName": "Oro de Archivo Texto", "tonalRamp": ["#2a2113", "#463720", "#62502b", "#7e6334", "#a08458", "#bfa784", "#dccab0", "#f4ede2"] },
-      "gold-light": { "role": "secondary", "displayName": "Oro de Archivo Claro", "tonalRamp": ["#3a2f1c", "#5f4d2e", "#8b7143", "#a8874f", "#c9a96a", "#d9c08f", "#e9d9b8", "#f7f0e2"] },
-      "navy": { "role": "neutral", "displayName": "Navy Institucional", "tonalRamp": ["#050f1d", "#0b1f3a", "#1a3150", "#2f4767", "#52657f", "#7f8ea3", "#b4bdca", "#e6e9ee"] },
-      "paper": { "role": "neutral", "displayName": "Papel Lino", "tonalRamp": ["#2b2925", "#55524b", "#807b70", "#aaa497", "#cfc8ba", "#e4dfd5", "#f3efe7", "#fbf9f5"] },
-      "paper-deep": { "role": "neutral", "displayName": "Papel Hondo", "tonalRamp": ["#2a2720", "#524c41", "#7b7362", "#a49a85", "#c9bfab", "#e1d9ca", "#f3efe7", "#faf8f3"] },
-      "folio": { "role": "neutral", "displayName": "Blanco Folio" },
-      "ink": { "role": "neutral", "displayName": "Tinta", "tonalRamp": ["#0d121a", "#1b2433", "#323c4c", "#4a5363", "#6b7383", "#9097a3", "#bcc1c9", "#e7e9ec"] },
-      "ink-2": { "role": "neutral", "displayName": "Tinta Secundaria" },
-      "rule": { "role": "neutral", "displayName": "Filete" },
-      "rule-strong": { "role": "neutral", "displayName": "Filete Marcado" },
-      "on-navy": { "role": "neutral", "displayName": "Texto sobre Navy" },
-      "on-navy-2": { "role": "neutral", "displayName": "Texto de Apoyo sobre Navy" },
-      "rule-navy": { "role": "neutral", "displayName": "Filete sobre Navy" },
-      "error": { "role": "neutral", "displayName": "Error" }
+      "blue": {
+        "role": "primary",
+        "displayName": "Azul CBR",
+        "tonalRamp": [
+          "#001a3d",
+          "#002b66",
+          "#003f8f",
+          "#0052b8",
+          "#3a78cc",
+          "#7aa3dd",
+          "#b6cdee",
+          "#e6eefa"
+        ]
+      },
+      "blue-deep": {
+        "role": "primary",
+        "displayName": "Azul CBR Profundo",
+        "tonalRamp": [
+          "#00142e",
+          "#00214d",
+          "#002f6e",
+          "#003f8f",
+          "#2f63a8",
+          "#6f92c4",
+          "#adc3e0",
+          "#e3ebf5"
+        ]
+      },
+      "gold": {
+        "role": "secondary",
+        "displayName": "Oro de Archivo",
+        "tonalRamp": [
+          "#33281a",
+          "#54432a",
+          "#7e6334",
+          "#a8874f",
+          "#c9a96a",
+          "#dcc497",
+          "#ece0c6",
+          "#f8f3ea"
+        ]
+      },
+      "gold-text": {
+        "role": "secondary",
+        "displayName": "Oro de Archivo Texto",
+        "tonalRamp": [
+          "#2a2113",
+          "#463720",
+          "#62502b",
+          "#7e6334",
+          "#a08458",
+          "#bfa784",
+          "#dccab0",
+          "#f4ede2"
+        ]
+      },
+      "gold-light": {
+        "role": "secondary",
+        "displayName": "Oro de Archivo Claro",
+        "tonalRamp": [
+          "#3a2f1c",
+          "#5f4d2e",
+          "#8b7143",
+          "#a8874f",
+          "#c9a96a",
+          "#d9c08f",
+          "#e9d9b8",
+          "#f7f0e2"
+        ]
+      },
+      "navy": {
+        "role": "neutral",
+        "displayName": "Navy Institucional",
+        "tonalRamp": [
+          "#050f1d",
+          "#0b1f3a",
+          "#1a3150",
+          "#2f4767",
+          "#52657f",
+          "#7f8ea3",
+          "#b4bdca",
+          "#e6e9ee"
+        ]
+      },
+      "paper": {
+        "role": "neutral",
+        "displayName": "Papel Lino",
+        "tonalRamp": [
+          "#2b2925",
+          "#55524b",
+          "#807b70",
+          "#aaa497",
+          "#cfc8ba",
+          "#e4dfd5",
+          "#f3efe7",
+          "#fbf9f5"
+        ]
+      },
+      "paper-deep": {
+        "role": "neutral",
+        "displayName": "Papel Hondo",
+        "tonalRamp": [
+          "#2a2720",
+          "#524c41",
+          "#7b7362",
+          "#a49a85",
+          "#c9bfab",
+          "#e1d9ca",
+          "#f3efe7",
+          "#faf8f3"
+        ]
+      },
+      "folio": {
+        "role": "neutral",
+        "displayName": "Blanco Folio"
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Tinta",
+        "tonalRamp": [
+          "#0d121a",
+          "#1b2433",
+          "#323c4c",
+          "#4a5363",
+          "#6b7383",
+          "#9097a3",
+          "#bcc1c9",
+          "#e7e9ec"
+        ]
+      },
+      "ink-2": {
+        "role": "neutral",
+        "displayName": "Tinta Secundaria"
+      },
+      "rule": {
+        "role": "neutral",
+        "displayName": "Filete"
+      },
+      "rule-strong": {
+        "role": "neutral",
+        "displayName": "Filete Marcado"
+      },
+      "on-navy": {
+        "role": "neutral",
+        "displayName": "Texto sobre Navy"
+      },
+      "on-navy-2": {
+        "role": "neutral",
+        "displayName": "Texto de Apoyo sobre Navy"
+      },
+      "rule-navy": {
+        "role": "neutral",
+        "displayName": "Filete sobre Navy"
+      },
+      "error": {
+        "role": "neutral",
+        "displayName": "Error"
+      },
+      "error-wash": {
+        "role": "neutral",
+        "displayName": "Lavado de Error",
+        "canonical": "#fbf1ef"
+      },
+      "ink-3": {
+        "role": "neutral",
+        "displayName": "Tinta Terciaria",
+        "canonical": "#6b7280"
+      }
     },
     "typographyMeta": {
-      "display": { "displayName": "Display", "purpose": "La tesis de cada página; una por página." },
-      "headline": { "displayName": "Headline", "purpose": "Titular de sección y del cierre." },
-      "title": { "displayName": "Title", "purpose": "Filas del índice de servicios, subtítulos y titulares de lista." },
-      "lead": { "displayName": "Lead", "purpose": "Párrafo bajo la tesis, máximo 60ch." },
-      "body": { "displayName": "Body", "purpose": "Lectura, máximo 68ch." },
-      "label": { "displayName": "Label", "purpose": "Títulos de columnas laterales, encabezados del pie y rótulos de datos; nunca como antetítulo." }
+      "display": {
+        "displayName": "Display",
+        "purpose": "La tesis de cada página; una por página."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Titular de sección y del cierre."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Filas del índice de servicios, subtítulos y titulares de lista."
+      },
+      "lead": {
+        "displayName": "Lead",
+        "purpose": "Párrafo bajo la tesis, máximo 60ch."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Lectura, máximo 68ch."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Títulos de columnas laterales, encabezados del pie y rótulos de datos; nunca como antetítulo."
+      },
+      "law-numeral": {
+        "displayName": "law-numeral",
+        "purpose": "Ley 155-17 como primera línea del titular de la banda"
+      },
+      "display-home": {
+        "displayName": "display-home",
+        "purpose": "Tesis de Inicio"
+      },
+      "headline-service": {
+        "displayName": "headline-service",
+        "purpose": "Nombre de servicio en /servicios"
+      },
+      "headline-compact": {
+        "displayName": "headline-compact",
+        "purpose": "Titular de contacto y números de pasos"
+      },
+      "motto": {
+        "displayName": "motto",
+        "purpose": "Lema de Nosotros"
+      },
+      "signature": {
+        "displayName": "signature",
+        "purpose": "Nombre de la firma en el cierre"
+      },
+      "title-list": {
+        "displayName": "title-list",
+        "purpose": "Títulos de lista"
+      },
+      "title-small": {
+        "displayName": "title-small",
+        "purpose": "Títulos de lista compactos"
+      },
+      "prose": {
+        "displayName": "prose",
+        "purpose": "Prosa de artículos"
+      },
+      "body-compact": {
+        "displayName": "body-compact",
+        "purpose": "Cuerpo compacto"
+      },
+      "small": {
+        "displayName": "small",
+        "purpose": "Texto de apoyo"
+      },
+      "caption": {
+        "displayName": "caption",
+        "purpose": "Fechas, fuentes, rótulos de campo"
+      },
+      "micro": {
+        "displayName": "micro",
+        "purpose": "Línea secundaria de la marca"
+      }
     },
     "shadows": [
-      { "name": "fixed-float", "value": "0 8px 24px rgba(11, 31, 58, 0.22)", "purpose": "Solo el acceso fijo de WhatsApp, que flota sobre el contenido." },
-      { "name": "menu-open", "value": "0 16px 32px rgba(11, 31, 58, 0.08)", "purpose": "Menú móvil desplegado (estado)." },
-      { "name": "field-focus", "value": "0 0 0 3px rgba(0, 82, 184, 0.18)", "purpose": "Anillo de foco de campos, junto al borde azul." }
+      {
+        "name": "fixed-float",
+        "value": "0 8px 24px rgba(11, 31, 58, 0.22)",
+        "purpose": "Solo el acceso fijo de WhatsApp, que flota sobre el contenido."
+      },
+      {
+        "name": "menu-open",
+        "value": "0 16px 32px rgba(11, 31, 58, 0.08)",
+        "purpose": "Menú móvil desplegado (estado)."
+      },
+      {
+        "name": "field-focus",
+        "value": "0 0 0 3px rgba(0, 82, 184, 0.18)",
+        "purpose": "Anillo de foco de campos, junto al borde azul."
+      }
     ],
     "motion": [
-      { "name": "ease-out", "value": "cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "Curva de los movimientos con recorrido: marca, filete del índice, flechas." },
-      { "name": "mark-draw", "value": "scaleX(0.3) to scaleX(1), 0.9s ease-out, 0.1s delay", "purpose": "La marca dorada se dibuja al cargar; solo con prefers-reduced-motion: no-preference." },
-      { "name": "index-rule", "value": "scaleX(0) to scaleX(1), 0.55s ease-out", "purpose": "Filete azul del índice de servicios en hover/foco." },
-      { "name": "arrow-nudge", "value": "translateX(3-4px), 0.3-0.35s ease-out", "purpose": "La flecha de enlaces y filas avanza en hover." },
-      { "name": "color-state", "value": "0.2s ease", "purpose": "Cambios de color, borde y fondo en hover." }
+      {
+        "name": "ease-out",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Curva de los movimientos con recorrido: marca, filete del índice, flechas."
+      },
+      {
+        "name": "mark-draw",
+        "value": "scaleX(0.3) to scaleX(1), 0.9s ease-out, 0.1s delay",
+        "purpose": "La marca dorada se dibuja al cargar; solo con prefers-reduced-motion: no-preference."
+      },
+      {
+        "name": "index-rule",
+        "value": "scaleX(0) to scaleX(1), 0.55s ease-out",
+        "purpose": "Filete azul del índice de servicios en hover/foco."
+      },
+      {
+        "name": "arrow-nudge",
+        "value": "translateX(3-4px), 0.3-0.35s ease-out",
+        "purpose": "La flecha de enlaces y filas avanza en hover."
+      },
+      {
+        "name": "color-state",
+        "value": "0.2s ease",
+        "purpose": "Cambios de color, borde y fondo en hover."
+      }
     ],
     "breakpoints": [
-      { "name": "collapse", "value": "1080px" },
-      { "name": "mobile", "value": "720px" }
+      {
+        "name": "collapse",
+        "value": "1080px"
+      },
+      {
+        "name": "mobile",
+        "value": "720px"
+      }
     ]
   },
   "components": [
@@ -129,13 +388,46 @@
       "Sin fotografía mientras no exista material real: la tipografía hace el trabajo."
     ],
     "rules": [
-      { "name": "La Regla de la Tinta Única", "body": "Hay un solo navy y un solo azul. Ningún hex suelto fuera de los tokens.", "section": "colors" },
-      { "name": "La Regla del Oro Escaso", "body": "El dorado marca, no decora: la marca de apertura, los checks, la categoría y los números de paso. Nunca rellena una superficie ni un botón.", "section": "colors" },
-      { "name": "La Regla de la Única Banda", "body": "El navy como superficie aparece una vez por página, en la banda de la Ley 155-17 (Inicio y /ley-155-17). El cierre y el pie van sobre papel.", "section": "colors" },
-      { "name": "La Regla sin Degradados", "body": "Ningún fondo, botón ni icono lleva degradado. El color es plano.", "section": "colors" },
-      { "name": "La Regla de los Pesos Reales", "body": "Serif 500/600 y sans 400/600. Ningún otro peso.", "section": "typography" },
-      { "name": "La Regla de la Cifra Tabular", "body": "Toda fecha, número de ley o número de paso lleva cifras tabulares.", "section": "typography" },
-      { "name": "La Regla del Papel Plano", "body": "Ninguna superficie en reposo que forme parte del flujo lleva sombra. Solo lleva sombra lo que flota fijo sobre el contenido o aparece por un estado.", "section": "elevation" }
+      {
+        "name": "La Regla de la Tinta Única",
+        "body": "Hay un solo navy y un solo azul. Ningún hex suelto fuera de los tokens.",
+        "section": "colors"
+      },
+      {
+        "name": "La Regla del Oro Escaso",
+        "body": "El dorado marca, no decora: la marca de apertura, los checks, la categoría y los números de paso. Nunca rellena una superficie ni un botón.",
+        "section": "colors"
+      },
+      {
+        "name": "La Regla de la Única Banda",
+        "body": "El navy como superficie aparece una vez por página, en la banda de la Ley 155-17 (Inicio y /ley-155-17). El cierre y el pie van sobre papel.",
+        "section": "colors"
+      },
+      {
+        "name": "La Regla sin Degradados",
+        "body": "Ningún fondo, botón ni icono lleva degradado. El color es plano.",
+        "section": "colors"
+      },
+      {
+        "name": "La Regla de los Pesos Reales",
+        "body": "Serif 500/600 y sans 400/600. Ningún otro peso.",
+        "section": "typography"
+      },
+      {
+        "name": "La Regla de la Cifra Tabular",
+        "body": "Toda fecha, número de ley o número de paso lleva cifras tabulares.",
+        "section": "typography"
+      },
+      {
+        "name": "La Regla del Papel Plano",
+        "body": "Ninguna superficie en reposo que forme parte del flujo lleva sombra. Solo lleva sombra lo que flota fijo sobre el contenido o aparece por un estado.",
+        "section": "elevation"
+      },
+      {
+        "name": "La Regla de la Escala Cerrada",
+        "body": "Un tamaño nuevo entra primero en esta tabla y en el frontmatter; nunca directamente en el CSS.",
+        "section": "typography"
+      }
     ],
     "dos": [
       "Do usar el azul (#0052b8) como el único color de acción, con el mismo texto de llamado a la acción en todo el sitio.",

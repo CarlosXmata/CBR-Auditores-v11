@@ -19,13 +19,82 @@ colors:
   on-navy-2: "#b9c2d0"
   rule-navy: "rgba(244, 241, 234, 0.16)"
   error: "#a3261d"
+  error-wash: "#fbf1ef"
+  ink-3: "#6b7280"
 typography:
+  law-numeral:
+    fontFamily: "'Source Serif 4 Variable', Georgia, 'Times New Roman', serif"
+    fontSize: "clamp(3rem, 2rem + 3vw, 4.5rem)"
+    fontWeight: 500
+    lineHeight: 1
+    letterSpacing: "-0.02em"
   display:
     fontFamily: "'Source Serif 4 Variable', Georgia, 'Times New Roman', serif"
     fontSize: "clamp(2.375rem, 1.35rem + 3.2vw, 4.25rem)"
     fontWeight: 500
     lineHeight: 1.06
     letterSpacing: "-0.018em"
+  display-home:
+    fontFamily: "'Source Serif 4 Variable', Georgia, 'Times New Roman', serif"
+    fontSize: "clamp(2.375rem, 1.35rem + 2.8vw, 4rem)"
+    fontWeight: 500
+    lineHeight: 1.06
+    letterSpacing: "-0.018em"
+  headline-service:
+    fontFamily: "'Source Serif 4 Variable', Georgia, 'Times New Roman', serif"
+    fontSize: "clamp(1.75rem, 1.3rem + 1.3vw, 2.375rem)"
+    fontWeight: 500
+    lineHeight: 1.14
+  headline-compact:
+    fontFamily: "'Source Serif 4 Variable', Georgia, 'Times New Roman', serif"
+    fontSize: "1.75rem"
+    fontWeight: 500
+    lineHeight: 1.14
+  motto:
+    fontFamily: "'Source Serif 4 Variable', Georgia, 'Times New Roman', serif"
+    fontSize: "1.625rem"
+    fontWeight: 500
+    lineHeight: 1.2
+  signature:
+    fontFamily: "'Source Serif 4 Variable', Georgia, 'Times New Roman', serif"
+    fontSize: "1.5rem"
+    fontWeight: 600
+    lineHeight: 1.2
+  title-list:
+    fontFamily: "'Source Serif 4 Variable', Georgia, 'Times New Roman', serif"
+    fontSize: "1.25rem"
+    fontWeight: 600
+    lineHeight: 1.35
+  title-small:
+    fontFamily: "'Source Serif 4 Variable', Georgia, 'Times New Roman', serif"
+    fontSize: "1.1875rem"
+    fontWeight: 600
+    lineHeight: 1.3
+  prose:
+    fontFamily: "'Public Sans Variable', 'Segoe UI', system-ui, -apple-system, sans-serif"
+    fontSize: "1.125rem"
+    fontWeight: 400
+    lineHeight: 1.75
+  body-compact:
+    fontFamily: "'Public Sans Variable', 'Segoe UI', system-ui, -apple-system, sans-serif"
+    fontSize: "1rem"
+    fontWeight: 400
+    lineHeight: 1.55
+  small:
+    fontFamily: "'Public Sans Variable', 'Segoe UI', system-ui, -apple-system, sans-serif"
+    fontSize: "0.9375rem"
+    fontWeight: 400
+    lineHeight: 1.55
+  caption:
+    fontFamily: "'Public Sans Variable', 'Segoe UI', system-ui, -apple-system, sans-serif"
+    fontSize: "0.875rem"
+    fontWeight: 400
+    lineHeight: 1.5
+  micro:
+    fontFamily: "'Public Sans Variable', 'Segoe UI', system-ui, -apple-system, sans-serif"
+    fontSize: "0.75rem"
+    fontWeight: 400
+    letterSpacing: "0.08em"
   headline:
     fontFamily: "'Source Serif 4 Variable', Georgia, 'Times New Roman', serif"
     fontSize: "clamp(1.875rem, 1.3rem + 1.8vw, 2.75rem)"
@@ -151,6 +220,8 @@ Paleta contenida: tinta navy sobre papel blanco cálido, un azul de acción toma
 - **Filete Marcado** (rule-strong): bordes de campos y botones discretos, filete superior de cada lista, filetes verticales de las columnas laterales y filete superior del pie.
 - **Texto sobre Navy** (on-navy / on-navy-2) y **Filete sobre Navy** (rule-navy): texto principal, texto de apoyo y divisores dentro de la banda navy.
 - **Error** (error): borde y título de la alerta de formulario y estado de error del boletín.
+- **Lavado de Error** (error-wash): fondo de la alerta de error del formulario de contacto.
+- **Tinta Terciaria** (ink-3): texto de los placeholders de los campos (≈ 4.8:1 sobre blanco folio).
 
 ### Named Rules
 **La Regla de la Tinta Única.** Hay un solo navy y un solo azul. Ningún hex suelto fuera de los tokens.
@@ -175,6 +246,31 @@ Paleta contenida: tinta navy sobre papel blanco cálido, un azul de acción toma
 - **Lead** (sans 400, interlineado 1.6, ink-2, máximo 60ch): el párrafo bajo la tesis.
 - **Body** (sans 400, 17px, interlineado 1.65, máximo 68ch; 16px por debajo de 720px). La prosa de los artículos sube a 1.125rem con interlineado 1.75.
 - **Label** (sans 600, 0.8125rem, tracking 0.06em, caja normal): títulos de columnas laterales ("Áreas de práctica", "Índice de servicios"), encabezados del pie y rótulos de datos. Nunca se coloca sobre un titular como antetítulo.
+
+### Escala completa (aprobada visualmente; los tamaños del código son estos y solo estos)
+| Paso | Tamaño | Voz | Dónde |
+|---|---|---|---|
+| law-numeral | clamp(3rem → 4.5rem) | serif 500 | "Ley 155-17" como primera línea del titular de la banda |
+| display | clamp(2.375rem → 4.25rem) | serif 500 | tesis (H1) de páginas interiores |
+| display-home | clamp(2.375rem → 4rem) | serif 500 | tesis de Inicio, limitada a 22ch |
+| headline | clamp(1.875rem → 2.75rem) | serif 500 | titulares de sección y del cierre |
+| headline-service | clamp(1.75rem → 2.375rem) | serif 500 | nombre de cada servicio en /servicios |
+| headline-compact | 1.75rem | serif 500 | titular de la columna de contacto y números de los pasos |
+| motto | 1.625rem | serif 500 | Orden · Cumplimiento · Confianza (Nosotros) |
+| signature | 1.5rem | serif 600 | nombre de la firma en el cierre |
+| title | 1.375rem | serif 600 | filas del índice de servicios, subtítulo de Inicio |
+| title-list | 1.25rem | serif 600 | títulos de actualizaciones, línea de servicio, nota de /servicios, mobile-nav |
+| title-small | 1.1875rem | serif 600 | lista de la banda, nombre de marca, checklist detallado |
+| lead | clamp(1.125rem → 1.25rem) | sans 400 | párrafo bajo la tesis |
+| prose | 1.125rem | sans/serif | prosa de artículos; enlaces de áreas de práctica (serif) |
+| body | 1.0625rem | sans 400 | texto de lectura |
+| body-compact | 1rem | sans | cuerpo por debajo de 720px, ítems de alcance y checklist |
+| small | 0.9375rem | sans | texto de apoyo en listas, nav, pie, botones, enlaces de acción |
+| caption | 0.875rem | sans | fechas, fuentes, rótulos de campos, mensajes de estado |
+| label | 0.8125rem | sans 600 | rótulos de columna y categorías |
+| micro | 0.75rem | sans 400, tracking 0.08em | "& Consultores" bajo el nombre de marca |
+
+**La Regla de la Escala Cerrada.** Un tamaño nuevo entra primero en esta tabla y en el frontmatter; nunca directamente en el CSS.
 
 ### Named Rules
 **La Regla de los Pesos Reales.** Serif 500/600 y sans 400/600. Ningún otro peso.

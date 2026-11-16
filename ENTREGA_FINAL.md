@@ -35,6 +35,6 @@ El formulario usa FormSubmit. El primer envío puede requerir confirmación desd
 
 ## Pendiente posterior a dominio
 Cuando se compre/defina el dominio real, actualizar:
-- `public/sitemap.xml`
+- `src/seo.js` (`SITE_URL`) si el dominio canónico cambiara; el `sitemap.xml` se genera en el build
 - `public/robots.txt`
 - URLs canónicas en `index.html`, si aplica.

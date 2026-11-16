@@ -19,6 +19,8 @@
   --on-navy-2: #b9c2d0;
   --rule-navy: rgba(244, 241, 234, 0.16);
   --error: #a3261d;
+  --error-wash: #fbf1ef;
+  --ink-3: #6b7280;
 
   /* Type */
   --serif: 'Source Serif 4 Variable', Georgia, 'Times New Roman', serif;
@@ -106,7 +108,7 @@ ul, ol { padding: 0; list-style: none; }
   display: inline-flex; align-items: center; justify-content: center; gap: 10px;
   min-height: 48px; padding: 0 24px;
   border: 1px solid var(--blue); border-radius: var(--radius);
-  background: var(--blue); color: #fff;
+  background: var(--blue); color: var(--folio);
   font-family: var(--sans); font-size: 0.9375rem; font-weight: 600; letter-spacing: 0.01em;
   cursor: pointer; white-space: nowrap;
   transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
@@ -116,7 +118,7 @@ ul, ol { padding: 0; list-style: none; }
 .btn--quiet { background: transparent; color: var(--navy); border-color: var(--rule-strong); }
 .btn--quiet:hover { background: transparent; border-color: var(--navy); }
 .btn--light { background: var(--paper); color: var(--navy); border-color: var(--paper); }
-.btn--light:hover { background: #fff; border-color: #fff; }
+.btn--light:hover { background: var(--folio); border-color: var(--folio); }
 .btn--block { width: 100%; }
 .btn svg { width: 18px; height: 18px; }
 
@@ -131,7 +133,7 @@ ul, ol { padding: 0; list-style: none; }
 .textlink svg { width: 16px; height: 16px; flex: none; transition: transform 0.3s var(--ease-out); }
 .textlink:hover svg.icon-arrow { transform: translateX(3px); }
 .textlink--light { color: var(--on-navy); }
-.textlink--light:hover { color: #fff; }
+.textlink--light:hover { color: var(--folio); }
 
 .icon { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
 .icon-check { color: var(--gold); width: 18px; height: 18px; flex: none; margin-top: 0.3em; }
@@ -277,7 +279,7 @@ input, select, textarea {
 }
 textarea { min-height: 140px; resize: vertical; }
 select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230b1f3a' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; background-size: 18px; padding-right: 40px; }
-::placeholder { color: #6b7280; opacity: 1; }
+::placeholder { color: var(--ink-3); opacity: 1; }
 input:hover, select:hover, textarea:hover { border-color: var(--ink-2); }
 input:focus, select:focus, textarea:focus { outline: none; border-color: var(--blue); box-shadow: 0 0 0 3px rgba(0, 82, 184, 0.18); }
 
@@ -346,7 +348,7 @@ input:focus, select:focus, textarea:focus { outline: none; border-color: var(--b
 .contact-form__row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
 .contact-form__status { font-size: 0.9375rem; color: var(--ink-2); }
 .contact-form__status.is-sent { color: var(--navy); font-weight: 600; }
-.form-alert { padding: 16px 18px; border: 1px solid var(--error); border-radius: var(--radius); color: var(--ink); background: #fbf1ef; }
+.form-alert { padding: 16px 18px; border: 1px solid var(--error); border-radius: var(--radius); color: var(--ink); background: var(--error-wash); }
 .form-alert strong { display: block; color: var(--error); margin-bottom: 4px; }
 .form-alert a { color: var(--blue); font-weight: 600; text-decoration: underline; text-underline-offset: 4px; }
 .channels { grid-column: 9 / span 4; }
@@ -472,3 +474,6 @@ input:focus, select:focus, textarea:focus { outline: none; border-color: var(--b
 .toc__note { margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--rule); font-size: 0.9375rem; color: var(--ink-2); line-height: 1.55; }
 .statement__sub { margin-top: 40px; margin-bottom: 10px; padding-top: 24px; border-top: 1px solid var(--rule); }
 .section-head .body + .body { margin-top: 0.75em; }
+
+/* Campo trampa de los formularios: fuera de la vista y del orden de tabulación */
+.hp-field { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }

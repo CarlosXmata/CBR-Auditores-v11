@@ -1,5 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import logo from './assets/cbr-logo.png'
+import { news } from './content/news.js'
+import { absoluteUrl, metaFor } from './seo.js'
 
 const CONTACT_EMAIL = 'info.cbrauditores@gmail.com'
 const CONTACT_PHONE = '(809) 323-4460'
@@ -113,78 +115,6 @@ const process = [
   ['05', 'Resultados y recomendaciones', 'Entregamos conclusiones claras y próximos pasos para fortalecer la gestión.'],
 ]
 
-const news = [
-  {
-    slug: 'modernizacion-tributaria-dgii-industria-rd',
-    date: '23 de julio de 2026',
-    category: 'DGII',
-    title: 'Modernización tributaria y digitalización de servicios para empresas dominicanas',
-    excerpt: 'La DGII presentó ante el sector industrial su hoja de ruta de simplificación, digitalización y fortalecimiento de servicios tributarios.',
-    sourceLabel: 'DGII — Hoja de ruta de modernización tributaria',
-    sourceUrl: 'https://dgii.gov.do/noticias/Paginas/DGII-presenta-ante-industria-dominicana-hoja-ruta-modernizacion-tributaria.aspx',
-    body: [
-      'La DGII presentó una agenda enfocada en simplificación de procesos, digitalización de servicios y fortalecimiento de la relación con los contribuyentes.',
-      'Para las empresas, este tipo de actualización confirma la importancia de revisar sus procesos fiscales, documentales y tecnológicos de forma preventiva.',
-      'CBR puede acompañar la revisión de obligaciones, evidencias, controles internos y preparación operativa ante cambios en el entorno tributario.'
-    ],
-  },
-  {
-    slug: 'ley-30-26-beneficios-fiscales-formalizacion',
-    date: '16 de julio de 2026',
-    category: 'Fiscal',
-    title: 'Ley 30-26: facilidades fiscales, formalización y decisiones empresariales',
-    excerpt: 'La DGII presentó a empresarios de Santiago beneficios y facilidades de la Ley 30-26, vinculadas a cumplimiento, inversión y formalización.',
-    sourceLabel: 'DGII — Ley 30-26 y formalización',
-    sourceUrl: 'https://dgii.gov.do/noticias/Paginas/Director-DGII-presenta-empresarios-Santiago-beneficios-Ley-30-26.aspx',
-    body: [
-      'La Ley 30-26 fue presentada como un instrumento orientado a facilitar el cumplimiento de obligaciones fiscales y promover la formalización empresarial.',
-      'Las empresas deben analizar con criterio profesional cualquier facilidad, beneficio o ajuste fiscal antes de tomar decisiones financieras o tributarias.',
-      'CBR acompaña la evaluación de escenarios fiscales, organización documental y toma de decisiones con impacto financiero.'
-    ],
-  },
-  {
-    slug: 'seguimiento-obligaciones-tss-empleadores',
-    date: 'Actualización permanente',
-    category: 'TSS',
-    title: 'Seguimiento a obligaciones de seguridad social para empleadores',
-    excerpt: 'La TSS mantiene un canal oficial de noticias y actualizaciones relevantes para empleadores, aportes y cumplimiento de obligaciones laborales vinculadas al SDSS.',
-    sourceLabel: 'TSS — Noticias oficiales',
-    sourceUrl: 'https://tss.gob.do/noticias/',
-    body: [
-      'Las obligaciones vinculadas a seguridad social requieren seguimiento oportuno, revisión de nómina y control de pagos conforme al marco aplicable.',
-      'El monitoreo de actualizaciones oficiales ayuda a prevenir atrasos, diferencias y contingencias administrativas.',
-      'CBR puede apoyar con revisión de registros, conciliaciones y controles relacionados con obligaciones recurrentes de la empresa.'
-    ],
-  },
-  {
-    slug: 'prensa-regulatoria-superintendencia-bancos-rd',
-    date: 'Actualización permanente',
-    category: 'Regulatorio',
-    title: 'Actualidad regulatoria y financiera desde fuentes oficiales',
-    excerpt: 'La sección de prensa de la Superintendencia de Bancos permite dar seguimiento a publicaciones del sistema financiero, avisos, regulación y temas de interés empresarial.',
-    sourceLabel: 'Superintendencia de Bancos — Prensa oficial',
-    sourceUrl: 'https://sb.gob.do/prensa/',
-    body: [
-      'El entorno financiero y regulatorio dominicano exige seguimiento constante para empresas que interactúan con entidades financieras o que requieren información de mercado.',
-      'Las actualizaciones oficiales ayudan a contextualizar decisiones de financiamiento, cumplimiento, control interno y gestión de riesgos.',
-      'CBR convierte estas referencias en contenido breve y útil para que sus clientes identifiquen posibles impactos en su operación.'
-    ],
-  },
-  {
-    slug: 'ley-155-17-marco-prevencion-laft',
-    date: 'Consulta permanente',
-    category: 'Prevención LA/FT',
-    title: 'Ley 155-17: marco de prevención de lavado de activos y financiamiento del terrorismo',
-    excerpt: 'Un recurso oficial para comprender el marco legal aplicable a Sujetos Obligados y programas de cumplimiento en República Dominicana.',
-    sourceLabel: 'Superintendencia de Bancos — Compendio legal',
-    sourceUrl: 'https://www.sb.gob.do/regulacion/compendio-de-leyes-y-reglamentos/ley-no-155-17-lavado-de-activos-y-el-financiamiento-del-terrorismo/',
-    body: [
-      'La Ley 155-17 establece el marco dominicano contra el lavado de activos y el financiamiento del terrorismo.',
-      'Los Sujetos Obligados deben mantener controles proporcionales a sus riesgos y a la naturaleza de sus operaciones.',
-      'La revisión periódica del programa de cumplimiento es clave para demostrar gestión efectiva, trazabilidad y control.'
-    ],
-  },
-]
 
 const complianceBlocks = [
   ['Manual de prevención', 'Documento base para formalizar políticas, procedimientos, responsabilidades y controles.'],
@@ -218,14 +148,24 @@ const practiceAreas = [
   ['Cumplimiento Ley 155-17', '/ley-155-17'],
 ]
 
-const pageTitles = {
-  '/': 'CBR Auditores & Consultores | Firma de Auditoría, Contabilidad y Consultoría en RD',
-  '/servicios': 'Servicios | CBR Auditores & Consultores',
-  '/quienes-somos': 'Nosotros | CBR Auditores & Consultores',
-  '/contacto': 'Contacto | CBR Auditores & Consultores',
-  '/ley-155-17': 'Cumplimiento Ley 155-17 | CBR Auditores & Consultores',
-  '/noticias': 'Centro de Actualizaciones Profesionales | CBR Auditores & Consultores',
-  '/aviso-privacidad': 'Aviso de privacidad | CBR Auditores & Consultores',
+/* Mantiene <head> al día en la navegación interna (el HTML prerenderizado ya lo trae en la carga inicial). */
+function applyMeta(pathname) {
+  const meta = metaFor(pathname)
+  const url = absoluteUrl(meta.path)
+  document.title = meta.title
+  const set = (selector, attr, value) => {
+    const el = document.head.querySelector(selector)
+    if (el) el.setAttribute(attr, value)
+  }
+  set('meta[name="description"]', 'content', meta.description)
+  set('link[rel="canonical"]', 'href', url)
+  set('meta[property="og:url"]', 'content', url)
+  set('meta[property="og:title"]', 'content', meta.title)
+  set('meta[property="og:description"]', 'content', meta.description)
+  set('meta[property="og:type"]', 'content', meta.type || 'website')
+  set('meta[name="twitter:title"]', 'content', meta.title)
+  set('meta[name="twitter:description"]', 'content', meta.description)
+  set('meta[name="robots"]', 'content', meta.indexable ? 'index, follow' : 'noindex, follow')
 }
 
 const prefersReducedMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches
@@ -235,7 +175,14 @@ const prefersReducedMotion = () => window.matchMedia('(prefers-reduced-motion: r
 function scrollToHash(hash) {
   if (!hash) return
   const target = document.getElementById(decodeURIComponent(hash.slice(1)))
-  if (target) target.scrollIntoView({ behavior: prefersReducedMotion() ? 'auto' : 'smooth', block: 'start' })
+  if (!target) return
+  const startY = window.scrollY
+  target.scrollIntoView({ behavior: prefersReducedMotion() ? 'auto' : 'smooth', block: 'start' })
+  // Respaldo: si el navegador no ejecuta el desplazamiento suave, saltar directamente.
+  window.setTimeout(() => {
+    const off = Math.abs(target.getBoundingClientRect().top) > 160
+    if (off && window.scrollY === startY) target.scrollIntoView({ behavior: 'auto', block: 'start' })
+  }, 450)
 }
 
 function navigate(to) {
@@ -496,25 +443,66 @@ function UpdateRow({ item }) {
   )
 }
 
+/* ---------- Envío protegido de formularios (FormSubmit) ---------- */
+
+const FORM_ENDPOINT = `https://formsubmit.co/ajax/${CONTACT_EMAIL}`
+const MIN_FILL_MS = 2500 // un envío más rápido que esto se trata como automatizado
+const SEND_TIMEOUT_MS = 15000
+
+// Campo trampa: invisible para personas, rellenado por bots. FormSubmit descarta los envíos con _honey.
+function Honeypot() {
+  return (
+    <div className="hp-field" aria-hidden="true">
+      <label>No rellene este campo<input type="text" name="_honey" tabIndex="-1" autoComplete="off" defaultValue="" /></label>
+    </div>
+  )
+}
+
+function useFormGuard() {
+  const mountedAt = useRef(Date.now())
+  return data => {
+    if (data.get('_honey')) return 'bot'
+    if (Date.now() - mountedAt.current < MIN_FILL_MS) return 'too-fast'
+    return 'ok'
+  }
+}
+
+async function sendForm(data) {
+  const controller = new AbortController()
+  const timer = window.setTimeout(() => controller.abort(), SEND_TIMEOUT_MS)
+  try {
+    const response = await fetch(FORM_ENDPOINT, {
+      method: 'POST',
+      body: data,
+      headers: { Accept: 'application/json' },
+      signal: controller.signal,
+    })
+    const result = await response.json().catch(() => ({}))
+    if (!response.ok || result.success === 'false' || result.success === false) throw new Error('send-failed')
+  } finally {
+    window.clearTimeout(timer)
+  }
+}
+
 function Newsletter({ id = 'newsletter' }) {
   const [status, setStatus] = useState('idle')
+  const check = useFormGuard()
 
   const handleNewsletter = async event => {
     event.preventDefault()
+    if (status === 'sending' || status === 'sent') return
     const form = event.currentTarget
     const data = new FormData(form)
+    const verdict = check(data)
+    if (verdict === 'bot') { form.reset(); setStatus('sent'); return }
+    if (verdict === 'too-fast') { setStatus('retry'); return }
     data.append('_subject', 'Nueva suscripción al boletín CBR')
     data.append('_template', 'table')
     data.append('_captcha', 'false')
     setStatus('sending')
 
     try {
-      const response = await fetch(`https://formsubmit.co/ajax/${CONTACT_EMAIL}`, {
-        method: 'POST',
-        body: data,
-        headers: { Accept: 'application/json' },
-      })
-      if (!response.ok) throw new Error('Error')
+      await sendForm(data)
       form.reset()
       setStatus('sent')
     } catch (error) {
@@ -525,14 +513,16 @@ function Newsletter({ id = 'newsletter' }) {
   return (
     <form className="newsletter" onSubmit={handleNewsletter}>
       <label htmlFor={`${id}-email`}>Suscríbase a nuestro boletín</label>
+      <Honeypot />
       <div className="newsletter__field">
-        <input id={`${id}-email`} name="email" type="email" autoComplete="email" placeholder="correo@empresa.com" required />
+        <input id={`${id}-email`} name="email" type="email" autoComplete="email" placeholder="correo@empresa.com" maxLength="160" required />
         <button type="submit" className="btn btn--quiet" disabled={status === 'sending'}>
           {status === 'sending' ? 'Enviando…' : 'Suscribirse'}
         </button>
       </div>
       <p className={`newsletter__status ${status === 'error' ? 'is-error' : ''}`} role="status" aria-live="polite">
         {status === 'sent' && 'Suscripción recibida. Gracias.'}
+        {status === 'retry' && 'Revise su correo y vuelva a pulsar «Suscribirse».'}
         {status === 'error' && <>No se pudo completar la suscripción. Inténtelo de nuevo o escríbanos a <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.</>}
       </p>
     </form>
@@ -936,12 +926,17 @@ function ArticlePage({ slug }) {
 function ContactPage({ whatsappLink }) {
   const [formStatus, setFormStatus] = useState('idle')
   const [fallbackMailto, setFallbackMailto] = useState('')
+  const check = useFormGuard()
 
   const handleSubmit = async event => {
     event.preventDefault()
+    if (formStatus === 'sending') return
 
     const form = event.currentTarget
     const data = new FormData(form)
+    const verdict = check(data)
+    if (verdict === 'bot') { form.reset(); setFormStatus('sent'); return }
+    if (verdict === 'too-fast') { setFormStatus('retry'); return }
     data.append('_subject', `Solicitud web CBR - ${data.get('service')}`)
     data.append('_template', 'table')
     data.append('_captcha', 'false')
@@ -949,12 +944,7 @@ function ContactPage({ whatsappLink }) {
     setFormStatus('sending')
 
     try {
-      const response = await fetch(`https://formsubmit.co/ajax/${CONTACT_EMAIL}`, {
-        method: 'POST',
-        body: data,
-        headers: { Accept: 'application/json' },
-      })
-      if (!response.ok) throw new Error('No se pudo enviar el formulario.')
+      await sendForm(data)
       form.reset()
       setFormStatus('sent')
     } catch (error) {
@@ -988,24 +978,25 @@ function ContactPage({ whatsappLink }) {
         <div className="wrap contact-grid">
           <form className="contact-form" onSubmit={handleSubmit} aria-labelledby="form-title" noValidate={false}>
             <h2 className="visually-hidden" id="form-title">Formulario de solicitud</h2>
+            <Honeypot />
             <div className="contact-form__row">
               <div className="field">
                 <label htmlFor="f-name">Nombre</label>
-                <input id="f-name" name="name" type="text" autoComplete="name" placeholder="Nombre y apellido" required />
+                <input id="f-name" name="name" type="text" autoComplete="name" placeholder="Nombre y apellido" maxLength="120" required />
               </div>
               <div className="field">
                 <label htmlFor="f-company">Empresa <small>(opcional)</small></label>
-                <input id="f-company" name="company" type="text" autoComplete="organization" placeholder="Nombre de la empresa" />
+                <input id="f-company" name="company" type="text" autoComplete="organization" placeholder="Nombre de la empresa" maxLength="120" />
               </div>
             </div>
             <div className="contact-form__row">
               <div className="field">
                 <label htmlFor="f-email">Correo electrónico</label>
-                <input id="f-email" name="email" type="email" autoComplete="email" placeholder="correo@empresa.com" required />
+                <input id="f-email" name="email" type="email" autoComplete="email" placeholder="correo@empresa.com" maxLength="160" required />
               </div>
               <div className="field">
                 <label htmlFor="f-phone">Teléfono</label>
-                <input id="f-phone" name="phone" type="tel" autoComplete="tel" inputMode="tel" placeholder="(809) 000-0000" required />
+                <input id="f-phone" name="phone" type="tel" autoComplete="tel" inputMode="tel" placeholder="(809) 000-0000" maxLength="30" pattern="[0-9\s\+\(\)\-\.]{7,30}" title="Indique un teléfono de al menos 7 dígitos" required />
               </div>
             </div>
             <div className="field">
@@ -1018,7 +1009,7 @@ function ContactPage({ whatsappLink }) {
             </div>
             <div className="field">
               <label htmlFor="f-message">Mensaje <small>(opcional)</small></label>
-              <textarea id="f-message" name="message" rows="5" placeholder="Describa brevemente lo que necesita su empresa"></textarea>
+              <textarea id="f-message" name="message" rows="5" maxLength="2000" placeholder="Describa brevemente lo que necesita su empresa"></textarea>
             </div>
 
             {formStatus === 'error' && (
@@ -1032,9 +1023,9 @@ function ContactPage({ whatsappLink }) {
               {formStatus === 'sending' ? 'Enviando solicitud…' : 'Enviar solicitud'}
             </button>
             <p className={`contact-form__status ${formStatus === 'sent' ? 'is-sent' : ''}`} role="status" aria-live="polite">
-              {formStatus === 'sent'
-                ? 'Solicitud enviada correctamente. Nos pondremos en contacto pronto.'
-                : `El mensaje será enviado a ${CONTACT_EMAIL}.`}
+              {formStatus === 'sent' && 'Solicitud enviada correctamente. Nos pondremos en contacto pronto.'}
+              {formStatus === 'retry' && 'Revise los datos y vuelva a pulsar «Enviar solicitud».'}
+              {!['sent', 'retry'].includes(formStatus) && `El mensaje será enviado a ${CONTACT_EMAIL}.`}
             </p>
           </form>
 
@@ -1114,8 +1105,7 @@ function App() {
   }, [])
 
   useEffect(() => {
-    const article = pathname.startsWith('/noticias/') && news.find(item => item.slug === pathname.split('/').pop())
-    document.title = article ? `${article.title} | CBR Auditores & Consultores` : (pageTitles[pathname] || pageTitles['/'])
+    applyMeta(pathname)
     if (firstRender.current) {
       firstRender.current = false
       if (hash) window.setTimeout(() => scrollToHash(hash), 120)

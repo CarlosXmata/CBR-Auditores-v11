@@ -54,14 +54,14 @@ Lo que distingue a CBR, confirmado por el responsable del proyecto:
 ## Capabilities and Constraints
 
 - **Stack**: SPA en React 18 + Vite.
-  - Interfaz en `src/App.jsx` y estilos en `src/styles.css`.
+  - Interfaz en `src/App.jsx`, estilos en `src/styles.css`, noticias en `src/content/news.js` y metadatos por ruta en `src/seo.js`.
   - Router propio por `pathname`.
   - Despliegue en Vercel; la salida de build va a `dist`.
 - **Dominio oficial**: `cbrauditores.com`.
   - El DNS se administra desde Squarespace.
   - El correo del dominio lo gestiona Google Workspace.
   - **Pendiente**: confirmar la dirección pública profesional definitiva. Hasta entonces, el correo público sigue siendo `info.cbrauditores@gmail.com`.
-  - Cuando se publique en el dominio hay que actualizar `public/sitemap.xml`, `public/robots.txt` y las URLs canónicas.
+  - Dominio canónico: `www.cbrauditores.com`. El `sitemap.xml` y el HTML con metadatos de cada ruta se generan en cada build; `vercel.json` redirige `cbrauditores.com` a `www`.
 - **Navegación principal aprobada**: Inicio, Servicios, Nosotros y Contacto.
   - No se modifica sin autorización.
   - La Ley 155-17, Noticias y el Aviso de privacidad son apartados secundarios: se llega a ellos desde el pie de página y desde enlaces internos.

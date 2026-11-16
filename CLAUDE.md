@@ -14,12 +14,14 @@ Para trabajo de diseño se usa la skill **Impeccable** (`/impeccable …`), que 
 ## Stack
 
 - React 18 + Vite, sin framework de estilos.
-- Interfaz en `src/App.jsx` y estilos globales en `src/styles.css`. El router es propio y funciona por `window.location.pathname`.
+- Interfaz en `src/App.jsx`, estilos globales en `src/styles.css`, noticias en `src/content/news.js` y metadatos SEO por ruta en `src/seo.js`. El router es propio y funciona por `window.location.pathname`.
 - Comandos:
   - `npm run dev`: desarrollo.
-  - `npm run build`: genera `dist/`.
+  - `npm run build`: compila con Vite y ejecuta `scripts/prerender.mjs`, que escribe un HTML por ruta con title, description, canonical y Open Graph propios, `404.html` y `sitemap.xml`.
   - `npm run preview`: sirve el build.
-- Despliegue en Vercel con el preset Vite. Las rutas SPA se resuelven en `vercel.json`.
+- Despliegue en Vercel con el preset Vite. `vercel.json`: URLs limpias (`/servicios` sirve `servicios.html`), redirección 301 de `cbrauditores.com` a `www.cbrauditores.com`, cabeceras de seguridad y caché de `/assets`. Las rutas desconocidas reciben `404.html` con estado 404.
+- Dominio canónico: `https://www.cbrauditores.com` (definido en `src/seo.js`, `index.html` y `public/robots.txt`).
+- Formularios (FormSubmit): campo trampa `_honey`, rechazo de envíos en menos de 2,5 s, tiempo límite de 15 s y alternativas por WhatsApp o correo si el envío falla.
 
 ## Reglas editoriales (no negociables)
 
