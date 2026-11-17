@@ -1,0 +1,8 @@
+# Cloudflare Pages: redirecciones estáticas (equivalente a "redirects" de vercel.json).
+# Formato: origen  destino  código
+#
+# Antigua URL del artículo de Ley 30-26 (retirado de la publicación) -> Centro de Actualizaciones.
+/noticias/ley-30-26-beneficios-fiscales-formalizacion  /noticias  301
+#
+# La redirección de cbrauditores.com -> www.cbrauditores.com NO va aquí: se configura en
+# Squarespace y www es el dominio canónico (ver HOSTING_CLOUDFLARE_PAGES.md).
