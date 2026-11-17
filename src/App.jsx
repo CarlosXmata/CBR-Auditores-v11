@@ -505,8 +505,8 @@ function HomePage({ whatsappLink }) {
         <GlobeArt className="hero__globe" />
         <div className="wrap hero__grid">
           <div className="hero__main">
-            <p className="eyebrow">Firma consultora para empresas en República Dominicana</p>
-            <h1 className="display">Auditoría, Contabilidad, Impuestos y Consultoría Financiera para empresas en RD</h1>
+            <p className="eyebrow">Firma consultora</p>
+            <h1 className="display">Auditoría, Contabilidad, Impuestos y Consultoría Financiera</h1>
             <p className="lead">
               Ayudamos a empresas, emprendedores, profesionales independientes y Sujetos Obligados a fortalecer su gestión financiera, fiscal y regulatoria.
             </p>
