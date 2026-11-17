@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import logo from './assets/cbr-logo.png'
-import { news } from './content/news.js'
+import { datedNews, formatDate, news } from './content/news.js'
 import { absoluteUrl, metaFor } from './seo.js'
 
 import { ADDRESS, CONTACT_EMAIL, INSTAGRAM_URL, PHONE_DISPLAY, PHONE_TEL, whatsappUrl } from './config/site.js'
@@ -130,6 +130,9 @@ const commitments = [
 
 const CTA_LABEL = 'Solicitar una consulta'
 const LAW_SOURCE_URL = 'https://www.sb.gob.do/regulacion/compendio-de-leyes-y-reglamentos/ley-no-155-17-lavado-de-activos-y-el-financiamiento-del-terrorismo/'
+
+// Fecha visible de una publicación: las noticias llevan su fecha oficial; los recursos, nunca una fecha inventada.
+const dateLabel = item => (item.type === 'noticia' ? formatDate(item.publishedAt) : 'Recurso permanente')
 
 const slugify = text =>
   text.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')
@@ -438,11 +441,11 @@ function WhatsAppQuick({ whatsappLink }) {
 function UpdateRow({ item }) {
   return (
     <li className="update">
-      <p className="update__date num">{item.date}</p>
+      <p className="update__date num">{dateLabel(item)}</p>
       <p className="update__cat">{item.category}</p>
       <div className="update__main">
         <h3><Link to={`/noticias/${item.slug}`}>{item.title}</Link></h3>
-        <p className="update__src">Fuente: {item.sourceLabel}</p>
+        <p className="update__src">Fuente: {item.sourceName}</p>
         <div className="update__actions">
           <Link className="textlink" to={`/noticias/${item.slug}`}>Leer el resumen de CBR <ArrowRight /></Link>
           <a className="textlink" href={item.sourceUrl} target="_blank" rel="noreferrer">Consultar fuente oficial <ArrowUpRight /></a>
@@ -649,7 +652,7 @@ function HomePage({ whatsappLink }) {
             <p className="body">Un espacio de curaduría profesional con fuentes reales sobre DGII, TSS, Ley 155-17, cumplimiento, impuestos y entorno financiero dominicano.</p>
           </div>
           <ul className="updates">
-            {news.slice(0, 3).map(item => <UpdateRow key={item.slug} item={item} />)}
+            {datedNews().slice(0, 3).map(item => <UpdateRow key={item.slug} item={item} />)}
           </ul>
           <div className="newsletter-row">
             <p>Las actualizaciones profesionales se publican en el Centro de Actualizaciones, cada una con su fecha y su fuente oficial.</p>
@@ -902,9 +905,9 @@ function ArticlePage({ slug }) {
         lead={article.excerpt}
         aside={
           <dl className="facts">
-            <div><dt>Fecha</dt><dd className="num">{article.date}</dd></div>
+            <div><dt>Fecha</dt><dd className="num">{dateLabel(article)}</dd></div>
             <div><dt>Categoría</dt><dd>{article.category}</dd></div>
-            <div><dt>Fuente</dt><dd>{article.sourceLabel}</dd></div>
+            <div><dt>Fuente</dt><dd>{article.sourceName}</dd></div>
             <div>
               <a className="btn btn--quiet" href={article.sourceUrl} target="_blank" rel="noreferrer">
                 Consultar fuente oficial <ArrowUpRight />
@@ -917,12 +920,12 @@ function ArticlePage({ slug }) {
       <section className="section">
         <div className="wrap">
           <div className="prose">
-            {article.body.map((paragraph, index) => <p key={index}>{paragraph}</p>)}
+            {[...article.summary, article.relevance, article.cbrNote].filter(Boolean).map((paragraph, index) => <p key={index}>{paragraph}</p>)}
           </div>
           <div className="source-note">
             <h2>Lectura completa en la fuente original</h2>
             <p>Para evitar publicar noticias sin respaldo, este apartado enlaza directamente a la fuente real donde se encuentra la información.</p>
-            <a className="textlink" href={article.sourceUrl} target="_blank" rel="noreferrer">Consultar fuente oficial: {article.sourceLabel} <ArrowUpRight /></a>
+            <a className="textlink" href={article.sourceUrl} target="_blank" rel="noreferrer">Consultar fuente oficial: {article.sourceName} <ArrowUpRight /></a>
           </div>
           <div className="back-link">
             <Link className="textlink" to="/noticias"><ArrowLeft /> Volver al Centro de Actualizaciones</Link>

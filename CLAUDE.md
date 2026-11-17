@@ -19,6 +19,7 @@ Para trabajo de diseño se usa la skill **Impeccable** (`/impeccable …`), que 
   - `npm run dev`: desarrollo.
   - `npm run build`: compila con Vite y ejecuta `scripts/prerender.mjs`, que escribe un HTML por ruta con title, description, canonical y Open Graph propios, `404.html` y `sitemap.xml`.
   - `npm run preview`: sirve el build.
+  - `npm run news:check` y `npm run news:feeds`: verifican los datos y enlaces oficiales de las noticias y listan candidatos desde RSS oficiales (informan, no publican). GitHub Actions ejecuta la verificación cada lunes (`.github/workflows/news-check.yml`).
 - Despliegue en Vercel con el preset Vite. `vercel.json`: URLs limpias (`/servicios` sirve `servicios.html`), redirección 301 de `cbrauditores.com` a `www.cbrauditores.com`, cabeceras de seguridad y caché de `/assets`. Las rutas desconocidas reciben `404.html` con estado 404.
 - Dominio canónico: `https://www.cbrauditores.com` (definido en `src/seo.js`, `index.html` y `public/robots.txt`).
 - Formularios (FormSubmit): campo trampa `_honey`, rechazo de envíos en menos de 2,5 s, tiempo límite de 15 s y alternativas por WhatsApp o correo si el envío falla.

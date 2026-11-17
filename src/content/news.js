@@ -1,78 +1,132 @@
-// Centro de Actualizaciones Profesionales. Criterio editorial en MANTENIMIENTO_NOTICIAS.md.
-// Este archivo lo leen la web (src/App.jsx) y el prerenderizado de metadatos (scripts/prerender.mjs).
+// Centro de Actualizaciones Profesionales.
+// Criterio editorial y proceso de publicación: MANTENIMIENTO_NOTICIAS.md.
+// Lo leen la web (src/pages), el SEO (src/seo.js), el prerenderizado (scripts/prerender-meta.mjs)
+// y la verificación de enlaces (scripts/news-check.mjs).
+//
+// Campos de cada publicación:
+//   slug        identificador de la URL /noticias/<slug>
+//   type        'noticia' (fechada, con publishedAt) o 'recurso' (guía o canal permanente, sin fecha de publicación)
+//   title       titular propio, fiel a la fuente
+//   excerpt     una frase para listados y metadatos
+//   summary     resumen propio (párrafos), sin copiar la fuente
+//   relevance   por qué importa a las empresas
+//   cbrNote     (opcional) cómo puede orientar CBR, sin prometer resultados
+//   category    DGII, TSS, Fiscal, Regulatorio, Prevención LA/FT…
+//   sourceName  organismo emisor
+//   sourceUrl   enlace oficial a la publicación original
+//   publishedAt fecha ISO de la publicación oficial (solo en 'noticia')
+//   verifiedAt  fecha ISO de la última verificación manual del enlace y del contenido
 
 export const news = [
   {
-    slug: 'dgii-acompanamiento-facturacion-electronica',
-    date: '16 de noviembre de 2026',
-    category: 'DGII',
-    title: 'Facturación Electrónica: la DGII mantiene el acompañamiento y, por el momento, no aplicará multas ni bloqueos',
-    excerpt: 'La DGII informó que, por el momento, no aplicará multas, penalidades ni bloqueos a quienes no completaron su incorporación a la Facturación Electrónica al 15 de noviembre, y que seguirá asistiendo a los contribuyentes.',
-    sourceLabel: 'DGII — Acompañamiento para Facturación Electrónica (publicado el 16/11/2026)',
-    sourceUrl: 'https://dgii.gov.do/noticias/Paginas/DGII-mantendra-acompa%C3%B1amiento-para-Facturacion-Electronica-sin-aplicar-momento-multas-ni-bloqueos.aspx',
-    body: [
-      'Según la DGII, su actuación se centra en orientar, asistir y acompañar a los contribuyentes en la incorporación a la Facturación Electrónica, y los exhortó a continuar el proceso por sus canales oficiales de atención.',
-      'La institución indicó que la prórroga prevista en el reglamento ya fue otorgada mediante el Aviso 06-26 y que una nueva prórroga general no tendría sustento reglamentario. Aclaró que esto no se traduce, por el momento, en multas, penalidades ni bloqueos.',
-      'Este resumen es de CBR y no sustituye la lectura del texto oficial. Las empresas deben verificar su situación particular con asesoría profesional; CBR puede acompañar la revisión de su estado de incorporación, sus procesos de facturación y sus controles internos.'
+    slug: 'dgii-acompanamiento-facturacion-electronica-sin-multas',
+    type: 'noticia',
+    title: 'DGII mantendrá el acompañamiento para la Facturación Electrónica sin aplicar, por el momento, multas ni bloqueos',
+    excerpt: 'La DGII llamó a los contribuyentes a continuar su incorporación a la Facturación Electrónica e informó que, por ahora, no aplicará multas, penalidades ni bloqueos a quienes no la completaron al 15 de noviembre.',
+    summary: [
+      'Tras el vencimiento del plazo del 15 de noviembre de 2026, la Dirección General de Impuestos Internos informó que, por el momento, no aplicará multas, penalidades ni bloqueos a los contribuyentes que aún no han completado su incorporación a la Facturación Electrónica, y que mantendrá la asistencia para que avancen.',
+      'La institución precisó que la prórroga prevista en el Reglamento núm. 587-24 ya fue otorgada mediante el Aviso 06-26, por lo que no contempla una nueva prórroga general.',
     ],
+    relevance: 'Las empresas que todavía no emiten comprobantes electrónicos (e-CF) siguen obligadas a completar el proceso. La ausencia temporal de sanciones es una oportunidad para terminar la adecuación técnica y administrativa, no un nuevo plazo.',
+    cbrNote: 'Si su empresa tiene dudas sobre su incorporación a la Facturación Electrónica, puede consultarnos.',
+    category: 'DGII',
+    sourceName: 'Dirección General de Impuestos Internos (DGII)',
+    sourceUrl: 'https://dgii.gov.do/noticias/Paginas/DGII-mantendra-acompa%C3%B1amiento-para-Facturacion-Electronica-sin-aplicar-momento-multas-ni-bloqueos.aspx',
+    publishedAt: '2026-11-16',
+    verifiedAt: '2026-11-17',
+  },
+  {
+    slug: 'dgii-facturas-electronicas-tipo-e-grandes-locales-medianos',
+    type: 'noticia',
+    title: 'Desde noviembre, los contribuyentes Grandes Locales y Medianos deben emitir facturas electrónicas tipo «E»',
+    excerpt: 'La DGII recordó que, a partir del 1 de noviembre de 2026, los contribuyentes Grandes Locales y Medianos deben emitir sus comprobantes fiscales exclusivamente en formato electrónico (e-CF).',
+    summary: [
+      'La Dirección General de Impuestos Internos recordó que, desde el 1 de noviembre de 2026, los contribuyentes clasificados como Grandes Locales y Medianos deben emitir sus comprobantes fiscales solo en formato electrónico, con secuencias tipo «E».',
+      'Las secuencias no electrónicas tipo «B» asignadas a estos contribuyentes tuvieron validez hasta el 31 de octubre de 2026, según el artículo 55 del Reglamento núm. 587-24. Después de esa fecha, los comprobantes no electrónicos solo pueden usarse en el procedimiento de contingencia previsto en el mismo reglamento.',
+    ],
+    relevance: 'Afecta directamente a la facturación diaria de las empresas de estas categorías: emitir comprobantes con secuencias no válidas puede generar incumplimientos. Conviene revisar la clasificación del contribuyente y el estado de su sistema de facturación.',
+    cbrNote: 'Podemos orientarle sobre las obligaciones fiscales de su empresa en este proceso.',
+    category: 'DGII',
+    sourceName: 'Dirección General de Impuestos Internos (DGII)',
+    sourceUrl: 'https://dgii.gov.do/noticias/Paginas/DGII-reitera-emision-facturas-electronicas-tipo-E.aspx',
+    publishedAt: '2026-10-26',
+    verifiedAt: '2026-11-17',
   },
   {
     slug: 'seguimiento-obligaciones-tss-empleadores',
-    date: 'Actualización permanente',
-    category: 'TSS',
+    type: 'recurso',
     title: 'Seguimiento a obligaciones de seguridad social para empleadores',
     excerpt: 'La TSS mantiene un canal oficial de noticias y actualizaciones relevantes para empleadores, aportes y cumplimiento de obligaciones laborales vinculadas al SDSS.',
-    sourceLabel: 'TSS — Noticias oficiales',
-    sourceUrl: 'https://tss.gob.do/noticias/',
-    body: [
+    summary: [
       'Las obligaciones vinculadas a seguridad social requieren seguimiento oportuno, revisión de nómina y control de pagos conforme al marco aplicable.',
-      'El monitoreo de actualizaciones oficiales ayuda a prevenir atrasos, diferencias y contingencias administrativas.',
-      'CBR puede apoyar con revisión de registros, conciliaciones y controles relacionados con obligaciones recurrentes de la empresa.'
     ],
+    relevance: 'El monitoreo de actualizaciones oficiales ayuda a prevenir atrasos, diferencias y contingencias administrativas.',
+    cbrNote: 'CBR puede apoyar con revisión de registros, conciliaciones y controles relacionados con obligaciones recurrentes de la empresa.',
+    category: 'TSS',
+    sourceName: 'Tesorería de la Seguridad Social (TSS)',
+    sourceUrl: 'https://tss.gob.do/noticias/',
+    verifiedAt: '2026-11-17',
   },
   {
     slug: 'prensa-regulatoria-superintendencia-bancos-rd',
-    date: 'Actualización permanente',
-    category: 'Regulatorio',
+    type: 'recurso',
     title: 'Actualidad regulatoria y financiera desde fuentes oficiales',
     excerpt: 'La sección de prensa de la Superintendencia de Bancos permite dar seguimiento a publicaciones del sistema financiero, avisos, regulación y temas de interés empresarial.',
-    sourceLabel: 'Superintendencia de Bancos — Prensa oficial',
-    sourceUrl: 'https://sb.gob.do/prensa/',
-    body: [
+    summary: [
       'El entorno financiero y regulatorio dominicano exige seguimiento constante para empresas que interactúan con entidades financieras o que requieren información de mercado.',
-      'Las actualizaciones oficiales ayudan a contextualizar decisiones de financiamiento, cumplimiento, control interno y gestión de riesgos.',
-      'CBR convierte estas referencias en contenido breve y útil para que sus clientes identifiquen posibles impactos en su operación.'
     ],
+    relevance: 'Las actualizaciones oficiales ayudan a contextualizar decisiones de financiamiento, cumplimiento, control interno y gestión de riesgos.',
+    cbrNote: 'CBR convierte estas referencias en contenido breve y útil para que sus clientes identifiquen posibles impactos en su operación.',
+    category: 'Regulatorio',
+    sourceName: 'Superintendencia de Bancos (SB)',
+    sourceUrl: 'https://sb.gob.do/prensa/',
+    verifiedAt: '2026-11-17',
   },
   {
     slug: 'ley-155-17-marco-prevencion-laft',
-    date: 'Consulta permanente',
-    category: 'Prevención LA/FT',
+    type: 'recurso',
     title: 'Ley 155-17: marco de prevención de lavado de activos y financiamiento del terrorismo',
     excerpt: 'Un recurso oficial para comprender el marco legal aplicable a Sujetos Obligados y programas de cumplimiento en República Dominicana.',
-    sourceLabel: 'Superintendencia de Bancos — Compendio legal',
-    sourceUrl: 'https://www.sb.gob.do/regulacion/compendio-de-leyes-y-reglamentos/ley-no-155-17-lavado-de-activos-y-el-financiamiento-del-terrorismo/',
-    body: [
+    summary: [
       'La Ley 155-17 establece el marco dominicano contra el lavado de activos y el financiamiento del terrorismo.',
       'Los Sujetos Obligados deben mantener controles proporcionales a sus riesgos y a la naturaleza de sus operaciones.',
-      'La revisión periódica del programa de cumplimiento es clave para demostrar gestión efectiva, trazabilidad y control.'
     ],
+    relevance: 'La revisión periódica del programa de cumplimiento es clave para demostrar gestión efectiva, trazabilidad y control.',
+    category: 'Prevención LA/FT',
+    sourceName: 'Superintendencia de Bancos (SB)',
+    sourceUrl: 'https://www.sb.gob.do/regulacion/compendio-de-leyes-y-reglamentos/ley-no-155-17-lavado-de-activos-y-el-financiamiento-del-terrorismo/',
+    verifiedAt: '2026-11-17',
   },
 ]
 
-// Retirada temporalmente de la publicación (no se muestra en la web; no la lee ningún componente).
-// Ley 30-26: el resumen original describía una presentación de la DGII a empresarios de Santiago cuya fuente
-// no se pudo verificar (la página devolvía 401). Requiere aprobación de CBR antes de volver a publicarse.
-// La fuente normativa oficial verificada es el texto de la ley:
-// https://dgii.gov.do/transparencia/baseLegal/Documents/Leyes/30-26.pdf
-// Si se republica, debe presentarse como resumen editorial de CBR, no como publicación de la DGII.
+// Noticias fechadas, de la más reciente a la más antigua.
+export const datedNews = () =>
+  news.filter(item => item.type === 'noticia').sort((a, b) => b.publishedAt.localeCompare(a.publishedAt))
+
+export const resources = () => news.filter(item => item.type === 'recurso')
+
+const MONTHS = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre']
+
+// '2026-11-16' -> '16 de noviembre de 2026' (sin depender de la zona horaria del visitante)
+export function formatDate(iso) {
+  if (!iso) return ''
+  const [year, month, day] = iso.split('-').map(Number)
+  return `${day} de ${MONTHS[month - 1]} de ${year}`
+}
+
+// Retirada temporalmente de la publicación (no se muestra en la web; no la lee ningún componente ni script).
+// Ley 30-26: el resumen anterior describía una presentación de la DGII a empresarios de Santiago cuya fuente
+// no se pudo verificar. Requiere aprobación de CBR antes de volver a publicarse; si se republica, debe
+// presentarse como resumen editorial de CBR, no como publicación de la DGII.
+// Fuente normativa oficial verificada (texto de la ley): https://dgii.gov.do/transparencia/baseLegal/Documents/Leyes/30-26.pdf
+// La antigua URL del artículo (/noticias/ley-30-26-beneficios-fiscales-formalizacion) redirige con 301 a /noticias (vercel.json).
 export const pendientesDeAprobacion = [
   {
     slug: 'ley-30-26-beneficios-fiscales-formalizacion',
     category: 'Fiscal',
     title: 'Ley 30-26: facilidades fiscales, formalización y decisiones empresariales',
-    sourceLabel: 'DGII — Texto de la Ley 30-26',
+    sourceName: 'Dirección General de Impuestos Internos (DGII) — Texto de la Ley 30-26',
     sourceUrl: 'https://dgii.gov.do/transparencia/baseLegal/Documents/Leyes/30-26.pdf',
-    estado: 'Pendiente de aprobación de CBR; fecha y resumen sin verificar contra una fuente oficial.',
+    estado: 'Pendiente de aprobación de CBR; resumen y fecha sin verificar contra una fuente oficial.',
   },
 ]

@@ -13,3 +13,19 @@ export const whatsappUrl = message => (message ? `${WHATSAPP_BASE}?text=${encode
 
 export const INSTAGRAM_URL = 'https://www.instagram.com/cbrauditores/'
 export const ADDRESS = 'República Dominicana'
+
+// Fuentes oficiales de la Ley 155-17. scripts/news-check.mjs también verifica estos enlaces.
+export const LAW_SOURCES = {
+  ley: {
+    label: 'Ley núm. 155-17 (compendio de la Superintendencia de Bancos)',
+    url: 'https://www.sb.gob.do/regulacion/compendio-de-leyes-y-reglamentos/ley-no-155-17-lavado-de-activos-y-el-financiamiento-del-terrorismo/',
+  },
+  reglamento: {
+    label: 'Reglamento de aplicación de la Ley núm. 155-17 (Superintendencia de Bancos, PDF)',
+    url: 'https://sb.gob.do/media/wkrboumv/reglamento-de-aplicacion-de-la-ley-no-155-17-contra-el-lavado-de-activos-el-financiamiento-del-terrorismo-y-la-proliferaci.pdf',
+  },
+  uaf: {
+    label: 'Unidad de Análisis Financiero (UAF)',
+    url: 'https://uaf.gob.do/es',
+  },
+}
