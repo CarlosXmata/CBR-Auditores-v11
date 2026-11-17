@@ -1,12 +1,9 @@
-
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import logo from './assets/cbr-logo.png'
+import { datedNews, formatDate, news } from './content/news.js'
+import { absoluteUrl, metaFor } from './seo.js'
 
-const CONTACT_EMAIL = 'info.cbrauditores@gmail.com'
-const CONTACT_PHONE = '(809) 323-4460'
-const WHATSAPP_NUMBER = '18093234460'
-const ADDRESS = 'República Dominicana'
-const INSTAGRAM_URL = 'https://www.instagram.com/cbrauditores/'
+import { ADDRESS, CONTACT_EMAIL, INSTAGRAM_URL, PHONE_DISPLAY, PHONE_TEL, whatsappUrl } from './config/site.js'
 
 const navItems = [
   ['/', 'Inicio'],
@@ -114,120 +111,103 @@ const process = [
   ['05', 'Resultados y recomendaciones', 'Entregamos conclusiones claras y próximos pasos para fortalecer la gestión.'],
 ]
 
-const news = [
-  {
-    slug: 'modernizacion-tributaria-dgii-industria-rd',
-    date: '23 de julio de 2026',
-    category: 'DGII',
-    title: 'Modernización tributaria y digitalización de servicios para empresas dominicanas',
-    excerpt: 'La DGII presentó ante el sector industrial su hoja de ruta de simplificación, digitalización y fortalecimiento de servicios tributarios.',
-    sourceLabel: 'DGII — Hoja de ruta de modernización tributaria',
-    sourceUrl: 'https://dgii.gov.do/noticias/Paginas/DGII-presenta-ante-industria-dominicana-hoja-ruta-modernizacion-tributaria.aspx',
-    body: [
-      'La DGII presentó una agenda enfocada en simplificación de procesos, digitalización de servicios y fortalecimiento de la relación con los contribuyentes.',
-      'Para las empresas, este tipo de actualización confirma la importancia de revisar sus procesos fiscales, documentales y tecnológicos de forma preventiva.',
-      'CBR puede acompañar la revisión de obligaciones, evidencias, controles internos y preparación operativa ante cambios en el entorno tributario.'
-    ],
-  },
-  {
-    slug: 'ley-30-26-beneficios-fiscales-formalizacion',
-    date: '16 de julio de 2026',
-    category: 'Fiscal',
-    title: 'Ley 30-26: facilidades fiscales, formalización y decisiones empresariales',
-    excerpt: 'La DGII presentó a empresarios de Santiago beneficios y facilidades de la Ley 30-26, vinculadas a cumplimiento, inversión y formalización.',
-    sourceLabel: 'DGII — Ley 30-26 y formalización',
-    sourceUrl: 'https://dgii.gov.do/noticias/Paginas/Director-DGII-presenta-empresarios-Santiago-beneficios-Ley-30-26.aspx',
-    body: [
-      'La Ley 30-26 fue presentada como un instrumento orientado a facilitar el cumplimiento de obligaciones fiscales y promover la formalización empresarial.',
-      'Las empresas deben analizar con criterio profesional cualquier facilidad, beneficio o ajuste fiscal antes de tomar decisiones financieras o tributarias.',
-      'CBR acompaña la evaluación de escenarios fiscales, organización documental y toma de decisiones con impacto financiero.'
-    ],
-  },
-  {
-    slug: 'seguimiento-obligaciones-tss-empleadores',
-    date: 'Actualización permanente',
-    category: 'TSS',
-    title: 'Seguimiento a obligaciones de seguridad social para empleadores',
-    excerpt: 'La TSS mantiene un canal oficial de noticias y actualizaciones relevantes para empleadores, aportes y cumplimiento de obligaciones laborales vinculadas al SDSS.',
-    sourceLabel: 'TSS — Noticias oficiales',
-    sourceUrl: 'https://tss.gob.do/noticias/',
-    body: [
-      'Las obligaciones vinculadas a seguridad social requieren seguimiento oportuno, revisión de nómina y control de pagos conforme al marco aplicable.',
-      'El monitoreo de actualizaciones oficiales ayuda a prevenir atrasos, diferencias y contingencias administrativas.',
-      'CBR puede apoyar con revisión de registros, conciliaciones y controles relacionados con obligaciones recurrentes de la empresa.'
-    ],
-  },
-  {
-    slug: 'prensa-regulatoria-superintendencia-bancos-rd',
-    date: 'Actualización permanente',
-    category: 'Regulatorio',
-    title: 'Actualidad regulatoria y financiera desde fuentes oficiales',
-    excerpt: 'La sección de prensa de la Superintendencia de Bancos permite dar seguimiento a publicaciones del sistema financiero, avisos, regulación y temas de interés empresarial.',
-    sourceLabel: 'Superintendencia de Bancos — Prensa oficial',
-    sourceUrl: 'https://sb.gob.do/prensa/',
-    body: [
-      'El entorno financiero y regulatorio dominicano exige seguimiento constante para empresas que interactúan con entidades financieras o que requieren información de mercado.',
-      'Las actualizaciones oficiales ayudan a contextualizar decisiones de financiamiento, cumplimiento, control interno y gestión de riesgos.',
-      'CBR convierte estas referencias en contenido breve y útil para que sus clientes identifiquen posibles impactos en su operación.'
-    ],
-  },
-  {
-    slug: 'ley-155-17-marco-prevencion-laft',
-    date: 'Consulta permanente',
-    category: 'Prevención LA/FT',
-    title: 'Ley 155-17: marco de prevención de lavado de activos y financiamiento del terrorismo',
-    excerpt: 'Un recurso oficial para comprender el marco legal aplicable a Sujetos Obligados y programas de cumplimiento en República Dominicana.',
-    sourceLabel: 'Superintendencia de Bancos — Compendio legal',
-    sourceUrl: 'https://www.sb.gob.do/regulacion/compendio-de-leyes-y-reglamentos/ley-no-155-17-lavado-de-activos-y-el-financiamiento-del-terrorismo/',
-    body: [
-      'La Ley 155-17 establece el marco dominicano contra el lavado de activos y el financiamiento del terrorismo.',
-      'Los Sujetos Obligados deben mantener controles proporcionales a sus riesgos y a la naturaleza de sus operaciones.',
-      'La revisión periódica del programa de cumplimiento es clave para demostrar gestión efectiva, trazabilidad y control.'
-    ],
-  },
+
+const complianceBlocks = [
+  ['Manual de prevención', 'Documento base para formalizar políticas, procedimientos, responsabilidades y controles.'],
+  ['Matriz de riesgos', 'Identificación, medición y seguimiento de riesgos asociados al lavado de activos y financiamiento del terrorismo.'],
+  ['Debida diligencia', 'Proceso para conocer clientes, beneficiarios, operaciones y señales de alerta.'],
+  ['Evaluación independiente', 'Revisión objetiva del programa de cumplimiento, hallazgos y oportunidades de mejora.'],
+  ['Evidencias y controles', 'Soportes documentales que permiten demostrar gestión, revisión y seguimiento.'],
+  ['Acompañamiento permanente', 'Orientación para mantener el cumplimiento actualizado y alineado a la operación.'],
 ]
 
-const newsMaintenance = [
-  ['Fuentes oficiales', 'DGII, TSS, Superintendencia de Bancos, Ministerio de Trabajo y organismos reguladores vinculados al entorno empresarial.'],
-  ['Curaduría profesional', 'No se copia contenido completo. Se publica un resumen breve, útil y orientado al impacto para empresas.'],
-  ['Frecuencia sugerida', 'Actualizar de 2 a 4 veces al mes, priorizando avisos, normas, cambios fiscales, seguridad social y cumplimiento.'],
-  ['Trazabilidad', 'Cada publicación conserva enlace directo a la fuente oficial para reforzar confianza y evitar información sin respaldo.'],
+const commitments = [
+  ['Enfoque local', 'Servicios orientados al marco fiscal, laboral y regulatorio dominicano.'],
+  ['Cumplimiento regulatorio', 'Acompañamiento a Sujetos Obligados y controles documentales.'],
+  ['Visión integral', 'Contabilidad, auditoría, impuestos, finanzas y consultoría empresarial.'],
+  ['Atención profesional', 'Comunicación clara, respuesta oportuna y acompañamiento personalizado.'],
 ]
 
-const keywords = ['DGII', 'TSS', 'Ministerio de Trabajo', 'Ley 155-17', 'Sujetos Obligados', 'Gobierno Corporativo', 'Control Interno']
+const CTA_LABEL = 'Solicitar una consulta'
+const LAW_SOURCE_URL = 'https://www.sb.gob.do/regulacion/compendio-de-leyes-y-reglamentos/ley-no-155-17-lavado-de-activos-y-el-financiamiento-del-terrorismo/'
 
-function navigate(path) {
-  if (window.location.pathname !== path) {
-    window.history.pushState({}, '', path)
-    window.dispatchEvent(new PopStateEvent('popstate'))
+// Fecha visible de una publicación: las noticias llevan su fecha oficial; los recursos, nunca una fecha inventada.
+const dateLabel = item => (item.type === 'noticia' ? formatDate(item.publishedAt) : 'Recurso permanente')
+
+const slugify = text =>
+  text.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')
+
+const serviceHref = service => `/servicios#${slugify(service.title)}`
+
+const practiceAreas = [
+  ['Auditoría', serviceHref(services[1])],
+  ['Contabilidad', serviceHref(services[5])],
+  ['Impuestos', serviceHref(services[2])],
+  ['Consultoría financiera', serviceHref(services[3])],
+  ['Cumplimiento Ley 155-17', '/ley-155-17'],
+]
+
+/* Mantiene <head> al día en la navegación interna (el HTML prerenderizado ya lo trae en la carga inicial). */
+function applyMeta(pathname) {
+  const meta = metaFor(pathname)
+  const url = absoluteUrl(meta.path)
+  document.title = meta.title
+  const set = (selector, attr, value) => {
+    const el = document.head.querySelector(selector)
+    if (el) el.setAttribute(attr, value)
   }
-  window.scrollTo({ top: 0, behavior: 'smooth' })
+  set('meta[name="description"]', 'content', meta.description)
+  set('link[rel="canonical"]', 'href', url)
+  set('meta[property="og:url"]', 'content', url)
+  set('meta[property="og:title"]', 'content', meta.title)
+  set('meta[property="og:description"]', 'content', meta.description)
+  set('meta[property="og:type"]', 'content', meta.type || 'website')
+  set('meta[name="twitter:title"]', 'content', meta.title)
+  set('meta[name="twitter:description"]', 'content', meta.description)
+  set('meta[name="robots"]', 'content', meta.indexable ? 'index, follow' : 'noindex, follow')
 }
 
-function usePathname() {
-  const [path, setPath] = useState(window.location.pathname)
+const prefersReducedMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+/* ---------- Routing ---------- */
+
+function scrollToHash(hash) {
+  if (!hash) return
+  const target = document.getElementById(decodeURIComponent(hash.slice(1)))
+  if (!target) return
+  const startY = window.scrollY
+  target.scrollIntoView({ behavior: prefersReducedMotion() ? 'auto' : 'smooth', block: 'start' })
+  // Respaldo: si el navegador no ejecuta el desplazamiento suave, saltar directamente.
+  window.setTimeout(() => {
+    const off = Math.abs(target.getBoundingClientRect().top) > 160
+    if (off && window.scrollY === startY) target.scrollIntoView({ behavior: 'auto', block: 'start' })
+  }, 450)
+}
+
+function navigate(to) {
+  const url = new URL(to, window.location.origin)
+  const next = url.pathname + url.hash
+  const samePage = url.pathname === window.location.pathname
+  if (window.location.pathname + window.location.hash !== next) {
+    window.history.pushState({}, '', next)
+    window.dispatchEvent(new PopStateEvent('popstate'))
+  }
+  if (url.hash) {
+    window.setTimeout(() => scrollToHash(url.hash), samePage ? 0 : 60)
+  } else if (!samePage) {
+    window.scrollTo({ top: 0 })
+  }
+}
+
+function useLocation() {
+  const read = () => ({ pathname: window.location.pathname, hash: window.location.hash })
+  const [location, setLocation] = useState(read)
   useEffect(() => {
-    const onPop = () => setPath(window.location.pathname)
+    const onPop = () => setLocation(read())
     window.addEventListener('popstate', onPop)
     return () => window.removeEventListener('popstate', onPop)
   }, [])
-  return path
-}
-
-function useReveal(pathname) {
-  useEffect(() => {
-    const elements = document.querySelectorAll('.reveal')
-    const observer = new IntersectionObserver(
-      entries => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) entry.target.classList.add('visible')
-        })
-      },
-      { threshold: 0.12 }
-    )
-    elements.forEach(el => observer.observe(el))
-    return () => observer.disconnect()
-  }, [pathname])
+  return location
 }
 
 function Link({ to, className, children, onClick, ...props }) {
@@ -236,6 +216,7 @@ function Link({ to, className, children, onClick, ...props }) {
       href={to}
       className={className}
       onClick={event => {
+        if (event.metaKey || event.ctrlKey || event.shiftKey || event.button !== 0) return
         event.preventDefault()
         onClick?.()
         navigate(to)
@@ -247,297 +228,455 @@ function Link({ to, className, children, onClick, ...props }) {
   )
 }
 
-function Icon({ type }) {
-  const base = { viewBox: '0 0 24 24', fill: 'none', xmlns: 'http://www.w3.org/2000/svg', className: 'iconSvg' }
-  const s = { stroke: 'currentColor', strokeWidth: '1.8', strokeLinecap: 'round', strokeLinejoin: 'round' }
+/* ---------- Icons (one stroke family, 1.6px) ---------- */
 
-  if (type === 'ledger') return <svg {...base}><path {...s} d="M7 4h10a2 2 0 0 1 2 2v14H7a2 2 0 0 0-2 2V6a2 2 0 0 1 2-2Z"/><path {...s} d="M9 8h6M9 12h6M9 16h4"/></svg>
-  if (type === 'audit') return <svg {...base}><circle {...s} cx="10.5" cy="10.5" r="5.5"/><path {...s} d="M15 15l5 5M8.2 10.6l1.6 1.6 3.3-3.5"/></svg>
-  if (type === 'tax') return <svg {...base}><path {...s} d="M7 3h7l4 4v14H7V3Z"/><path {...s} d="M14 3v5h5M10 13h4M10 17h4"/><path {...s} d="M4 9h3M4 13h3"/></svg>
-  if (type === 'finance') return <svg {...base}><path {...s} d="M4 19V5M4 19h16"/><path {...s} d="M8 15v-4M12 15V8M16 15v-7"/><path {...s} d="M7 8l4 2 5-5"/></svg>
-  if (type === 'consulting') return <svg {...base}><path {...s} d="M5 18V7a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v11"/><path {...s} d="M3 18h18M8 10h8M8 14h5"/></svg>
-  if (type === 'valuation') return <svg {...base}><path {...s} d="M4 18h16M6 15l4-4 3 3 5-7"/><path {...s} d="M17 7h2v2M8 19V9M12 19v-5M16 19v-8"/></svg>
-  return <svg {...base}><path {...s} d="M12 3l7 3v5c0 4.7-2.8 8.7-7 10-4.2-1.3-7-5.3-7-10V6l7-3Z"/><path {...s} d="M9 12.5l2 2 4.6-5"/></svg>
+const ArrowRight = () => (
+  <svg className="icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6" /></svg>
+)
+const ArrowLeft = () => (
+  <svg className="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12H5M11 6l-6 6 6 6" /></svg>
+)
+const ArrowUpRight = () => (
+  <svg className="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" /></svg>
+)
+const Check = () => (
+  <svg className="icon icon-check" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7" /></svg>
+)
+const MenuIcon = ({ open }) => (
+  <svg className="icon" viewBox="0 0 24 24" aria-hidden="true">
+    {open ? <path d="M6 6l12 12M18 6L6 18" /> : <path d="M4 7h16M4 12h16M4 17h16" />}
+  </svg>
+)
+const WhatsAppGlyph = () => (
+  <svg viewBox="0 0 32 32" aria-hidden="true">
+    <path d="M16.02 3.2A12.76 12.76 0 0 0 5.06 22.5L3.6 28.8l6.44-1.38A12.78 12.78 0 1 0 16.02 3.2Zm0 2.28a10.5 10.5 0 1 1-5.34 19.54l-.38-.22-3.6.77.82-3.5-.25-.4A10.5 10.5 0 0 1 16.02 5.48Zm-3.4 5.34c-.23-.55-.48-.56-.7-.57h-.6c-.22 0-.57.08-.87.4-.3.33-1.14 1.12-1.14 2.72 0 1.6 1.17 3.15 1.33 3.37.16.22 2.26 3.62 5.58 4.93 2.76 1.09 3.32.87 3.92.82.6-.06 1.94-.8 2.22-1.56.27-.77.27-1.43.19-1.56-.08-.14-.3-.22-.63-.38l-1.86-.91c-.33-.17-.57-.25-.81.24-.25.5-.93 1.21-1.14 1.46-.21.25-.42.28-.78.12-.36-.17-1.5-.55-2.86-1.76-1.06-.94-1.77-2.1-1.98-2.46-.2-.36-.02-.55.15-.72.16-.16.36-.42.55-.63.18-.21.24-.36.36-.6.12-.25.06-.46-.03-.64l-.9-1.97Z" />
+  </svg>
+)
+
+const InstagramGlyph = () => (
+  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <rect x="3.5" y="3.5" width="17" height="17" rx="5" />
+    <circle cx="12" cy="12" r="4" />
+    <circle className="ig-dot" cx="17.2" cy="6.8" r="1.1" />
+  </svg>
+)
+
+/* ---------- Ilustración: globo (decorativo, sin datos) ---------- */
+
+function GlobeArt({ className = '' }) {
+  const parallels = [-60, -30, 0, 30, 60]
+  const meridians = [22, 45, 68]
+  return (
+    <svg className={className} viewBox="0 0 240 240" aria-hidden="true" focusable="false">
+      <circle className="g-ring" cx="120" cy="120" r="112" strokeDasharray="210 500" transform="rotate(-30 120 120)" />
+      <circle className="g-ring g-ring--thin" cx="120" cy="120" r="100" strokeDasharray="120 600" transform="rotate(95 120 120)" />
+      <g className="g-sphere">
+        <circle className="g-disc" cx="120" cy="120" r="82" />
+        {parallels.map(dy => {
+          const rx = Math.sqrt(82 * 82 - dy * dy)
+          return <ellipse key={dy} cx="120" cy={120 + dy} rx={rx} ry={rx * 0.16} />
+        })}
+        {meridians.map(rx => <ellipse key={rx} cx="120" cy="120" rx={rx} ry="82" />)}
+        <path d="M120 38v164" />
+      </g>
+    </svg>
+  )
 }
 
+/* ---------- Shell ---------- */
+
 function Header({ pathname }) {
-  const [scrolled, setScrolled] = useState(false)
-  const [menuOpen, setMenuOpen] = useState(false)
+  const [open, setOpen] = useState(false)
+  const headerRef = useRef(null)
+
+  useEffect(() => { setOpen(false) }, [pathname])
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24)
-    window.addEventListener('scroll', onScroll)
-    return () => window.removeEventListener('scroll', onScroll)
-  }, [])
+    if (!open) return
+    const onKey = event => { if (event.key === 'Escape') setOpen(false) }
+    const onClick = event => { if (!headerRef.current?.contains(event.target)) setOpen(false) }
+    document.addEventListener('keydown', onKey)
+    document.addEventListener('pointerdown', onClick)
+    return () => {
+      document.removeEventListener('keydown', onKey)
+      document.removeEventListener('pointerdown', onClick)
+    }
+  }, [open])
+
+  const current = to => (pathname === to ? 'page' : undefined)
 
   return (
-    <header className={`siteHeader ${scrolled ? 'compact' : ''}`}>
-      <div className="container nav">
-        <Link to="/" className="brandWrap" aria-label="Inicio CBR Auditores & Consultores">
-          <img src={logo} alt="CBR Auditores & Consultores" className="brandLogo" />
-          <div className="brandText">
+    <header className="site-header" ref={headerRef}>
+      <div className="wrap site-header__inner">
+        <Link to="/" className="brand" aria-label="CBR Auditores & Consultores, ir al inicio">
+          <img src={logo} alt="" width="44" height="44" />
+          <span className="brand__name">
             <strong>CBR Auditores</strong>
-            <small>& Consultores</small>
-          </div>
+            <span>&amp; Consultores</span>
+          </span>
         </Link>
 
-        <nav className="desktopNav" aria-label="Navegación principal">
+        <nav className="nav" aria-label="Navegación principal">
           {navItems.map(([to, label]) => (
-            <Link key={to} to={to} className={pathname === to ? 'active' : ''}>{label}</Link>
+            <Link key={to} to={to} aria-current={current(to)}>{label}</Link>
           ))}
         </nav>
 
-        <div className="headerActions">
-          <a className="headerEmail" href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
-          <Link className="navBtn" to="/contacto">Agendar consulta</Link>
-          <button className="menuBtn" type="button" onClick={() => setMenuOpen(!menuOpen)} aria-label="Abrir menú">
-            <span></span><span></span><span></span>
-          </button>
-        </div>
+        <a className="header-mail" href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
+
+        <Link className="btn" to="/contacto">{CTA_LABEL}</Link>
+
+        <button
+          className="menu-toggle"
+          type="button"
+          aria-expanded={open}
+          aria-controls="mobile-nav"
+          aria-label={open ? 'Cerrar menú' : 'Abrir menú'}
+          onClick={() => setOpen(value => !value)}
+        >
+          <MenuIcon open={open} />
+        </button>
       </div>
 
-      {menuOpen && (
-        <nav className="mobileNav">
-          {navItems.map(([to, label]) => (
-            <Link key={to} to={to} onClick={() => setMenuOpen(false)} className={pathname === to ? 'active' : ''}>{label}</Link>
-          ))}
-        </nav>
-      )}
+      <nav id="mobile-nav" className="mobile-nav" data-open={open} aria-label="Navegación principal">
+        <div className="wrap">
+          <ul>
+            {navItems.map(([to, label]) => (
+              <li key={to}><Link to={to} aria-current={current(to)}>{label}</Link></li>
+            ))}
+          </ul>
+          <Link className="btn" to="/contacto">{CTA_LABEL}</Link>
+        </div>
+      </nav>
     </header>
   )
 }
 
-function SectionHero({ eyebrow, title, text, children }) {
+function PageHero({ title, lead, aside, wide = false }) {
   return (
-    <section className="pageHero">
-      <div className="pageLogoMark"><img src={logo} alt="" /></div>
-      <div className="container pageHeroGrid reveal">
-        <div>
-          <p className="eyebrow">{eyebrow}</p>
-          <h1>{title}</h1>
-          <p>{text}</p>
+    <section className={`page-hero ${wide ? 'page-hero--wide' : ''}`}>
+      <div className="wrap page-hero__grid">
+        <div className="page-hero__main">
+          <h1 className="display">{title}</h1>
+          {lead && <p className="lead">{lead}</p>}
         </div>
-        {children && <div className="pageHeroSide">{children}</div>}
+        {aside && <div className="page-hero__aside">{aside}</div>}
       </div>
     </section>
   )
 }
+
+function Close({
+  title = 'Fortalezca la gestión financiera, fiscal y regulatoria de su empresa.',
+  text = 'Solicite una consulta con CBR y dé el siguiente paso hacia una operación más ordenada, segura y preparada.',
+}) {
+  return (
+    <section className="close" aria-labelledby="close-title">
+      <div className="wrap close__grid">
+        <div>
+          <h2 className="headline" id="close-title">{title}</h2>
+        </div>
+        <div>
+          <p className="body">{text}</p>
+          <Link className="btn" to="/contacto">{CTA_LABEL}</Link>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function Footer({ whatsappLink }) {
+  return (
+    <footer className="site-footer">
+      <div className="wrap site-footer__grid">
+        <div className="site-footer__brand">
+          <Link to="/" className="brand" aria-label="CBR Auditores & Consultores, ir al inicio">
+            <img src={logo} alt="" width="44" height="44" />
+            <span className="brand__name">
+              <strong>CBR Auditores</strong>
+              <span>&amp; Consultores</span>
+            </span>
+          </Link>
+          <p>Soluciones profesionales en contabilidad, auditoría, impuestos, finanzas, consultoría y cumplimiento Ley&nbsp;155-17.</p>
+        </div>
+
+        <div className="site-footer__cols">
+          <div>
+            <h2>Sitio</h2>
+            <ul>
+              {navItems.map(([to, label]) => <li key={to}><Link to={to}>{label}</Link></li>)}
+              <li><Link to="/ley-155-17">Cumplimiento Ley 155-17</Link></li>
+              <li><Link to="/noticias">Centro de Actualizaciones</Link></li>
+            </ul>
+          </div>
+          <div>
+            <h2>Servicios</h2>
+            <ul>
+              {services.map(service => <li key={service.title}><Link to={serviceHref(service)}>{service.title}</Link></li>)}
+            </ul>
+          </div>
+          <div>
+            <h2>Contacto</h2>
+            <ul>
+              <li><a href={PHONE_TEL}>Teléfono {PHONE_DISPLAY}</a></li>
+              <li><a href={whatsappLink} target="_blank" rel="noreferrer">WhatsApp {PHONE_DISPLAY}</a></li>
+              <li><a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a></li>
+              <li><a href={INSTAGRAM_URL} target="_blank" rel="noreferrer">Instagram @cbrauditores</a></li>
+              <li><Link to="/contacto">Formulario de contacto</Link></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div className="wrap site-footer__base">
+        <span>© {new Date().getFullYear()} CBR Auditores &amp; Consultores. Todos los derechos reservados.</span>
+        <Link to="/aviso-privacidad">Aviso de privacidad</Link>
+      </div>
+    </footer>
+  )
+}
+
+function WhatsAppQuick({ whatsappLink }) {
+  return (
+    <div className="quick-dock">
+      <a className="ig-float" href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" aria-label="Abrir el perfil de Instagram de CBR (@cbrauditores) en una pestaña nueva">
+        <InstagramGlyph />
+      </a>
+      <a className="wa-float" href={whatsappLink} target="_blank" rel="noreferrer" aria-label="Escribir a CBR por WhatsApp">
+        <WhatsAppGlyph />
+        <span>WhatsApp</span>
+      </a>
+    </div>
+  )
+}
+
+/* ---------- Shared blocks ---------- */
+
+function UpdateRow({ item }) {
+  return (
+    <li className="update">
+      <p className="update__date num">{dateLabel(item)}</p>
+      <p className="update__cat">{item.category}</p>
+      <div className="update__main">
+        <h3><Link to={`/noticias/${item.slug}`}>{item.title}</Link></h3>
+        <p className="update__src">Fuente: {item.sourceName}</p>
+        <div className="update__actions">
+          <Link className="textlink" to={`/noticias/${item.slug}`}>Leer el resumen de CBR <ArrowRight /></Link>
+          <a className="textlink" href={item.sourceUrl} target="_blank" rel="noreferrer">Consultar fuente oficial <ArrowUpRight /></a>
+        </div>
+      </div>
+    </li>
+  )
+}
+
+/* ---------- Envío protegido de formularios (FormSubmit) ---------- */
+
+const FORM_ENDPOINT = `https://formsubmit.co/ajax/${CONTACT_EMAIL}`
+const MIN_FILL_MS = 2500 // un envío más rápido que esto se trata como automatizado
+const SEND_TIMEOUT_MS = 15000
+
+// Campo trampa: invisible para personas, rellenado por bots. FormSubmit descarta los envíos con _honey.
+function Honeypot() {
+  return (
+    <div className="hp-field" aria-hidden="true">
+      <label>No rellene este campo<input type="text" name="_honey" tabIndex="-1" autoComplete="off" defaultValue="" /></label>
+    </div>
+  )
+}
+
+function useFormGuard() {
+  const mountedAt = useRef(Date.now())
+  return data => {
+    if (data.get('_honey')) return 'bot'
+    if (Date.now() - mountedAt.current < MIN_FILL_MS) return 'too-fast'
+    return 'ok'
+  }
+}
+
+async function sendForm(data) {
+  const controller = new AbortController()
+  const timer = window.setTimeout(() => controller.abort(), SEND_TIMEOUT_MS)
+  try {
+    const response = await fetch(FORM_ENDPOINT, {
+      method: 'POST',
+      body: data,
+      headers: { Accept: 'application/json' },
+      signal: controller.signal,
+    })
+    const result = await response.json().catch(() => ({}))
+    if (!response.ok || result.success === 'false' || result.success === false) throw new Error('send-failed')
+  } finally {
+    window.clearTimeout(timer)
+  }
+}
+
+/* ---------- Pages ---------- */
 
 function HomePage({ whatsappLink }) {
   return (
     <>
-      <section className="heroSection">
-        <div className="heroGridPattern"></div>
-        <div className="heroHalo"></div>
-        <div className="heroLogoWatermark"><img src={logo} alt="" aria-hidden="true" /></div>
-
-        <div className="container heroLayout">
-          <div className="heroCopy reveal">
-            <p className="eyebrow">Firma consultora para empresas en República Dominicana</p>
-            <h1>Auditoría, Contabilidad, Impuestos y Consultoría Financiera para empresas en RD</h1>
-            <p className="heroLead">
+      <section className="hero">
+        <GlobeArt className="hero__globe" />
+        <div className="wrap hero__grid">
+          <div className="hero__main">
+            <p className="eyebrow">Firma consultora</p>
+            <h1 className="display">Auditoría, Contabilidad, Impuestos y Consultoría Financiera</h1>
+            <p className="lead">
               Ayudamos a empresas, emprendedores, profesionales independientes y Sujetos Obligados a fortalecer su gestión financiera, fiscal y regulatoria.
             </p>
-            <p className="heroSublead">
+            <p className="hero__sub">
               Soluciones personalizadas, oportunas y confiables para operar con seguridad, cumplir obligaciones legales y tomar mejores decisiones de negocio.
             </p>
-
-            <div className="heroActions">
-              <Link className="btn primary" to="/contacto">Solicitar una consulta</Link>
-              <a className="btn secondary" href={whatsappLink} target="_blank" rel="noreferrer">Contáctanos por WhatsApp</a>
+            <div className="hero__actions">
+              <Link className="btn" to="/contacto">{CTA_LABEL}</Link>
+              <a className="btn btn--quiet" href={whatsappLink} target="_blank" rel="noreferrer">Escríbanos por WhatsApp</a>
             </div>
-
-            <div className="heroChips">
-              {keywords.slice(0, 5).map(item => <span key={item}>{item}</span>)}
-            </div>
+            <ul className="chips" aria-label="Marco de trabajo">
+              <li>DGII</li>
+              <li>TSS</li>
+              <li>Ley 155-17</li>
+              <li>Sujetos Obligados</li>
+            </ul>
           </div>
 
-          <div className="heroVisual reveal">
-            <div className="executivePanel">
-              <div className="panelTop">
-                <div>
-                  <small>República Dominicana</small>
-                  <strong>Panel de control financiero y regulatorio</strong>
-                </div>
-                <span>Ley 155-17</span>
+          <aside className="panel" aria-labelledby="panel-title">
+            <div className="panel__head">
+              <div>
+                <p className="panel__kicker">República Dominicana</p>
+                <h2 className="panel__title" id="panel-title">Áreas de práctica</h2>
               </div>
-
-              <div className="panelMetrics">
-                <article>
-                  <small>Servicios</small>
-                  <strong>360°</strong>
-                  <p>Contabilidad · Auditoría · Impuestos</p>
-                </article>
-                <article>
-                  <small>Clientes</small>
-                  <strong>B2B</strong>
-                  <p>Empresas · Profesionales · Sujetos Obligados</p>
-                </article>
-              </div>
-
-              <div className="reportMock">
-                <div className="reportHeader">
-                  <strong>Resumen fiscal y de cumplimiento</strong>
-                  <span>Validado</span>
-                </div>
-                <div className="chartStage">
-                  <i className="lineA"></i>
-                  <i className="lineB"></i>
-                  <i className="lineC"></i>
-                </div>
-              </div>
-
-              <div className="panelChecklist">
-                <div>
-                  <strong>Áreas clave</strong>
-                  <p><span>✓</span> DGII</p>
-                  <p><span>✓</span> TSS</p>
-                  <p><span>✓</span> Ministerio de Trabajo</p>
-                </div>
-                <div>
-                  <strong>Cumplimiento</strong>
-                  <p><span>✓</span> Sujetos Obligados</p>
-                  <p><span>✓</span> Control Interno</p>
-                  <p><span>✓</span> Gobierno Corporativo</p>
-                </div>
+              <Link className="chip-law" to="/ley-155-17">Ley 155-17</Link>
+            </div>
+            <div className="panel__tiles">
+              <Link className="tile" to="/servicios">
+                <span>Servicios</span>
+                <strong>Seis áreas</strong>
+                <small>Contabilidad · Auditoría · Impuestos</small>
+              </Link>
+              <Link className="tile" to="/quienes-somos">
+                <span>Atención</span>
+                <strong>Directa</strong>
+                <small>Empresas · Profesionales · Sujetos Obligados</small>
+              </Link>
+            </div>
+            <div className="panel__art" aria-hidden="true">
+              <GlobeArt className="panel__globe" />
+            </div>
+            <div className="panel__lists">
+              <nav className="mini" aria-labelledby="areas-title">
+                <h3 id="areas-title">Áreas clave</h3>
+                <ul>
+                  {practiceAreas.slice(0, 4).map(([label, to]) => (
+                    <li key={label}><Link to={to}><Check />{label}</Link></li>
+                  ))}
+                </ul>
+              </nav>
+              <div className="mini">
+                <h3>Cumplimiento</h3>
+                <ul>
+                  <li><Link to="/ley-155-17"><Check />Sujetos Obligados</Link></li>
+                  <li><Link to="/ley-155-17"><Check />Matriz de riesgos</Link></li>
+                  <li><Link to="/ley-155-17"><Check />Debida diligencia</Link></li>
+                </ul>
               </div>
             </div>
-          </div>
+          </aside>
         </div>
       </section>
-      <TrustStrip />
-      <section className="section introBlocks">
-        <div className="container introGrid">
-          <article className="introCard reveal">
-            <p className="eyebrow">Quiénes somos</p>
-            <h2>Una firma cercana, técnica y orientada a resultados.</h2>
-            <p>CBR Auditores & Consultores brinda asesoría integral a empresas de todos los tamaños, emprendedores, profesionales independientes y Sujetos Obligados conforme a la Ley 155-17.</p>
-            <Link className="sectionCta" to="/quienes-somos">Conocer la firma</Link>
-          </article>
-          <article className="introCard dark reveal">
-            <p className="eyebrow light">Servicio diferencial</p>
-            <h2>Servicios profesionales con profundidad técnica.</h2>
-            <p>Acompañamos la operación diaria y las decisiones estratégicas con rigor, criterio y visión empresarial.</p>
-            <Link className="btn white" to="/servicios">Ver servicios</Link>
-          </article>
-        </div>
-      </section>
-      <ServicesPreview />
-      <NewsPreview />
-      <FinalCTA />
-    </>
-  )
-}
 
-function TrustStrip() {
-  const items = [
-    ['RD', 'Enfoque local', 'Servicios orientados al marco fiscal, laboral y regulatorio dominicano.'],
-    ['155-17', 'Cumplimiento regulatorio', 'Acompañamiento a Sujetos Obligados y controles documentales.'],
-    ['360°', 'Visión integral', 'Contabilidad, auditoría, impuestos, finanzas y consultoría empresarial.'],
-    ['Directo', 'Atención profesional', 'Comunicación clara, respuesta oportuna y acompañamiento personalizado.'],
-  ]
-  return (
-    <section className="trustSection">
-      <div className="container trustGrid">
-        {items.map(([value, label, text], index) => (
-          <article className="reveal" style={{ transitionDelay: `${index * 70}ms` }} key={label}>
-            <strong>{value}</strong>
-            <span>{label}</span>
-            <p>{text}</p>
-          </article>
-        ))}
-      </div>
-    </section>
-  )
-}
-
-function ServicesPreview() {
-  return (
-    <section className="section servicesSection">
-      <div className="container">
-        <div className="sectionHeader centered reveal">
-          <p className="eyebrow">Servicios</p>
-          <h2>Soluciones profesionales para empresas que no se conforman.</h2>
-          <p>Un portafolio diseñado para acompañar la operación diaria, las decisiones estratégicas y el crecimiento con confianza.</p>
-        </div>
-        <div className="servicesGrid preview">
-          {services.slice(0, 6).map((service, index) => (
-            <ServiceCard key={service.title} service={service} delay={index * 50} />
+      <section className="commitments" aria-label="Compromisos de la firma">
+        <ul className="wrap">
+          {commitments.map(([label, text]) => (
+            <li key={label}>
+              <h2>{label}</h2>
+              <p>{text}</p>
+            </li>
           ))}
-        </div>
-        <div className="centerCta reveal">
-          <Link className="btn primary" to="/servicios">Ver todos los servicios</Link>
-        </div>
-      </div>
-    </section>
-  )
-}
+        </ul>
+      </section>
 
-function ServiceCard({ service, delay = 0 }) {
-  return (
-    <article className="serviceCard reveal" style={{ transitionDelay: `${delay}ms` }}>
-      <div className="serviceNumber">{service.number}</div>
-      <div className="serviceIcon"><Icon type={service.icon} /></div>
-      <h3>{service.title}</h3>
-      <h4>{service.headline}</h4>
-      <p>{service.description}</p>
-      <ul>{service.items.map(item => <li key={item}>{item}</li>)}</ul>
-    </article>
-  )
-}
-
-function AboutPage() {
-  return (
-    <>
-      <SectionHero
-        eyebrow="Quiénes somos"
-        title="Una firma especializada en contabilidad, auditoría, impuestos, finanzas y consultoría empresarial."
-        text="Brindamos asesoría integral a empresas, emprendedores, profesionales independientes y Sujetos Obligados conforme a la Ley 155-17, con ética, profesionalismo y compromiso."
-      >
-        <div className="heroCredential">
-          <img src={logo} alt="" />
-          <strong>CBR Auditores & Consultores</strong>
-          <span>Orden · Cumplimiento · Confianza</span>
+      <section className="section" aria-label="La firma">
+        <div className="wrap duo">
+          <article className="duo__card">
+            <p className="eyebrow">Quiénes somos</p>
+            <h2 className="headline">Una firma cercana, técnica y orientada a resultados.</h2>
+            <p className="body">CBR Auditores & Consultores brinda asesoría integral a empresas de todos los tamaños, emprendedores, profesionales independientes y Sujetos Obligados conforme a la Ley 155-17.</p>
+            <Link className="btn btn--quiet duo__action" to="/quienes-somos">Conocer la firma</Link>
+          </article>
+          <article className="duo__card duo__card--blue">
+            <p className="eyebrow">Servicio diferencial</p>
+            <h2 className="headline">Servicios profesionales con profundidad técnica.</h2>
+            <p className="body">Acompañamos la operación diaria y las decisiones estratégicas con rigor, criterio y visión empresarial.</p>
+            <Link className="btn btn--light duo__action" to="/servicios">Ver servicios</Link>
+          </article>
         </div>
-      </SectionHero>
+      </section>
 
-      <section className="section aboutSection">
-        <div className="container aboutPanel reveal">
-          <div className="aboutIntro">
-            <p className="eyebrow">Nuestra propuesta</p>
-            <h2>Ayudamos a que las empresas operen con mayor claridad, control y seguridad.</h2>
-            <Link className="sectionCta" to="/contacto">Solicite una consulta</Link>
+      <section className="section section--deep" aria-labelledby="services-title">
+        <div className="wrap">
+          <div className="section-head">
+            <h2 className="headline" id="services-title">Soluciones profesionales para empresas que no se conforman.</h2>
+            <p className="body">Un portafolio diseñado para acompañar la operación diaria, las decisiones estratégicas y el crecimiento con confianza.</p>
           </div>
-          <div className="aboutCopy">
-            <p>CBR Auditores & Consultores trabaja con una visión práctica: entender la necesidad del cliente, organizar la información, evaluar los riesgos y entregar soluciones claras.</p>
-            <p>Nuestro acompañamiento se enfoca en fortalecer procesos financieros, mejorar controles internos, cumplir obligaciones fiscales y regulatorias, y respaldar la toma de decisiones empresariales.</p>
-            <div className="aboutSignature">
-              <img src={logo} alt="" aria-hidden="true" />
-              <span>Soluciones adaptadas a la realidad de cada cliente.</span>
+          <ul className="service-index">
+            {services.map(service => (
+              <li key={service.title}>
+                <Link to={serviceHref(service)}>
+                  <span className="title">{service.title}</span>
+                  <span className="service-index__line">{service.headline}</span>
+                  <ArrowRight />
+                </Link>
+              </li>
+            ))}
+          </ul>
+          <div className="after-list">
+            <Link className="textlink" to="/servicios">Ver los seis servicios en detalle <ArrowRight /></Link>
+          </div>
+        </div>
+      </section>
+
+      <section className="band" aria-labelledby="law-title">
+        <div className="wrap band__grid">
+          <div className="band__copy">
+            <h2 className="headline" id="law-title">
+              <span className="band__law num">Ley 155-17</span>
+              Cumplimiento regulatorio para Sujetos Obligados en República Dominicana.
+            </h2>
+            <p className="body">Acompañamos la implementación, revisión y fortalecimiento de controles para la prevención del lavado de activos y financiamiento del terrorismo.</p>
+            <Link className="textlink textlink--light" to="/ley-155-17">Conocer el enfoque de cumplimiento <ArrowRight /></Link>
+          </div>
+          <ul className="band__list">
+            {complianceBlocks.map(([title, text]) => (
+              <li key={title}>
+                <Check />
+                <div>
+                  <h3>{title}</h3>
+                  <p>{text}</p>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      <section className="section" aria-labelledby="updates-title">
+        <div className="wrap">
+          <div className="section-head">
+            <h2 className="headline" id="updates-title">Noticias oficiales convertidas en información útil para empresas.</h2>
+            <p className="body">Un espacio de curaduría profesional con fuentes reales sobre DGII, TSS, Ley 155-17, cumplimiento, impuestos y entorno financiero dominicano.</p>
+          </div>
+          <ul className="updates">
+            {datedNews().slice(0, 3).map(item => <UpdateRow key={item.slug} item={item} />)}
+          </ul>
+          <div className="newsletter-row">
+            <p>Las actualizaciones profesionales se publican en el Centro de Actualizaciones, cada una con su fecha y su fuente oficial.</p>
+            <div>
+              <Link className="btn btn--quiet" to="/noticias">Ver el Centro de Actualizaciones</Link>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="section whySection">
-        <div className="container whyGrid">
-          <div className="whyCopy reveal">
-            <p className="eyebrow">Por qué elegirnos</p>
-            <h2>Un equipo cercano, confidencial y comprometido con la calidad.</h2>
-            <p>La relación con el cliente se gestiona con comunicación directa, criterio profesional y seguimiento oportuno.</p>
-          </div>
-          <div className="reasonGrid">
-            {reasons.map((reason, index) => (
-              <article className="reveal" style={{ transitionDelay: `${index * 45}ms` }} key={reason}>
-                <span>✓</span>
-                <p>{reason}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <Methodology />
+      <Close />
     </>
   )
 }
@@ -545,238 +684,226 @@ function AboutPage() {
 function ServicesPage() {
   return (
     <>
-      <SectionHero
-        eyebrow="Servicios profesionales"
+      <PageHero
         title="Más que asesores, somos su ventaja estratégica"
-        text="Combinamos profundidad técnica, visión empresarial y un trato personal que pocas firmas pueden ofrecer. Cada solución está diseñada para el negocio que usted dirige hoy y para el que aspira construir mañana."
-      >
-        <div className="serviceHeroCard">
-          <span>Portafolio CBR</span>
-          <strong>6 líneas estratégicas</strong>
-          <p>Soluciones diseñadas para empresas que buscan crecer con estructura, confianza y visión.</p>
-        </div>
-      </SectionHero>
+        lead="Combinamos profundidad técnica, visión empresarial y un trato personal que pocas firmas pueden ofrecer. Cada solución está diseñada para el negocio que usted dirige hoy y para el que aspira construir mañana."
+        aside={
+          <nav aria-labelledby="toc-title">
+            <p className="label" id="toc-title">Índice de servicios</p>
+            <ul className="toc">
+              {services.map(service => (
+                <li key={service.title}>
+                  <Link to={serviceHref(service)}>{service.title}</Link>
+                </li>
+              ))}
+            </ul>
+            <p className="toc__note">Soluciones diseñadas para empresas que buscan crecer con estructura, confianza y visión.</p>
+          </nav>
+        }
+      />
 
-      <section className="section valueProposition">
-        <div className="container valuePanel reveal">
-          <div>
-            <p className="eyebrow">Nuestra propuesta de valor</p>
-            <h2>Soluciones de alta exigencia para empresas que no se conforman</h2>
-          </div>
-          <p>
+      <section className="section">
+        <div className="wrap statement">
+          <h2 className="headline">Soluciones de alta exigencia para empresas que no se conforman</h2>
+          <p className="lead">
             Detrás de cada empresa exitosa hay información financiera confiable, decisiones bien respaldadas y asesores que realmente entienden el negocio. Nuestro portafolio está diseñado para acompañarle en cada etapa: desde la operación diaria hasta las decisiones más estratégicas.
           </p>
         </div>
       </section>
 
-      <section className="section servicesSection editorialServices">
-        <div className="container">
-          <div className="servicesGrid editorial">
-            {services.map((service, index) => (
-              <ServiceCard key={service.title} service={service} delay={index * 50} />
-            ))}
+      <section className="section section--tight" aria-label="Detalle de servicios">
+        <div className="wrap">
+          {services.map(service => (
+            <article className="service" id={slugify(service.title)} key={service.title} aria-labelledby={`${slugify(service.title)}-title`}>
+              <div className="service__head">
+                <h2 className="headline" id={`${slugify(service.title)}-title`}>{service.title}</h2>
+                <p className="service__tagline">{service.headline}</p>
+              </div>
+              <div className="service__body">
+                <p className="body">{service.description}</p>
+                <ul className="scope">
+                  {service.items.map(item => <li key={item}><Check /><span>{item}</span></li>)}
+                </ul>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <aside className="note-band" aria-label="Cumplimiento Ley 155-17">
+        <div className="wrap">
+          <p>¿Su organización es Sujeto Obligado según la Ley 155-17?</p>
+          <Link className="textlink" to="/ley-155-17">Conocer el enfoque de cumplimiento <ArrowRight /></Link>
+        </div>
+      </aside>
+
+      <Close
+        title="¿Listo para llevar su empresa al siguiente nivel?"
+        text="Conversemos sobre sus desafíos actuales. Sin compromisos, sin formalidades innecesarias. Solo una conversación honesta sobre cómo podemos ayudarle a crecer con más confianza."
+      />
+    </>
+  )
+}
+
+function AboutPage() {
+  return (
+    <>
+      <PageHero
+        title="Una firma especializada en contabilidad, auditoría, impuestos, finanzas y consultoría empresarial."
+        lead="Brindamos asesoría integral a empresas, emprendedores, profesionales independientes y Sujetos Obligados conforme a la Ley 155-17, con ética, profesionalismo y compromiso."
+        aside={
+          <ul className="motto" aria-label="Principios de la firma">
+            <li>Orden</li>
+            <li>Cumplimiento</li>
+            <li>Confianza</li>
+          </ul>
+        }
+      />
+
+      <section className="section">
+        <div className="wrap statement">
+          <h2 className="headline">Ayudamos a que las empresas operen con mayor claridad, control y seguridad.</h2>
+          <div>
+            <p className="body">CBR Auditores & Consultores trabaja con una visión práctica: entender la necesidad del cliente, organizar la información, evaluar los riesgos y entregar soluciones claras.</p>
+            <p className="body">Nuestro acompañamiento se enfoca en fortalecer procesos financieros, mejorar controles internos, cumplir obligaciones fiscales y regulatorias, y respaldar la toma de decisiones empresariales.</p>
+            <p className="pullquote">Soluciones adaptadas a la realidad de cada cliente.</p>
           </div>
         </div>
       </section>
 
-      <section className="finalCta">
-        <div className="container finalPanel reveal">
-          <div>
-            <p className="eyebrow light">Demos el primer paso</p>
-            <h2>¿Listo para llevar su empresa al siguiente nivel?</h2>
-            <p>
-              Conversemos sobre sus desafíos actuales. Sin compromisos, sin formalidades innecesarias. Solo una conversación honesta sobre cómo podemos ayudarle a crecer con más confianza.
-            </p>
+      <section className="section section--deep" aria-labelledby="why-title">
+        <div className="wrap">
+          <div className="section-head">
+            <h2 className="headline" id="why-title">Un equipo cercano, confidencial y comprometido con la calidad.</h2>
+            <p className="body">La relación con el cliente se gestiona con comunicación directa, criterio profesional y seguimiento oportuno.</p>
           </div>
-          <Link className="btn white" to="/contacto">Agendar conversación</Link>
+          <ul className="checklist">
+            {reasons.map(reason => <li key={reason}><Check /><span>{reason}</span></li>)}
+          </ul>
         </div>
       </section>
+
+      <section className="section" aria-labelledby="method-title">
+        <div className="wrap">
+          <div className="section-head">
+            <h2 className="headline" id="method-title">Un proceso claro para entregar soluciones oportunas y confiables.</h2>
+          </div>
+          <ol className="steps">
+            {process.map(([number, title, text]) => (
+              <li key={number}>
+                <span className="steps__num num" aria-hidden="true">{number}</span>
+                <h3>{title}</h3>
+                <p>{text}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      <Close />
     </>
   )
 }
 
 function CompliancePage() {
-  const blocks = [
-    ['Manual de prevención', 'Documento base para formalizar políticas, procedimientos, responsabilidades y controles.'],
-    ['Matriz de riesgos', 'Identificación, medición y seguimiento de riesgos asociados al lavado de activos y financiamiento del terrorismo.'],
-    ['Debida diligencia', 'Proceso para conocer clientes, beneficiarios, operaciones y señales de alerta.'],
-    ['Evaluación independiente', 'Revisión objetiva del programa de cumplimiento, hallazgos y oportunidades de mejora.'],
-    ['Evidencias y controles', 'Soportes documentales que permiten demostrar gestión, revisión y seguimiento.'],
-    ['Acompañamiento permanente', 'Orientación para mantener el cumplimiento actualizado y alineado a la operación.'],
-  ]
-
   return (
     <>
-      <SectionHero
-        eyebrow="Ley 155-17"
+      <PageHero
         title="Cumplimiento regulatorio para Sujetos Obligados en República Dominicana."
-        text="Acompañamos la implementación, revisión y fortalecimiento de controles para la prevención del lavado de activos y financiamiento del terrorismo."
-      >
-        <div className="lawBadge">
-          <strong>155-17</strong>
-          <span>Prevención LA/FT</span>
-        </div>
-      </SectionHero>
-
-      <section className="section complianceSection standalone">
-        <div className="container complianceGrid">
-          <div className="complianceCopy reveal">
-            <p className="eyebrow light">Enfoque especializado</p>
-            <h2>Del documento al control operativo.</h2>
-            <p>No se trata solo de tener manuales. Se trata de que la empresa pueda demostrar gestión, seguimiento, actualización y evidencia.</p>
-            <Link className="btn white" to="/contacto">Agende una reunión</Link>
-          </div>
-
-          <div className="complianceBoard reveal">
-            <div className="boardHeader">
-              <strong>Marco de cumplimiento</strong>
-              <span>Ley 155-17</span>
+        lead="Acompañamos la implementación, revisión y fortalecimiento de controles para la prevención del lavado de activos y financiamiento del terrorismo."
+        aside={
+          <dl className="facts">
+            <div>
+              <dt>Marco legal</dt>
+              <dd>Ley 155-17 contra el lavado de activos y el financiamiento del terrorismo</dd>
             </div>
-            <div className="boardCards">
-              {blocks.map(([title, text]) => (
-                <article key={title}>
-                  <b>✓</b>
+            <div>
+              <dt>Dirigido a</dt>
+              <dd>Sujetos Obligados en República Dominicana</dd>
+            </div>
+            <div>
+              <dt>Referencia oficial</dt>
+              <dd><a href={LAW_SOURCE_URL} target="_blank" rel="noreferrer">Compendio legal de la Superintendencia de Bancos</a></dd>
+            </div>
+          </dl>
+        }
+      />
+
+      <section className="band" aria-labelledby="operative-title">
+        <div className="wrap band__grid">
+          <div className="band__copy">
+            <h2 className="headline" id="operative-title">Del documento al control operativo.</h2>
+            <p className="body">No se trata solo de tener manuales. Se trata de que la empresa pueda demostrar gestión, seguimiento, actualización y evidencia.</p>
+            <Link className="textlink textlink--light" to="/contacto">{CTA_LABEL} <ArrowRight /></Link>
+          </div>
+          <ul className="band__list" aria-label="Marco de cumplimiento">
+            {complianceBlocks.map(([title, text]) => (
+              <li key={title}>
+                <Check />
+                <div>
                   <h3>{title}</h3>
                   <p>{text}</p>
-                </article>
-              ))}
-            </div>
-          </div>
+                </div>
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 
-      <section className="section dominicanSection">
-        <div className="container dominicanPanel reveal">
-          <div>
-            <p className="eyebrow">Contexto local</p>
-            <h2>Un enfoque alineado al entorno dominicano.</h2>
-            <p>Integramos la realidad del mercado local y las necesidades de Sujetos Obligados, empresas y profesionales independientes.</p>
-          </div>
-          <div className="keywordCloud">
-            {keywords.map(keyword => <span key={keyword}>{keyword}</span>)}
-          </div>
+      <section className="section">
+        <div className="wrap statement">
+          <h2 className="headline">Un enfoque alineado al entorno dominicano.</h2>
+          <p className="lead">Integramos la realidad del mercado local y las necesidades de Sujetos Obligados, empresas y profesionales independientes.</p>
         </div>
       </section>
+
+      <Close />
     </>
-  )
-}
-
-function Methodology() {
-  return (
-    <section className="section methodologySection">
-      <div className="container">
-        <div className="sectionHeader centered reveal">
-          <p className="eyebrow">Metodología de trabajo</p>
-          <h2>Un proceso claro para entregar soluciones oportunas y confiables.</h2>
-        </div>
-        <div className="timeline">
-          {process.map(([number, title, text], index) => (
-            <article className="reveal" style={{ transitionDelay: `${index * 60}ms` }} key={number}>
-              <span>{number}</span>
-              <h3>{title}</h3>
-              <p>{text}</p>
-            </article>
-          ))}
-        </div>
-      </div>
-    </section>
-  )
-}
-
-function NewsPreview() {
-  return (
-    <section className="section newsSection">
-      <div className="container">
-        <div className="newsHeader reveal">
-          <div className="newsHeaderCopy">
-            <p className="eyebrow">Centro de actualizaciones profesionales</p>
-            <h2>Noticias oficiales convertidas en información útil para empresas.</h2>
-            <p>Un espacio de curaduría profesional con fuentes reales sobre DGII, TSS, Ley 155-17, cumplimiento, impuestos y entorno financiero dominicano.</p>
-          </div>
-          <Newsletter compact />
-        </div>
-        <div className="newsGrid">
-          {news.slice(0, 3).map((item, index) => (
-            <NewsCard key={item.slug} item={item} delay={index * 50} />
-          ))}
-        </div>
-        <div className="centerCta reveal">
-          <Link className="btn secondary" to="/noticias">Ver centro de actualizaciones</Link>
-        </div>
-      </div>
-    </section>
   )
 }
 
 function NewsPage() {
+  const categories = ['Todas', ...Array.from(new Set(news.map(item => item.category)))]
+  const [filter, setFilter] = useState('Todas')
+  const visible = filter === 'Todas' ? news : news.filter(item => item.category === filter)
+
   return (
     <>
-      <SectionHero
-        eyebrow="Centro de actualizaciones profesionales"
+      <PageHero
         title="Información oficial, resumida con criterio empresarial."
-        text="Este espacio se alimenta con fuentes oficiales y se presenta como una guía práctica para empresas en República Dominicana: DGII, TSS, Ley 155-17, control interno, auditoría, impuestos y gestión financiera."
-      >
-        <Newsletter />
-      </SectionHero>
-
-      <NewsPolicyPanel />
-
-      <section className="section newsSection">
-        <div className="container">
-          <div className="sectionHeader centered reveal">
-            <p className="eyebrow">Actualizaciones recientes</p>
-            <h2>Referencias seleccionadas para decisiones mejor informadas.</h2>
-            <p>Cada tarjeta dirige a la fuente oficial. CBR agrega el contexto profesional sin sustituir la lectura normativa o regulatoria completa.</p>
+        lead="Este espacio se alimenta con fuentes oficiales y se presenta como una guía práctica para empresas en República Dominicana: DGII, TSS, Ley 155-17, control interno, auditoría, impuestos y gestión financiera."
+        aside={
+          <div>
+            <p className="label">Cómo leer este espacio</p>
+            <p className="body notice-text">Cada actualización indica su fecha, su categoría y el enlace a la fuente oficial. Consulte siempre el texto original antes de tomar decisiones.</p>
           </div>
-          <div className="newsGrid">
-            {news.map((item, index) => (
-              <NewsCard key={item.slug} item={item} delay={index * 50} />
+        }
+      />
+
+      <section className="section" aria-labelledby="refs-title">
+        <div className="wrap">
+          <div className="section-head">
+            <h2 className="headline" id="refs-title">Referencias seleccionadas para decisiones mejor informadas.</h2>
+            <div>
+              <p className="body">La sección no publica noticias inventadas ni copia artículos completos. Se seleccionan fuentes oficiales, se resume lo relevante y se enlaza al origen para mantener transparencia.</p>
+              <p className="body">Cada resumen enlaza a su fuente oficial. CBR agrega el contexto profesional sin sustituir la lectura normativa o regulatoria completa.</p>
+            </div>
+          </div>
+          <div className="filters" role="group" aria-label="Filtrar por categoría">
+            {categories.map(category => (
+              <button key={category} type="button" aria-pressed={filter === category} onClick={() => setFilter(category)}>
+                {category}
+              </button>
             ))}
           </div>
+          <ul className="updates" aria-live="polite">
+            {visible.map(item => <UpdateRow key={item.slug} item={item} />)}
+          </ul>
         </div>
       </section>
+
+      <Close />
     </>
-  )
-}
-
-function NewsPolicyPanel() {
-  return (
-    <section className="section newsPolicySection">
-      <div className="container newsPolicyPanel reveal">
-        <div>
-          <p className="eyebrow">Cómo se alimenta esta sección</p>
-          <h2>Un modelo de actualización simple, confiable y sostenible.</h2>
-          <p>La sección no publica noticias inventadas ni copia artículos completos. Se seleccionan fuentes oficiales, se resume lo relevante y se enlaza al origen para mantener transparencia.</p>
-        </div>
-        <div className="newsPolicyGrid">
-          {newsMaintenance.map(([title, text]) => (
-            <article key={title}>
-              <span>✓</span>
-              <h3>{title}</h3>
-              <p>{text}</p>
-            </article>
-          ))}
-        </div>
-      </div>
-    </section>
-  )
-}
-
-function NewsCard({ item, delay = 0 }) {
-  return (
-    <article className="newsCard reveal" style={{ transitionDelay: `${delay}ms` }}>
-      <div className="newsArt">
-        <span>{item.category}</span>
-        <div className="newsArtLines"><i></i><i></i><i></i></div>
-      </div>
-      <div className="newsBody">
-        <time>{item.date}</time>
-        <h3>{item.title}</h3>
-        <p>{item.excerpt}</p>
-        <small className="sourceTag">Fuente: {item.sourceLabel}</small>
-        <a href={item.sourceUrl} target="_blank" rel="noreferrer" className="readMore">Leer en fuente real <span>›</span></a>
-      </div>
-    </article>
   )
 }
 
@@ -786,82 +913,58 @@ function ArticlePage({ slug }) {
 
   return (
     <>
-      <SectionHero
-        eyebrow={article.category}
+      <PageHero
         title={article.title}
-        text={article.excerpt}
-      >
-        <div className="articleMetaCard">
-          <span>Fuente real</span>
-          <strong>{article.sourceLabel}</strong>
-        </div>
-      </SectionHero>
+        lead={article.excerpt}
+        aside={
+          <dl className="facts">
+            <div><dt>Fecha</dt><dd className="num">{dateLabel(article)}</dd></div>
+            <div><dt>Categoría</dt><dd>{article.category}</dd></div>
+            <div><dt>Fuente</dt><dd>{article.sourceName}</dd></div>
+            <div>
+              <a className="btn btn--quiet" href={article.sourceUrl} target="_blank" rel="noreferrer">
+                Consultar fuente oficial <ArrowUpRight />
+              </a>
+            </div>
+          </dl>
+        }
+      />
 
-      <section className="section articleSection">
-        <div className="container articleWrap reveal">
-          {article.body.map((paragraph, index) => <p key={index}>{paragraph}</p>)}
-          <div className="articleCTA">
-            <strong>Lectura completa en la fuente original</strong>
+      <section className="section">
+        <div className="wrap">
+          <div className="prose">
+            {[...article.summary, article.relevance, article.cbrNote].filter(Boolean).map((paragraph, index) => <p key={index}>{paragraph}</p>)}
+          </div>
+          <div className="source-note">
+            <h2>Lectura completa en la fuente original</h2>
             <p>Para evitar publicar noticias sin respaldo, este apartado enlaza directamente a la fuente real donde se encuentra la información.</p>
-            <a className="btn primary" href={article.sourceUrl} target="_blank" rel="noreferrer">Abrir fuente real</a>
+            <a className="textlink" href={article.sourceUrl} target="_blank" rel="noreferrer">Consultar fuente oficial: {article.sourceName} <ArrowUpRight /></a>
+          </div>
+          <div className="back-link">
+            <Link className="textlink" to="/noticias"><ArrowLeft /> Volver al Centro de Actualizaciones</Link>
           </div>
         </div>
       </section>
+
+      <Close />
     </>
-  )
-}
-
-function Newsletter({ compact = false }) {
-  const [status, setStatus] = useState('idle')
-
-  const handleNewsletter = async event => {
-    event.preventDefault()
-    const form = event.currentTarget
-    const data = new FormData(form)
-    data.append('_subject', 'Nueva suscripción al boletín CBR')
-    data.append('_template', 'table')
-    data.append('_captcha', 'false')
-    setStatus('sending')
-
-    try {
-      const response = await fetch(`https://formsubmit.co/ajax/${CONTACT_EMAIL}`, {
-        method: 'POST',
-        body: data,
-        headers: { Accept: 'application/json' },
-      })
-      if (!response.ok) throw new Error('Error')
-      form.reset()
-      setStatus('sent')
-    } catch (error) {
-      setStatus('error')
-    }
-  }
-
-  return (
-    <form className={`newsletter ${compact ? 'compact' : ''}`} onSubmit={handleNewsletter}>
-      {!compact && <label>Suscríbete a nuestro boletín</label>}
-      {compact && <label>Suscríbete a nuestro boletín</label>}
-      <div>
-        <input name="email" type="email" placeholder="Email" required />
-        <button type="submit" aria-label="Suscribirse">›</button>
-      </div>
-      <small>
-        {status === 'sending' && 'Enviando...'}
-        {status === 'sent' && 'Suscripción recibida.'}
-        {status === 'error' && 'No se pudo enviar. Intenta nuevamente.'}
-      </small>
-    </form>
   )
 }
 
 function ContactPage({ whatsappLink }) {
   const [formStatus, setFormStatus] = useState('idle')
+  const [fallbackMailto, setFallbackMailto] = useState('')
+  const check = useFormGuard()
 
   const handleSubmit = async event => {
     event.preventDefault()
+    if (formStatus === 'sending') return
 
     const form = event.currentTarget
     const data = new FormData(form)
+    const verdict = check(data)
+    if (verdict === 'bot') { form.reset(); setFormStatus('sent'); return }
+    if (verdict === 'too-fast') { setFormStatus('retry'); return }
     data.append('_subject', `Solicitud web CBR - ${data.get('service')}`)
     data.append('_template', 'table')
     data.append('_captcha', 'false')
@@ -869,18 +972,7 @@ function ContactPage({ whatsappLink }) {
     setFormStatus('sending')
 
     try {
-      const response = await fetch(`https://formsubmit.co/ajax/${CONTACT_EMAIL}`, {
-        method: 'POST',
-        body: data,
-        headers: {
-          Accept: 'application/json',
-        },
-      })
-
-      if (!response.ok) {
-        throw new Error('No se pudo enviar el formulario.')
-      }
-
+      await sendForm(data)
       form.reset()
       setFormStatus('sent')
     } catch (error) {
@@ -888,7 +980,7 @@ function ContactPage({ whatsappLink }) {
       const body = encodeURIComponent(
         [
           `Nombre: ${data.get('name')}`,
-          `Empresa: ${data.get('company')}`,
+          `Empresa: ${data.get('company') || 'No indicada'}`,
           `Correo: ${data.get('email')}`,
           `Teléfono: ${data.get('phone')}`,
           `Servicio de interés: ${data.get('service')}`,
@@ -897,65 +989,96 @@ function ContactPage({ whatsappLink }) {
           data.get('message') || 'Sin mensaje adicional.',
         ].join('\n')
       )
-
-      window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`
-      setFormStatus('idle')
+      setFallbackMailto(`mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`)
+      setFormStatus('error')
     }
   }
 
   return (
     <>
-      <SectionHero
-        eyebrow="Contacto"
+      <PageHero
+        wide
         title="Solicite una consulta con CBR Auditores & Consultores."
-        text="Cuéntanos qué necesita tu empresa y te orientaremos sobre el servicio más adecuado."
-      >
-        <div className="contactHeroLinks">
-          <a href={whatsappLink} target="_blank" rel="noreferrer">WhatsApp</a>
-          <a href={INSTAGRAM_URL} target="_blank" rel="noreferrer">Instagram</a>
-          <a href={`mailto:${CONTACT_EMAIL}`}>Correo</a>
-        </div>
-      </SectionHero>
+        lead="Cuéntenos qué necesita su empresa y le orientaremos sobre el servicio más adecuado."
+      />
 
-      <section className="section contactSection">
-        <div className="container contactGrid">
-          <div className="contactCopy reveal">
-            <p className="eyebrow">Datos de contacto</p>
-            <h2>Estamos listos para escucharte.</h2>
-            <p>El primer paso es entender la necesidad, alcance y prioridad de tu empresa.</p>
-            <div className="contactCards">
-              <article><strong>Correo</strong><a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a></article>
-              <article><strong>WhatsApp</strong><a href={whatsappLink} target="_blank" rel="noreferrer">{CONTACT_PHONE}</a></article>
-              <article><strong>Instagram</strong><a href={INSTAGRAM_URL} target="_blank" rel="noreferrer">@cbrauditores</a></article>
-              <article><strong>Teléfono</strong><span>{CONTACT_PHONE}</span></article>
-              <article><strong>Ubicación</strong><span>{ADDRESS}</span></article>
+      <section className="section">
+        <div className="wrap contact-grid">
+          <form className="contact-form" onSubmit={handleSubmit} aria-labelledby="form-title" noValidate={false}>
+            <h2 className="visually-hidden" id="form-title">Formulario de solicitud</h2>
+            <Honeypot />
+            <div className="contact-form__row">
+              <div className="field">
+                <label htmlFor="f-name">Nombre</label>
+                <input id="f-name" name="name" type="text" autoComplete="name" placeholder="Nombre y apellido" maxLength="120" required />
+              </div>
+              <div className="field">
+                <label htmlFor="f-company">Empresa <small>(opcional)</small></label>
+                <input id="f-company" name="company" type="text" autoComplete="organization" placeholder="Nombre de la empresa" maxLength="120" />
+              </div>
             </div>
-          </div>
-
-          <form className="contactForm reveal" onSubmit={handleSubmit}>
-            <div className="formGrid">
-              <label>Nombre<input name="name" type="text" placeholder="Nombre y apellido" required /></label>
-              <label>Empresa<input name="company" type="text" placeholder="Nombre de la empresa" required /></label>
+            <div className="contact-form__row">
+              <div className="field">
+                <label htmlFor="f-email">Correo electrónico</label>
+                <input id="f-email" name="email" type="email" autoComplete="email" placeholder="correo@empresa.com" maxLength="160" required />
+              </div>
+              <div className="field">
+                <label htmlFor="f-phone">Teléfono</label>
+                <input id="f-phone" name="phone" type="tel" autoComplete="tel" inputMode="tel" placeholder="+1 (000) 000-0000" maxLength="30" pattern="[0-9\s\+\(\)\-\.]{7,30}" title="Indique un teléfono de al menos 7 dígitos" required />
+              </div>
             </div>
-            <div className="formGrid">
-              <label>Correo electrónico<input name="email" type="email" placeholder="correo@empresa.com" required /></label>
-              <label>Teléfono<input name="phone" type="tel" placeholder="809-000-0000" required /></label>
-            </div>
-            <label>
-              Servicio de interés
-              <select name="service" defaultValue="" required>
-                <option value="" disabled>Seleccionar servicio</option>
+            <div className="field">
+              <label htmlFor="f-service">Servicio de interés</label>
+              <select id="f-service" name="service" defaultValue="" required>
+                <option value="" disabled>Seleccione un servicio</option>
                 {services.map(service => <option key={service.title}>{service.title}</option>)}
+                <option>Cumplimiento Ley 155-17</option>
               </select>
-            </label>
-            <label>Mensaje<textarea name="message" rows="5" placeholder="Cuéntanos brevemente qué necesita tu empresa"></textarea></label>
-            <button type="submit" className="btn primary full">Enviar solicitud</button>
-            <small className="formNote">
-              {formStatus === 'sending' && 'Enviando solicitud...'}
+            </div>
+            <div className="field">
+              <label htmlFor="f-message">Mensaje <small>(opcional)</small></label>
+              <textarea id="f-message" name="message" rows="5" maxLength="2000" placeholder="Describa brevemente lo que necesita su empresa"></textarea>
+            </div>
+
+            {formStatus === 'error' && (
+              <div className="form-alert" role="alert">
+                <strong>No se pudo enviar la solicitud.</strong>
+                Puede intentarlo de nuevo, <a href={whatsappLink} target="_blank" rel="noreferrer">escribirnos por WhatsApp</a> o <a href={fallbackMailto}>enviarla por correo</a> con los datos ya completados.
+              </div>
+            )}
+
+            <button type="submit" className="btn btn--block" disabled={formStatus === 'sending'}>
+              {formStatus === 'sending' ? 'Enviando solicitud…' : 'Enviar solicitud'}
+            </button>
+            <p className={`contact-form__status ${formStatus === 'sent' ? 'is-sent' : ''}`} role="status" aria-live="polite">
               {formStatus === 'sent' && 'Solicitud enviada correctamente. Nos pondremos en contacto pronto.'}
-              {formStatus === 'idle' && `El mensaje será enviado a ${CONTACT_EMAIL}.`}
-            </small>
+              {formStatus === 'retry' && 'Revise los datos y vuelva a pulsar «Enviar solicitud».'}
+              {!['sent', 'retry'].includes(formStatus) && `El mensaje será enviado a ${CONTACT_EMAIL}.`}
+            </p>
           </form>
+
+          <aside className="channels" aria-labelledby="channels-title">
+            <h2 className="headline" id="channels-title">Estamos listos para escucharle.</h2>
+            <p className="body channels__intro">El primer paso es entender la necesidad, alcance y prioridad de su empresa.</p>
+            <dl aria-label="Datos de contacto">
+              <div>
+                <dt>Teléfono y WhatsApp</dt>
+                <dd><a href={PHONE_TEL}>{PHONE_DISPLAY}</a> · <a href={whatsappLink} target="_blank" rel="noreferrer">WhatsApp</a></dd>
+              </div>
+              <div>
+                <dt>Correo</dt>
+                <dd><a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a></dd>
+              </div>
+              <div>
+                <dt>Instagram</dt>
+                <dd><a href={INSTAGRAM_URL} target="_blank" rel="noreferrer">@cbrauditores</a></dd>
+              </div>
+              <div>
+                <dt>Ubicación</dt>
+                <dd>{ADDRESS}</dd>
+              </div>
+            </dl>
+          </aside>
         </div>
       </section>
     </>
@@ -965,21 +1088,17 @@ function ContactPage({ whatsappLink }) {
 function PrivacyPage() {
   return (
     <>
-      <SectionHero
-        eyebrow="Aviso de privacidad"
+      <PageHero
         title="Uso responsable de la información recibida."
-        text="La información enviada por los formularios se utiliza únicamente para responder solicitudes, coordinar reuniones o brindar información sobre nuestros servicios."
+        lead="La información enviada por los formularios se utiliza únicamente para responder solicitudes, coordinar reuniones o brindar información sobre nuestros servicios."
       />
-      <section className="section privacySection">
-        <div className="container privacyPanel reveal">
-          <div>
-            <p className="eyebrow">Protección de datos</p>
-            <h2>Compromiso de confidencialidad.</h2>
-          </div>
-          <div className="privacyContent">
+      <section className="section">
+        <div className="wrap statement">
+          <h2 className="headline">Compromiso de confidencialidad.</h2>
+          <div className="prose">
             <p>La información suministrada a través de esta web será utilizada únicamente por CBR Auditores & Consultores para responder solicitudes de contacto, coordinar reuniones o brindar información relacionada con nuestros servicios.</p>
             <p>Los datos personales enviados no serán compartidos con terceros sin autorización previa, salvo requerimiento legal aplicable.</p>
-            <p>El usuario puede solicitar la actualización o eliminación de sus datos escribiendo a <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.</p>
+            <p>El usuario puede solicitar la actualización o eliminación de sus datos escribiendo a <a className="textlink" href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.</p>
           </div>
         </div>
       </section>
@@ -987,95 +1106,16 @@ function PrivacyPage() {
   )
 }
 
-function FinalCTA() {
-  return (
-    <section className="finalCta">
-      <div className="container finalPanel reveal">
-        <div>
-          <p className="eyebrow light">Siguiente paso</p>
-          <h2>Fortalece la gestión financiera, fiscal y regulatoria de tu empresa.</h2>
-          <p>Agenda una asesoría con CBR y da el siguiente paso hacia una operación más ordenada, segura y preparada.</p>
-        </div>
-        <Link className="btn white" to="/contacto">Solicitar asesoría</Link>
-      </div>
-    </section>
-  )
-}
-
-function Footer({ whatsappLink }) {
-  return (
-    <footer className="siteFooter">
-      <div className="container footerGrid">
-        <div>
-          <Link to="/" className="brandWrap footerBrand">
-            <img src={logo} alt="CBR Auditores & Consultores" className="brandLogo" />
-            <div className="brandText">
-              <strong>CBR Auditores</strong>
-              <small>& Consultores</small>
-            </div>
-          </Link>
-          <p className="footerSummary">Soluciones profesionales en contabilidad, auditoría, impuestos, finanzas, consultoría y cumplimiento Ley 155-17.</p>
-        </div>
-
-        <div className="footerColumns">
-          <div>
-            <h4>Mapa del sitio</h4>
-            {navItems.map(([to, label]) => <Link key={to} to={to}>{label}</Link>)}
-            <Link to="/noticias">Actualizaciones profesionales</Link>
-            <Link to="/aviso-privacidad">Aviso de privacidad</Link>
-          </div>
-          <div>
-            <h4>Servicios</h4>
-            <Link to="/servicios">Contabilidad</Link>
-            <Link to="/servicios">Auditoría</Link>
-            <Link to="/servicios">Impuestos</Link>
-            <Link to="/servicios">Finanzas</Link>
-            <Link to="/servicios">Consultoría</Link>
-            <Link to="/ley-155-17">Cumplimiento Ley 155-17</Link>
-            <Link to="/noticias">Noticias y fuentes oficiales</Link>
-          </div>
-          <div>
-            <h4>Contacto</h4>
-            <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
-            <a href={whatsappLink} target="_blank" rel="noreferrer">{CONTACT_PHONE}</a>
-            <a href={INSTAGRAM_URL} target="_blank" rel="noreferrer">Instagram @cbrauditores</a>
-            <Link to="/contacto">Formulario de contacto</Link>
-          </div>
-        </div>
-      </div>
-      <div className="container copyright">
-        <span>© {new Date().getFullYear()} CBR Auditores & Consultores. Todos los derechos reservados.</span>
-      </div>
-    </footer>
-  )
-}
-
-function FloatingSocials({ whatsappLink }) {
-  return (
-    <div className="floatingSocials" aria-label="Accesos rápidos">
-      <a className="socialFloat whatsappFloat" href={whatsappLink} target="_blank" rel="noreferrer" aria-label="Contactar por WhatsApp">
-        <svg viewBox="0 0 32 32" aria-hidden="true">
-          <path className="filled" d="M16.02 3.2A12.76 12.76 0 0 0 5.06 22.5L3.6 28.8l6.44-1.38A12.78 12.78 0 1 0 16.02 3.2Zm0 2.28a10.5 10.5 0 1 1-5.34 19.54l-.38-.22-3.6.77.82-3.5-.25-.4A10.5 10.5 0 0 1 16.02 5.48Zm-3.4 5.34c-.23-.55-.48-.56-.7-.57h-.6c-.22 0-.57.08-.87.4-.3.33-1.14 1.12-1.14 2.72 0 1.6 1.17 3.15 1.33 3.37.16.22 2.26 3.62 5.58 4.93 2.76 1.09 3.32.87 3.92.82.6-.06 1.94-.8 2.22-1.56.27-.77.27-1.43.19-1.56-.08-.14-.3-.22-.63-.38l-1.86-.91c-.33-.17-.57-.25-.81.24-.25.5-.93 1.21-1.14 1.46-.21.25-.42.28-.78.12-.36-.17-1.5-.55-2.86-1.76-1.06-.94-1.77-2.1-1.98-2.46-.2-.36-.02-.55.15-.72.16-.16.36-.42.55-.63.18-.21.24-.36.36-.6.12-.25.06-.46-.03-.64l-.9-1.97Z"/>
-        </svg>
-      </a>
-      <a className="socialFloat instagramFloat" href={INSTAGRAM_URL} target="_blank" rel="noreferrer" aria-label="Ver Instagram de CBR Auditores">
-        <svg viewBox="0 0 32 32" aria-hidden="true">
-          <rect x="7.4" y="7.4" width="17.2" height="17.2" rx="5.1" />
-          <circle cx="16" cy="16" r="4.25" />
-          <circle className="filled" cx="21.25" cy="10.75" r="1.15" />
-        </svg>
-      </a>
-    </div>
-  )
-}
-
 function NotFoundPage() {
   return (
     <>
-      <SectionHero eyebrow="Página no encontrada" title="Este apartado no está disponible." text="Puedes regresar al inicio o contactar a CBR Auditores & Consultores." />
-      <section className="section">
-        <div className="container centerCta">
-          <Link className="btn primary" to="/">Volver al inicio</Link>
+      <PageHero
+        title="Este apartado no está disponible."
+        lead="Puede regresar al inicio o contactar a CBR Auditores & Consultores."
+      />
+      <section className="section section--tight">
+        <div className="wrap">
+          <Link className="btn" to="/">Volver al inicio</Link>
         </div>
       </section>
     </>
@@ -1083,13 +1123,24 @@ function NotFoundPage() {
 }
 
 function App() {
-  const pathname = usePathname()
-  useReveal(pathname)
+  const { pathname, hash } = useLocation()
+  const mainRef = useRef(null)
+  const firstRender = useRef(true)
 
   const whatsappLink = useMemo(() => {
     const message = 'Hola, deseo solicitar una consulta con CBR Auditores & Consultores.'
-    return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`
+    return whatsappUrl(message)
   }, [])
+
+  useEffect(() => {
+    applyMeta(pathname)
+    if (firstRender.current) {
+      firstRender.current = false
+      if (hash) window.setTimeout(() => scrollToHash(hash), 120)
+      return
+    }
+    if (!hash) mainRef.current?.focus({ preventScroll: true })
+  }, [pathname])
 
   let page
   if (pathname === '/') page = <HomePage whatsappLink={whatsappLink} />
@@ -1104,10 +1155,11 @@ function App() {
 
   return (
     <>
+      <a className="skip-link" href="#contenido">Saltar al contenido</a>
       <Header pathname={pathname} />
-      <main>{page}</main>
+      <main id="contenido" ref={mainRef} tabIndex="-1" style={{ outline: 'none' }}>{page}</main>
       <Footer whatsappLink={whatsappLink} />
-      <FloatingSocials whatsappLink={whatsappLink} />
+      {pathname !== '/contacto' && <WhatsAppQuick whatsappLink={whatsappLink} />}
     </>
   )
 }

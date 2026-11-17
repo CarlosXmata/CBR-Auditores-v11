@@ -1,0 +1,390 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-17T15:10:52.000Z",
+  "title": "Design System: CBR Auditores & Consultores",
+  "extensions": {
+    "colorMeta": {
+      "blue": {
+        "role": "primary",
+        "displayName": "Azul CBR",
+        "tonalRamp": [
+          "#031228",
+          "#062450",
+          "#0a408c",
+          "#0f5bc8",
+          "#4b84d6",
+          "#87ade4",
+          "#c3d6f1",
+          "#e7effa"
+        ]
+      },
+      "blue-deep": {
+        "role": "primary",
+        "displayName": "Azul CBR Profundo",
+        "tonalRamp": [
+          "#020d1d",
+          "#04193b",
+          "#072c67",
+          "#0a3f93",
+          "#476fae",
+          "#849fc9",
+          "#c2cfe4",
+          "#e6ecf4"
+        ]
+      },
+      "blue-soft": {
+        "role": "primary",
+        "displayName": "Azul Suave"
+      },
+      "navy": {
+        "role": "neutral",
+        "displayName": "Navy Institucional",
+        "tonalRamp": [
+          "#02060f",
+          "#040c1e",
+          "#071634",
+          "#0a1f4a",
+          "#475777",
+          "#848fa4",
+          "#c2c7d2",
+          "#e6e9ed"
+        ]
+      },
+      "navy-deep": {
+        "role": "neutral",
+        "displayName": "Navy Profundo"
+      },
+      "bg": {
+        "role": "neutral",
+        "displayName": "Blanco"
+      },
+      "wash": {
+        "role": "neutral",
+        "displayName": "Lavado"
+      },
+      "wash-2": {
+        "role": "neutral",
+        "displayName": "Lavado 2"
+      },
+      "card": {
+        "role": "neutral",
+        "displayName": "Tarjeta"
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Tinta",
+        "tonalRamp": [
+          "#06080d",
+          "#0b111a",
+          "#141d2d",
+          "#1c2a40",
+          "#555f70",
+          "#8e94a0",
+          "#c6cacf",
+          "#e8eaec"
+        ]
+      },
+      "ink-2": {
+        "role": "neutral",
+        "displayName": "Tinta 2"
+      },
+      "ink-3": {
+        "role": "neutral",
+        "displayName": "Tinta 3"
+      },
+      "line": {
+        "role": "neutral",
+        "displayName": "Filete"
+      },
+      "line-strong": {
+        "role": "neutral",
+        "displayName": "Filete Marcado"
+      },
+      "on-navy": {
+        "role": "neutral",
+        "displayName": "Texto sobre azul"
+      },
+      "on-navy-2": {
+        "role": "neutral",
+        "displayName": "Texto de apoyo sobre azul"
+      },
+      "line-navy": {
+        "role": "neutral",
+        "displayName": "Filete sobre azul"
+      },
+      "green": {
+        "role": "secondary",
+        "displayName": "Verde Ley 155-17"
+      },
+      "green-wash": {
+        "role": "secondary",
+        "displayName": "Lavado verde"
+      },
+      "error": {
+        "role": "neutral",
+        "displayName": "Error"
+      },
+      "error-wash": {
+        "role": "neutral",
+        "displayName": "Lavado de Error",
+        "canonical": "#fbf1ef"
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Tesis de cada página: Manrope 800, 2.25 a 3.5rem en Inicio (15ch) y 2.125 a 3.25rem en páginas interiores (20ch)."
+      },
+      "display-page": {
+        "displayName": "Display de página",
+        "purpose": "Tesis de páginas interiores."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Titular de sección, bandas y cierre: Manrope 800, 1.75 a 2.625rem."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Títulos de tarjetas de servicio y subtítulos: Manrope 700, 1.25rem."
+      },
+      "lead": {
+        "displayName": "Lead",
+        "purpose": "Párrafo bajo la tesis: Inter 400, máximo 60ch."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Lectura: Inter 400, 1rem, máximo 66ch; no baja de 16px en móvil."
+      },
+      "eyebrow": {
+        "displayName": "Eyebrow",
+        "purpose": "Antetítulo y rótulos de panel: Inter 600, 0.75rem, mayúsculas, azul."
+      }
+    },
+    "gradients": [
+      {
+        "name": "button",
+        "value": "linear-gradient(135deg, #1763d1 0%, #0a2f74 100%)",
+        "purpose": "Botón primario."
+      },
+      {
+        "name": "band",
+        "value": "linear-gradient(135deg, #0a2559 0%, #0d4aaa 100%)",
+        "purpose": "Compromisos, Ley 155-17, cierre y tarjeta azul de pares."
+      },
+      {
+        "name": "hero",
+        "value": "radial-gradient(900px 520px at 88% 8%, #dbe9fc 0%, transparent 70%), linear-gradient(180deg, #f6f9fe 0%, #ffffff 100%)",
+        "purpose": "Fondo suave de los hero."
+      },
+      {
+        "name": "tile",
+        "value": "linear-gradient(135deg, #0a2e72 0%, #1366d6 100%)",
+        "purpose": "Tarjetas azules del panel del hero."
+      }
+    ],
+    "shadows": [
+      {
+        "name": "card",
+        "value": "0 1px 2px rgba(10, 31, 74, 0.05), 0 10px 30px -12px rgba(10, 31, 74, 0.14)",
+        "purpose": "Tarjetas y paneles en reposo."
+      },
+      {
+        "name": "card-lift",
+        "value": "0 2px 4px rgba(10, 31, 74, 0.06), 0 18px 40px -14px rgba(10, 31, 74, 0.22)",
+        "purpose": "Tarjetas interactivas en hover."
+      },
+      {
+        "name": "panel",
+        "value": "0 30px 70px -30px rgba(10, 47, 116, 0.35)",
+        "purpose": "Panel visual del hero."
+      },
+      {
+        "name": "field-focus",
+        "value": "0 0 0 3px rgba(15, 91, 200, 0.2)",
+        "purpose": "Anillo de foco de campos."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Movimientos con recorrido: elevación de tarjetas y flechas."
+      },
+      {
+        "name": "lift",
+        "value": "translateY(-1px a -3px), 0.25 a 0.3s",
+        "purpose": "Botones y tarjetas en hover."
+      },
+      {
+        "name": "arrow-nudge",
+        "value": "translateX(3-4px), 0.3-0.35s ease-out",
+        "purpose": "La flecha de enlaces y tarjetas avanza en hover."
+      },
+      {
+        "name": "color-state",
+        "value": "0.2s ease",
+        "purpose": "Cambios de color y borde. Todo se anula con prefers-reduced-motion."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "mail",
+        "value": "1240px",
+        "purpose": "Oculta el correo del membrete."
+      },
+      {
+        "name": "collapse",
+        "value": "1080px",
+        "purpose": "Menú a botón; retículas a una columna; servicios a 2 columnas."
+      },
+      {
+        "name": "mobile",
+        "value": "720px",
+        "purpose": "Botones a ancho completo, panel compacto, pie en una columna, WhatsApp solo icono."
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "El único llamado a la acción del sitio: Solicitar una consulta.",
+      "html": "<a class=\"ds-btn\" href=\"#\">Solicitar una consulta</a>",
+      "css": ".ds-btn { display: inline-flex; align-items: center; justify-content: center; min-height: 50px; padding: 0 28px; border-radius: 999px; background: linear-gradient(135deg, #1763d1 0%, #0a2f74 100%); color: #fff; font-family: 'Manrope Variable', 'Segoe UI', system-ui, sans-serif; font-size: 0.9375rem; font-weight: 700; text-decoration: none; box-shadow: 0 10px 24px -10px rgba(10, 47, 116, 0.55); transition: transform 0.25s ease; } .ds-btn:hover { transform: translateY(-1px); } .ds-btn:focus-visible { outline: 2px solid #0f5bc8; outline-offset: 3px; }"
+    },
+    {
+      "name": "Quiet Button",
+      "kind": "button",
+      "refersTo": "button-quiet",
+      "description": "Acción secundaria: blanco con borde.",
+      "html": "<a class=\"ds-btn-quiet\" href=\"#\">Escríbanos por WhatsApp</a>",
+      "css": ".ds-btn-quiet { display: inline-flex; align-items: center; min-height: 50px; padding: 0 28px; border: 1px solid #c9d5e6; border-radius: 999px; background: #fff; color: #0a1f4a; font-family: 'Manrope Variable', 'Segoe UI', system-ui, sans-serif; font-size: 0.9375rem; font-weight: 700; text-decoration: none; transition: border-color 0.2s ease; } .ds-btn-quiet:hover { border-color: #0f5bc8; } .ds-btn-quiet:focus-visible { outline: 2px solid #0f5bc8; outline-offset: 3px; }"
+    },
+    {
+      "name": "Text Link",
+      "kind": "custom",
+      "description": "Enlace de acción secundario en azul 600 con flecha que avanza.",
+      "html": "<a class=\"ds-textlink\" href=\"#\">Ver todos los servicios <svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M5 12h14M13 6l6 6-6 6\"/></svg></a>",
+      "css": ".ds-textlink { display: inline-flex; align-items: center; gap: 8px; color: #0f5bc8; font-family: 'Inter Variable', 'Segoe UI', system-ui, sans-serif; font-weight: 600; text-decoration: none; transition: color 0.2s ease; } .ds-textlink svg { width: 16px; height: 16px; transition: transform 0.3s ease; } .ds-textlink:hover { color: #0a3f93; } .ds-textlink:hover svg { transform: translateX(3px); } .ds-textlink:focus-visible { outline: 2px solid #0f5bc8; outline-offset: 3px; }"
+    },
+    {
+      "name": "Text Field",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "Campo blanco con borde y foco azul.",
+      "html": "<label class=\"ds-field\"><span>Correo electrónico</span><input type=\"email\" placeholder=\"nombre@empresa.com\"></label>",
+      "css": ".ds-field { display: grid; gap: 8px; font-family: 'Inter Variable', 'Segoe UI', system-ui, sans-serif; } .ds-field span { font-size: 0.875rem; font-weight: 600; color: #0a1f4a; } .ds-field input { width: 100%; min-height: 50px; padding: 11px 16px; background: #fff; color: #1c2a40; border: 1px solid #c9d5e6; border-radius: 12px; font: inherit; transition: border-color 0.2s ease, box-shadow 0.2s ease; } .ds-field input:focus { outline: none; border-color: #0f5bc8; box-shadow: 0 0 0 3px rgba(15, 91, 200, 0.2); }"
+    },
+    {
+      "name": "Header Navigation",
+      "kind": "nav",
+      "description": "Menú del membrete blanco; la página actual va en azul con subrayado.",
+      "html": "<nav class=\"ds-nav\"><a href=\"#\" aria-current=\"page\">Inicio</a><a href=\"#\">Servicios</a><a href=\"#\">Nosotros</a><a href=\"#\">Contacto</a></nav>",
+      "css": ".ds-nav { display: flex; gap: 28px; padding: 20px 0; border-bottom: 1px solid #e1e8f2; background: #fff; font-family: 'Inter Variable', 'Segoe UI', system-ui, sans-serif; font-size: 0.9375rem; font-weight: 500; } .ds-nav a { color: #1c2a40; padding-block: 8px; border-bottom: 2px solid transparent; text-decoration: none; transition: color 0.2s ease; } .ds-nav a:hover { color: #0f5bc8; } .ds-nav a[aria-current=\"page\"] { color: #0f5bc8; border-bottom-color: #0f5bc8; font-weight: 600; } .ds-nav a:focus-visible { outline: 2px solid #0f5bc8; outline-offset: 3px; }"
+    },
+    {
+      "name": "Filter Chip",
+      "kind": "chip",
+      "refersTo": "filter-chip",
+      "description": "Filtro de categoría en píldora; el activo se rellena de azul.",
+      "html": "<div class=\"ds-filters\"><button aria-pressed=\"true\">Todas</button><button aria-pressed=\"false\">DGII</button><button aria-pressed=\"false\">TSS</button></div>",
+      "css": ".ds-filters { display: flex; flex-wrap: wrap; gap: 8px; } .ds-filters button { min-height: 42px; padding: 0 18px; border: 1px solid #c9d5e6; border-radius: 999px; background: #fff; color: #1c2a40; font-family: 'Inter Variable', 'Segoe UI', system-ui, sans-serif; font-size: 0.875rem; font-weight: 500; cursor: pointer; transition: border-color 0.2s ease; } .ds-filters button:hover { border-color: #0f5bc8; } .ds-filters button[aria-pressed=\"true\"] { background: #0f5bc8; border-color: #0f5bc8; color: #fff; font-weight: 600; } .ds-filters button:focus-visible { outline: 2px solid #0f5bc8; outline-offset: 3px; }"
+    },
+    {
+      "name": "Service Card",
+      "kind": "card",
+      "description": "Tarjeta blanca numerada de servicio: número azul suave, título y línea del servicio; se eleva en hover.",
+      "html": "<a class=\"ds-svc\" href=\"#\"><span class=\"ds-svc__n\">01</span><span class=\"ds-svc__t\">Outsourcing Estratégico</span><span class=\"ds-svc__l\">Enfócate en crecer. Nosotros nos ocupamos del resto.</span></a>",
+      "css": ".ds-svc { display: grid; gap: 10px; padding: 28px 26px 24px; background: #fff; border: 1px solid #e1e8f2; border-radius: 22px; text-decoration: none; transition: transform 0.3s ease, box-shadow 0.3s ease; } .ds-svc:hover { transform: translateY(-3px); box-shadow: 0 2px 4px rgba(10, 31, 74, 0.06), 0 18px 40px -14px rgba(10, 31, 74, 0.22); } .ds-svc__n { font-family: 'Manrope Variable', 'Segoe UI', system-ui, sans-serif; font-size: 2.5rem; font-weight: 800; line-height: 1; letter-spacing: -0.04em; color: #dce9fb; } .ds-svc__t { font-family: 'Manrope Variable', 'Segoe UI', system-ui, sans-serif; font-size: 1.25rem; font-weight: 700; line-height: 1.3; color: #0a1f4a; } .ds-svc__l { font-family: 'Inter Variable', 'Segoe UI', system-ui, sans-serif; font-size: 0.9375rem; line-height: 1.55; color: #4b5870; } .ds-svc:focus-visible { outline: 2px solid #0f5bc8; outline-offset: 3px; }"
+    },
+    {
+      "name": "Hero Panel",
+      "kind": "card",
+      "description": "Panel visual ilustrativo del hero: sin cifras, clientes ni estados.",
+      "html": "<div class=\"ds-panel\"><p class=\"ds-panel__k\">República Dominicana</p><p class=\"ds-panel__t\">Áreas de práctica</p><div class=\"ds-panel__tile\"><span>Servicios</span><strong>Seis áreas</strong></div></div>",
+      "css": ".ds-panel { padding: 24px; background: rgba(255, 255, 255, 0.92); border: 1px solid #e1e8f2; border-radius: 28px; box-shadow: 0 30px 70px -30px rgba(10, 47, 116, 0.35); font-family: 'Inter Variable', 'Segoe UI', system-ui, sans-serif; } .ds-panel__k { margin: 0; font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #66748b; } .ds-panel__t { margin: 4px 0 18px; font-family: 'Manrope Variable', 'Segoe UI', system-ui, sans-serif; font-size: 1.375rem; font-weight: 800; letter-spacing: -0.025em; color: #0a1f4a; } .ds-panel__tile { display: grid; gap: 4px; padding: 18px; border-radius: 18px; color: #fff; background: linear-gradient(135deg, #0a2e72 0%, #1366d6 100%); } .ds-panel__tile span { font-size: 0.75rem; color: #cfe0fa; } .ds-panel__tile strong { font-family: 'Manrope Variable', 'Segoe UI', system-ui, sans-serif; font-size: 1.625rem; font-weight: 800; letter-spacing: -0.03em; }"
+    },
+    {
+      "name": "Closing Band",
+      "kind": "card",
+      "description": "Cierre de cada página: banda de degradado azul con titular, texto y botón blanco.",
+      "html": "<section class=\"ds-close\"><h2>Fortalezca la gestión financiera de su empresa.</h2><a class=\"ds-close__btn\" href=\"#\">Solicitar una consulta</a></section>",
+      "css": ".ds-close { padding: 56px 40px; background: linear-gradient(135deg, #0a2559 0%, #0d4aaa 100%); font-family: 'Inter Variable', 'Segoe UI', system-ui, sans-serif; } .ds-close h2 { margin: 0 0 24px; font-family: 'Manrope Variable', 'Segoe UI', system-ui, sans-serif; font-size: 2rem; font-weight: 800; line-height: 1.12; letter-spacing: -0.03em; color: #fff; } .ds-close__btn { display: inline-flex; align-items: center; min-height: 50px; padding: 0 28px; border-radius: 999px; background: #fff; color: #0a1f4a; font-family: 'Manrope Variable', 'Segoe UI', system-ui, sans-serif; font-size: 0.9375rem; font-weight: 700; text-decoration: none; } .ds-close__btn:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }"
+    },
+    {
+      "name": "WhatsApp Quick Access",
+      "kind": "button",
+      "refersTo": "whatsapp-quick",
+      "description": "Acceso fijo en píldora verde; solo icono en móvil. Oculto en /contacto.",
+      "html": "<a class=\"ds-wa\" href=\"#\"><svg viewBox=\"0 0 24 24\" fill=\"currentColor\"><path d=\"M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2z\"/></svg><span>WhatsApp</span></a>",
+      "css": ".ds-wa { display: inline-flex; align-items: center; gap: 10px; height: 52px; padding: 0 20px 0 16px; background: #128c5a; color: #fff; border-radius: 999px; font-family: 'Inter Variable', 'Segoe UI', system-ui, sans-serif; font-size: 0.875rem; font-weight: 700; text-decoration: none; box-shadow: 0 12px 28px -8px rgba(10, 31, 74, 0.4); } .ds-wa svg { width: 24px; height: 24px; } .ds-wa:hover { background: #0e7a4e; } .ds-wa:focus-visible { outline: 2px solid #0f5bc8; outline-offset: 3px; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "Azul corporativo",
+    "overview": "Una oficina profesional clara: fondos blancos y azul muy pálido, titulares grandes en azul marino con una sans gruesa y moderna (Manrope), tarjetas blancas con esquinas amplias y bandas de azul corporativo para los momentos de peso. La autoridad viene del orden, del contraste y de que cada actualización cita su fuente oficial, no de efectos.\n\nEl hero de Inicio tiene dos columnas: contenido comercial a la izquierda y un panel visual ilustrativo a la derecha, con un globo vectorial decorativo detrás. Las páginas interiores abren con un hero claro y una tarjeta de apoyo, y todas cierran con una banda azul con el único llamado a la acción.\n\nSe rechaza el aspecto de plantilla SaaS genérica: métricas, clientes o gráficas inventadas, estados de cumplimiento ficticios, halos de neón, iconos en baldosas, cualquier serif en titulares y todo dato no confirmado.",
+    "keyCharacteristics": [
+      "Manrope 800 para titulares y Inter 400 a 600 para texto e interfaz, ambas autoalojadas.",
+      "Fondos blancos con degradado azul muy suave en los hero; tarjetas blancas con filete de 1px y sombra suave.",
+      "Botones en píldora con degradado azul corporativo y un único llamado a la acción.",
+      "Bandas de degradado azul marino a azul corporativo para compromisos, Ley 155-17 y cierre; pie en navy profundo.",
+      "Globo vectorial propio como elemento gráfico decorativo; nunca el logo ni marca de agua.",
+      "Sin fotografía mientras no exista material real."
+    ],
+    "rules": [
+      {
+        "name": "La Regla de los Tokens",
+        "body": "Hay un solo navy, un solo azul de acción y un solo verde. Ningún hex suelto fuera de los tokens.",
+        "section": "colors"
+      },
+      {
+        "name": "La Regla del Verde Escaso",
+        "body": "El verde solo marca el distintivo de la Ley 155-17 y los checks de las listas.",
+        "section": "colors"
+      },
+      {
+        "name": "La Regla de los Cuatro Degradados",
+        "body": "Solo existen los degradados de botón, banda, hero y tarjeta del panel. Ningún degradado en texto ni en otras superficies.",
+        "section": "colors"
+      },
+      {
+        "name": "La Regla de los Pesos Reales",
+        "body": "Manrope 700/800 e Inter 400/500/600. Ningún otro peso ni ninguna serif en titulares.",
+        "section": "typography"
+      },
+      {
+        "name": "La Regla de la Cifra Tabular",
+        "body": "Toda fecha, número de ley o número de paso lleva cifras tabulares.",
+        "section": "typography"
+      },
+      {
+        "name": "La Regla del Panel Ilustrativo",
+        "body": "El panel del hero no contiene cifras, clientes, gráficas ni estados de cumplimiento; es una ilustración.",
+        "section": "components"
+      },
+      {
+        "name": "La Regla de la Elevación Suave",
+        "body": "Las tarjetas llevan filete de 1px y sombra suave en reposo; solo las interactivas se elevan en hover. Todo movimiento se anula con prefers-reduced-motion.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do usar el azul corporativo como único color de acción, con el mismo texto de llamado a la acción en todo el sitio.",
+      "Do separar bloques con tarjetas blancas, filetes de 1px y cambios entre blanco y lavado.",
+      "Do cerrar cada página con la banda azul y el botón blanco.",
+      "Do citar la fuente oficial de cada actualización con su propio enlace.",
+      "Do mantener contraste AA, foco visible y respetar prefers-reduced-motion.",
+      "Do dejar que el salto de línea de los titulares en móvil lo decida el ancho, con text-wrap: balance."
+    ],
+    "donts": [
+      "Don't mostrar métricas, cifras de clientes, resultados o estados de cumplimiento inventados, ni gráficas que parezcan datos reales.",
+      "Don't usar serif en titulares ni pesos distintos de los definidos.",
+      "Don't añadir degradados fuera de los cuatro definidos ni resplandores de neón.",
+      "Don't repetir, recolorear ni usar el logo como marca de agua; el globo decorativo es un dibujo propio.",
+      "Don't poner elementos flotantes que tapen el contenido en móvil.",
+      "Don't ofrecer formularios que prometan servicios inexistentes, como un boletín sin integración.",
+      "Don't usar fotografía de stock presentada como el equipo o la oficina de CBR."
+    ]
+  }
+}

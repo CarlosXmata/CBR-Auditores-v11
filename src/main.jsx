@@ -1,5 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
+import '@fontsource-variable/manrope/wght.css'
+import '@fontsource-variable/inter/wght.css'
 import App from './App.jsx'
 import './styles.css'
 

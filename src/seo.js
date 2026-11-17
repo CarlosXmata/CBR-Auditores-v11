@@ -1,0 +1,75 @@
+// Metadatos por ruta. Fuente única para la web (actualización en el navegador)
+// y para scripts/prerender.mjs (HTML estático por ruta en el build).
+import { news } from './content/news.js'
+
+export const SITE_URL = 'https://www.cbrauditores.com'
+export const SITE_NAME = 'CBR Auditores & Consultores'
+export const OG_IMAGE = '/og-cbr.png'
+export const OG_IMAGE_ALT = 'Logotipo de CBR Auditores & Consultores'
+
+export const routes = {
+  '/': {
+    title: 'CBR Auditores & Consultores | Firma de Auditoría, Contabilidad y Consultoría en RD',
+    description: 'CBR Auditores & Consultores ofrece auditoría, contabilidad empresarial, impuestos, consultoría financiera, control interno y cumplimiento Ley 155-17 para empresas y Sujetos Obligados en República Dominicana.',
+    priority: '1.0',
+  },
+  '/servicios': {
+    title: 'Servicios | CBR Auditores & Consultores',
+    description: 'Outsourcing estratégico, auditoría y aseguramiento, cumplimiento fiscal, consultoría financiera corporativa, valoración de negocios y soluciones contables especializadas en República Dominicana.',
+    priority: '0.9',
+  },
+  '/quienes-somos': {
+    title: 'Nosotros | CBR Auditores & Consultores',
+    description: 'Firma especializada en contabilidad, auditoría, impuestos, finanzas y consultoría empresarial para empresas, emprendedores, profesionales independientes y Sujetos Obligados.',
+    priority: '0.8',
+  },
+  '/ley-155-17': {
+    title: 'Cumplimiento Ley 155-17 | CBR Auditores & Consultores',
+    description: 'Acompañamiento a Sujetos Obligados en la implementación, revisión y fortalecimiento de controles para la prevención del lavado de activos y financiamiento del terrorismo.',
+    priority: '0.8',
+  },
+  '/noticias': {
+    title: 'Centro de Actualizaciones Profesionales | CBR Auditores & Consultores',
+    description: 'Información oficial de DGII, TSS, Superintendencia de Bancos y Ley 155-17, resumida con criterio empresarial y enlazada a su fuente oficial.',
+    priority: '0.7',
+  },
+  '/contacto': {
+    title: 'Contacto | CBR Auditores & Consultores',
+    description: 'Solicite una consulta con CBR Auditores & Consultores por formulario, WhatsApp, teléfono o correo.',
+    priority: '0.8',
+  },
+  '/aviso-privacidad': {
+    title: 'Aviso de privacidad | CBR Auditores & Consultores',
+    description: 'Uso responsable de la información recibida a través de los formularios de CBR Auditores & Consultores.',
+    priority: '0.3',
+  },
+}
+
+export const NOT_FOUND = {
+  title: 'Página no encontrada | CBR Auditores & Consultores',
+  description: routes['/'].description,
+}
+
+export function metaFor(pathname) {
+  if (routes[pathname]) return { ...routes[pathname], path: pathname, indexable: true }
+  if (pathname.startsWith('/noticias/')) {
+    const item = news.find(entry => entry.slug === pathname.split('/').pop())
+    if (item) {
+      return {
+        title: `${item.title} | ${SITE_NAME}`,
+        description: item.excerpt,
+        path: `/noticias/${item.slug}`,
+        priority: '0.6',
+        type: 'article',
+        indexable: true,
+      }
+    }
+  }
+  return { ...NOT_FOUND, path: pathname, indexable: false }
+}
+
+export function allIndexablePaths() {
+  return [...Object.keys(routes), ...news.map(item => `/noticias/${item.slug}`)]
+}
+
+export const absoluteUrl = path => (path === '/' ? `${SITE_URL}/` : `${SITE_URL}${path}`)

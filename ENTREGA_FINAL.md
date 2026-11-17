@@ -18,8 +18,8 @@ Estos apartados se conservan fuera del menú principal para no cargar la navegac
 
 ## Datos configurados
 - Correo: `info.cbrauditores@gmail.com`
-- Teléfono: `(809) 323-4460`
-- WhatsApp: `18093234460`
+- Teléfono: `+1 (849) 254-4460`
+- WhatsApp: `18492544460`
 - Instagram: `https://www.instagram.com/cbrauditores/`
 
 ## Producción en Vercel
@@ -35,6 +35,6 @@ El formulario usa FormSubmit. El primer envío puede requerir confirmación desd
 
 ## Pendiente posterior a dominio
 Cuando se compre/defina el dominio real, actualizar:
-- `public/sitemap.xml`
+- `src/seo.js` (`SITE_URL`) si el dominio canónico cambiara; el `sitemap.xml` se genera en el build
 - `public/robots.txt`
 - URLs canónicas en `index.html`, si aplica.

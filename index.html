@@ -3,27 +3,46 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#061b3a" />
+    <meta name="theme-color" content="#0b1f3a" />
+    <!-- Metadatos por ruta: valores de Inicio. scripts/prerender.mjs los reescribe para cada ruta y src/App.jsx los actualiza al navegar. Fuente: src/seo.js -->
+    <title>CBR Auditores & Consultores | Firma de Auditoría, Contabilidad y Consultoría en RD</title>
     <meta name="description" content="CBR Auditores & Consultores ofrece auditoría, contabilidad empresarial, impuestos, consultoría financiera, control interno y cumplimiento Ley 155-17 para empresas y Sujetos Obligados en República Dominicana." />
-    <meta name="keywords" content="Auditoría en República Dominicana, firma de auditores, contabilidad empresarial, consultoría financiera, auditoría financiera, auditoría interna, cumplimiento Ley 155-17, prevención de lavado de activos, oficial de cumplimiento, asesoría tributaria, servicios contables, consultoría empresarial, DGII, TSS, Ministerio de Trabajo, Sujetos Obligados" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://www.cbrauditores.com/" />
     <meta name="author" content="CBR Auditores & Consultores" />
-    <meta property="og:title" content="CBR Auditores & Consultores | Auditoría, Contabilidad, Impuestos y Consultoría Financiera en RD" />
-    <meta property="og:description" content="Web corporativa de CBR Auditores & Consultores: servicios profesionales, cumplimiento Ley 155-17, noticias y contacto." />
+    <meta name="keywords" content="Auditoría en República Dominicana, firma de auditores, contabilidad empresarial, consultoría financiera, auditoría financiera, auditoría interna, cumplimiento Ley 155-17, prevención de lavado de activos, oficial de cumplimiento, asesoría tributaria, servicios contables, consultoría empresarial, DGII, TSS, Ministerio de Trabajo, Sujetos Obligados" />
+
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="es_DO" />
     <meta property="og:site_name" content="CBR Auditores & Consultores" />
+    <meta property="og:url" content="https://www.cbrauditores.com/" />
+    <meta property="og:title" content="CBR Auditores & Consultores | Firma de Auditoría, Contabilidad y Consultoría en RD" />
+    <meta property="og:description" content="CBR Auditores & Consultores ofrece auditoría, contabilidad empresarial, impuestos, consultoría financiera, control interno y cumplimiento Ley 155-17 para empresas y Sujetos Obligados en República Dominicana." />
+    <meta property="og:image" content="https://www.cbrauditores.com/og-cbr.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Logotipo de CBR Auditores & Consultores" />
     <meta name="twitter:card" content="summary_large_image" />
-    <title>CBR Auditores & Consultores | Firma de Auditoría, Contabilidad y Consultoría en RD</title>
+    <meta name="twitter:title" content="CBR Auditores & Consultores | Firma de Auditoría, Contabilidad y Consultoría en RD" />
+    <meta name="twitter:description" content="CBR Auditores & Consultores ofrece auditoría, contabilidad empresarial, impuestos, consultoría financiera, control interno y cumplimiento Ley 155-17 para empresas y Sujetos Obligados en República Dominicana." />
+    <meta name="twitter:image" content="https://www.cbrauditores.com/og-cbr.png" />
+
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "ProfessionalService",
       "name": "CBR Auditores & Consultores",
+      "url": "https://www.cbrauditores.com/",
+      "logo": "https://www.cbrauditores.com/favicon-192.png",
+      "image": "https://www.cbrauditores.com/og-cbr.png",
       "description": "Firma especializada en auditoría, contabilidad, impuestos, consultoría financiera y cumplimiento Ley 155-17 en República Dominicana.",
       "areaServed": "República Dominicana",
       "email": "info.cbrauditores@gmail.com",
-      "telephone": "+18093234460",
+      "telephone": "{{PHONE_E164}}",
       "sameAs": ["https://www.instagram.com/cbrauditores/"],
       "address": {
         "@type": "PostalAddress",
@@ -41,7 +60,7 @@
     </script>
   </head>
   <body>
-    <noscript>Para visualizar esta página debes habilitar JavaScript.</noscript>
+    <noscript>Para visualizar esta página debe habilitar JavaScript. También puede escribirnos a info.cbrauditores@gmail.com o llamar al {{PHONE_DISPLAY}}.</noscript>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>

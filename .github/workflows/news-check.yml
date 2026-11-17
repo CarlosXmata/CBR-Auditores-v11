@@ -1,0 +1,45 @@
+# Verificación semanal del Centro de Actualizaciones Profesionales.
+# Revisa los datos de src/content/news.js y que los enlaces oficiales sigan respondiendo.
+# Solo informa: no modifica contenido, no abre cambios, no hace commit y no despliega.
+# El resumen aparece en la ejecución (Summary) y el informe completo queda como artefacto.
+name: Verificación de noticias
+
+on:
+  schedule:
+    - cron: '0 12 * * 1' # lunes 12:00 UTC (08:00 en República Dominicana)
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: news-check
+  cancel-in-progress: true
+
+jobs:
+  news-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      # Los scripts no usan dependencias: no hace falta instalar paquetes.
+      - name: Verificar datos y enlaces oficiales
+        run: node scripts/news-check.mjs --out news-report
+
+      - name: Listar candidatos editoriales desde RSS oficiales
+        if: always()
+        continue-on-error: true
+        run: node scripts/news-feeds.mjs --out news-report
+
+      - name: Guardar informe
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: informe-noticias
+          path: news-report/
+          retention-days: 30

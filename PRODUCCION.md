@@ -37,4 +37,4 @@ Se completa la idea de noticias como un centro de curaduría profesional:
 - Root Directory: ./
 
 ## Nota
-Cuando se tenga dominio real, actualizar sitemap y robots.
+Dominio canónico: `www.cbrauditores.com`. El sitemap se genera en cada build (`scripts/prerender.mjs`).
