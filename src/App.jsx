@@ -253,6 +253,14 @@ const WhatsAppGlyph = () => (
   </svg>
 )
 
+const InstagramGlyph = () => (
+  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <rect x="3.5" y="3.5" width="17" height="17" rx="5" />
+    <circle cx="12" cy="12" r="4" />
+    <circle className="ig-dot" cx="17.2" cy="6.8" r="1.1" />
+  </svg>
+)
+
 /* ---------- Ilustración: globo (decorativo, sin datos) ---------- */
 
 function GlobeArt({ className = '' }) {
@@ -429,10 +437,15 @@ function Footer({ whatsappLink }) {
 
 function WhatsAppQuick({ whatsappLink }) {
   return (
-    <a className="wa-float" href={whatsappLink} target="_blank" rel="noreferrer" aria-label="Escribir a CBR por WhatsApp">
-      <WhatsAppGlyph />
-      <span>WhatsApp</span>
-    </a>
+    <div className="quick-dock">
+      <a className="ig-float" href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" aria-label="Abrir el perfil de Instagram de CBR (@cbrauditores) en una pestaña nueva">
+        <InstagramGlyph />
+      </a>
+      <a className="wa-float" href={whatsappLink} target="_blank" rel="noreferrer" aria-label="Escribir a CBR por WhatsApp">
+        <WhatsAppGlyph />
+        <span>WhatsApp</span>
+      </a>
+    </div>
   )
 }
 

@@ -407,8 +407,8 @@ input:focus, select:focus, textarea:focus { outline: none; border-color: var(--b
 .site-footer :focus-visible { outline-color: #fff; }
 
 /* ---------- WhatsApp quick access ---------- */
+.quick-dock { position: fixed; right: 20px; bottom: 20px; z-index: 90; display: flex; align-items: center; gap: 10px; }
 .wa-float {
-  position: fixed; right: 20px; bottom: 20px; z-index: 90;
   display: inline-flex; align-items: center; gap: 10px; height: 52px; padding: 0 20px 0 16px;
   background: #128c5a; color: #fff; border-radius: 999px;
   font-size: 0.875rem; font-weight: 700;
@@ -417,6 +417,16 @@ input:focus, select:focus, textarea:focus { outline: none; border-color: var(--b
 }
 .wa-float:hover { background: #0e7a4e; transform: translateY(-2px); }
 .wa-float svg { width: 24px; height: 24px; fill: currentColor; }
+.ig-float {
+  display: inline-flex; align-items: center; justify-content: center; width: 48px; height: 48px; border-radius: 50%;
+  color: #fff; background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285aeb 90%);
+  box-shadow: 0 10px 24px -8px rgba(10, 31, 74, 0.4);
+  transition: transform 0.3s var(--ease-out), box-shadow 0.2s ease;
+}
+.ig-float:hover { transform: translateY(-2px); box-shadow: 0 14px 28px -8px rgba(10, 31, 74, 0.5); }
+.ig-float svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 1.8; }
+.ig-float .ig-dot { fill: currentColor; stroke: none; }
+.ig-float:focus-visible, .wa-float:focus-visible { outline: 3px solid var(--navy); outline-offset: 3px; }
 
 /* ---------- Responsive ---------- */
 @media (max-width: 1240px) {
@@ -481,7 +491,8 @@ input:focus, select:focus, textarea:focus { outline: none; border-color: var(--b
   .site-footer li + li { margin-top: 0; }
   .site-footer li a { display: block; padding: 8px 0; font-size: 1rem; }
   .site-footer h2 { margin-bottom: 6px; }
-  .wa-float { right: 14px; bottom: 14px; width: 52px; padding: 0; justify-content: center; }
+  .quick-dock { right: 14px; bottom: 14px; gap: 8px; }
+  .wa-float { width: 52px; padding: 0; justify-content: center; }
   .wa-float span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
   .note-band .wrap { flex-direction: column; align-items: flex-start; }
 }
