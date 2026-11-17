@@ -13,6 +13,7 @@
 //   ok               respuesta 2xx (con o sin redirección)
 //   revision-manual  403 o 429: el sitio rechaza peticiones automáticas; no se marca como roto
 //   roto             401, 404, 410 u otro 4xx
+//   url-invalida     la dirección no es una URL https absoluta válida: error de datos, no se hace ninguna petición
 //   error-servidor   5xx tras un reintento
 //   sin-respuesta    tiempo agotado, DNS o TLS
 //
@@ -44,17 +45,29 @@ function isValidIsoDate(value) {
   return !Number.isNaN(date.getTime()) && date.toISOString().slice(0, 10) === value
 }
 
+// Una URL es válida si es absoluta, usa https y tiene host. Un prefijo como «https://» no basta:
+// `new URL('https://')` lanza una excepción. Se valida antes de consultar nada.
+export function isValidHttpsUrl(value) {
+  if (typeof value !== 'string' || !value.trim()) return false
+  try {
+    const url = new URL(value)
+    return url.protocol === 'https:' && url.hostname !== ''
+  } catch {
+    return false
+  }
+}
+
 function daysSince(iso) {
   return Math.floor((today - new Date(`${iso}T00:00:00Z`)) / 86400000)
 }
 
 // ---------- 1. Datos ----------
-function checkData() {
+export function checkData(items = news, sources = LAW_SOURCES) {
   const errors = []
   const warnings = []
   const slugs = new Set()
 
-  news.forEach((item, index) => {
+  items.forEach((item, index) => {
     const at = item.slug ? `«${item.slug}»` : `publicación ${index + 1}`
     for (const field of ['slug', 'type', 'title', 'excerpt', 'relevance', 'category', 'sourceName', 'sourceUrl', 'verifiedAt']) {
       if (typeof item[field] !== 'string' || !item[field].trim()) errors.push(`${at}: falta el campo ${field}.`)
@@ -73,7 +86,7 @@ function checkData() {
     }
     if (item.type === 'recurso' && item.publishedAt) warnings.push(`${at}: un recurso permanente no lleva publishedAt; se mostrará como «Recurso permanente».`)
 
-    if (item.sourceUrl && !/^https:\/\//.test(item.sourceUrl)) errors.push(`${at}: sourceUrl debe empezar por https://.`)
+    if (item.sourceUrl && !isValidHttpsUrl(item.sourceUrl)) errors.push(`${at}: sourceUrl no es una URL https válida: «${item.sourceUrl}».`)
     if (item.verifiedAt) {
       if (!isValidIsoDate(item.verifiedAt)) errors.push(`${at}: verifiedAt debe ser una fecha ISO (AAAA-MM-DD).`)
       else if (daysSince(item.verifiedAt) < 0) errors.push(`${at}: verifiedAt está en el futuro.`)
@@ -81,18 +94,22 @@ function checkData() {
     }
   })
 
+  Object.entries(sources).forEach(([key, source]) => {
+    if (!isValidHttpsUrl(source?.url)) errors.push(`LAW_SOURCES.${key}: url no es una URL https válida: «${source?.url}».`)
+  })
+
   return { errors, warnings }
 }
 
 // ---------- 2. Enlaces ----------
-function collectLinks() {
+export function collectLinks(items = news, sources = LAW_SOURCES) {
   const links = new Map()
   const add = (url, origin) => {
     if (!links.has(url)) links.set(url, [])
     links.get(url).push(origin)
   }
-  news.forEach(item => add(item.sourceUrl, `/noticias/${item.slug}`))
-  Object.entries(LAW_SOURCES).forEach(([key, source]) => add(source.url, `/ley-155-17 (${key})`))
+  items.forEach(item => add(String(item.sourceUrl ?? ''), `/noticias/${item.slug}`))
+  Object.entries(sources).forEach(([key, source]) => add(String(source?.url ?? ''), `/ley-155-17 (${key})`))
   return [...links.entries()].map(([url, usedIn]) => ({ url, usedIn }))
 }
 
@@ -149,11 +166,17 @@ export async function checkLink(url) {
 
 const pause = ms => new Promise(done => setTimeout(done, ms))
 
-async function checkLinks(links) {
+export async function checkLinks(links) {
   const lastHit = new Map()
   const results = []
   // De uno en uno y con pausa por dominio: nada de peticiones en ráfaga a sitios oficiales.
   for (const link of links) {
+    if (!isValidHttpsUrl(link.url)) {
+      // Error de datos: se registra y se sigue. No se envía ninguna petición.
+      results.push({ ...link, status: null, verdict: 'url-invalida', detail: 'no es una URL https válida; no se consultó' })
+      console.log(`  ${label('url-invalida').padEnd(16)} ${'—'.padEnd(4)} ${link.url || '(vacía)'}`)
+      continue
+    }
     const host = new URL(link.url).host
     const wait = PAUSE_SAME_HOST_MS - (Date.now() - (lastHit.get(host) ?? 0))
     if (wait > 0) await pause(wait)
@@ -173,6 +196,7 @@ const LABELS = {
   roto: 'ROTO',
   'error-servidor': 'ERROR SERVIDOR',
   'sin-respuesta': 'SIN RESPUESTA',
+  'url-invalida': 'URL INVÁLIDA',
 }
 const label = verdict => LABELS[verdict] ?? verdict
 
@@ -200,31 +224,36 @@ function toMarkdown(report) {
   return lines.join('\n')
 }
 
-async function main() {
-  console.log('Centro de Actualizaciones: verificación de datos y enlaces\n')
-  const data = checkData()
-  console.log(`Datos: ${news.length} publicaciones, ${data.errors.length} errores, ${data.warnings.length} avisos.`)
+// Construye el informe completo. Nunca lanza por una URL mal formada: la registra como error de datos.
+export async function buildReport(items = news, sources = LAW_SOURCES) {
+  const data = checkData(items, sources)
+  console.log(`Datos: ${items.length} publicaciones, ${data.errors.length} errores, ${data.warnings.length} avisos.`)
   data.errors.forEach(e => console.log(`  ERROR  ${e}`))
   data.warnings.forEach(w => console.log(`  AVISO  ${w}`))
 
-  const links = collectLinks()
+  const links = collectLinks(items, sources)
   console.log(`\nEnlaces oficiales (${links.length}):`)
   const results = await checkLinks(links)
 
-  const blocking = results.filter(link => ['roto', 'error-servidor', 'sin-respuesta'].includes(link.verdict))
-  const report = {
+  const blocking = results.filter(link => ['roto', 'error-servidor', 'sin-respuesta', 'url-invalida'].includes(link.verdict))
+  return {
     checkedAt: today.toISOString(),
     ok: data.errors.length === 0 && blocking.length === 0,
     data: {
-      items: news.length,
-      noticias: news.filter(item => item.type === 'noticia').length,
-      recursos: news.filter(item => item.type === 'recurso').length,
+      items: items.length,
+      noticias: items.filter(item => item.type === 'noticia').length,
+      recursos: items.filter(item => item.type === 'recurso').length,
       errors: data.errors,
       warnings: data.warnings,
     },
     summary: Object.fromEntries(Object.keys(LABELS).map(key => [key, results.filter(link => link.verdict === key).length])),
     links: results,
   }
+}
+
+async function main() {
+  console.log('Centro de Actualizaciones: verificación de datos y enlaces\n')
+  const report = await buildReport()
 
   await mkdir(outDir, { recursive: true })
   const markdown = toMarkdown(report)
@@ -233,7 +262,7 @@ async function main() {
   if (process.env.GITHUB_STEP_SUMMARY) await writeFile(process.env.GITHUB_STEP_SUMMARY, markdown, { flag: 'a' })
 
   const s = report.summary
-  console.log(`\nResumen: ${s.ok} ok · ${s['revision-manual']} revisión manual · ${s.roto} rotos · ${s['error-servidor']} error de servidor · ${s['sin-respuesta']} sin respuesta`)
+  console.log(`\nResumen: ${s.ok} ok · ${s['revision-manual']} revisión manual · ${s.roto} rotos · ${s['error-servidor']} error de servidor · ${s['sin-respuesta']} sin respuesta · ${s['url-invalida']} URL inválidas`)
   console.log(`Informe: ${resolve(outDir, 'news-check.md')}`)
   if (!report.ok) {
     console.log('\nHay problemas que revisar. Nada se ha modificado.')
@@ -241,7 +270,7 @@ async function main() {
   }
 }
 
-// Se ejecuta solo como comando; importado (por ejemplo, en una prueba) expone classify y checkLink.
+// Se ejecuta solo como comando; importado (por ejemplo, en una prueba) expone sus funciones sin ejecutar main.
 if (import.meta.url === pathToFileURL(process.argv[1]).href) {
   main().catch(error => {
     console.error(error)
