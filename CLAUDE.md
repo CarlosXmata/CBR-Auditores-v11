@@ -104,8 +104,8 @@ La sección de Noticias funciona como Centro de Actualizaciones Profesionales y 
 
 Datos de contacto:
 Correo: info.cbrauditores@gmail.com
-Teléfono: +1 (849) 254-4460
-WhatsApp: 18492544460
+Teléfono: (809) 323-4460
+WhatsApp: 18093234460
 Instagram: https://www.instagram.com/cbrauditores/
 
 ## 7. Centro de Actualizaciones Profesionales
@@ -170,7 +170,7 @@ Trabaja siempre sobre la versión existente del proyecto, no recrees la aplicaci
 ## 11. Documentos de referencia del proyecto
 
 - **`PRODUCT.md`**: público, propósito, posicionamiento, restricciones y material confirmado frente a pendiente. Manda en el contenido.
-- **`DESIGN.md`**: sistema visual «El Dictamen Firmado» (rediseño aprobado). Manda en lo visual. `.impeccable/design.json` es su complemento y `.impeccable/surfaces/src-app-jsx.md` guarda el contrato de dirección.
+- **`DESIGN.md`**: sistema visual «Confianza en azul» (rediseño aprobado en noviembre de 2026; sustituye a «El Dictamen Firmado»). Manda en lo visual. `.impeccable/design.json` es su complemento y `.impeccable/surfaces/src-app-jsx.md` guarda el contrato de dirección.
 - **`MANTENIMIENTO_NOTICIAS.md`**: criterio editorial y proceso para publicar noticias.
 - **`ENTREGA_FINAL.md`**, **`PRODUCCION.md`** y **`README.md`**: alcance aprobado, datos configurados y despliegue.
 
@@ -178,13 +178,17 @@ Para trabajo de diseño se usa la skill **Impeccable** (`/impeccable …`), que 
 
 ## 12. Estructura técnica
 
-- `src/App.jsx`: interfaz y router propio por `window.location.pathname`.
+- `src/App.jsx`: armazón (router propio por `window.location.pathname`, metadatos por ruta, membrete, pie).
+- `src/pages/`: una página por ruta (`Home`, `Services`, `About`, `Compliance`, `News` con la ficha de noticia, `Contact`, `Privacy`, `NotFound`).
+- `src/components/`: piezas compartidas (`layout` con membrete, cabecera azul, cierre y pie; `routing`, `forms`, `news`, `moments`, `icons`).
+- `src/config/site.js`: **única fuente** de los datos de contacto (correo, teléfono, WhatsApp, Instagram), del texto del CTA, del menú y de las fuentes oficiales de la Ley 155-17.
+- `src/content/services.js`: textos aprobados de los seis servicios y demás contenido institucional. `src/content/news.js`: Centro de Actualizaciones (noticias fechadas y recursos permanentes).
 - `src/styles.css`: estilos globales con los tokens de `DESIGN.md`.
-- `src/content/news.js`: datos del Centro de Actualizaciones Profesionales.
 - `src/seo.js`: metadatos por ruta (title, description, canonical, Open Graph, Twitter, robots), incluidas las fichas de noticias.
 - `src/formSubmit.js`: envío a FormSubmit con validación de la respuesta, tiempo límite y campo trampa.
 - `scripts/prerender-meta.mjs`: se ejecuta en `npm run build`; genera un HTML por ruta (7 páginas y una ficha por noticia), `404.html` y `sitemap.xml`.
 - Tipografías autoalojadas: `@fontsource-variable/source-serif-4` y `@fontsource-variable/public-sans` (importadas en `src/main.jsx`).
+- `scripts/news-check.mjs` (`npm run news:check`) verifica datos y enlaces oficiales; `scripts/news-feeds.mjs` (`npm run news:feeds`) lista candidatos desde RSS oficiales. Ninguno modifica contenido. `.github/workflows/news-check.yml` ejecuta la verificación cada lunes y a mano; no hace commit ni despliega.
 - `vercel.json`: redirección 301 de `cbrauditores.com` a `www.cbrauditores.com`, sin barra final, cabeceras de seguridad y caché de `/assets`.
 
 ## 13. Reglas del rediseño aprobado
@@ -194,7 +198,7 @@ Para trabajo de diseño se usa la skill **Impeccable** (`/impeccable …`), que 
 - **Ley 155-17**: gana protagonismo con bloques y enlaces internos, nunca con un enlace nuevo en el menú.
 - **Logo**: el archivo original `src/assets/cbr-logo.png`, sin redibujar, recolorear ni repetir como marca de agua.
 - **No publicar sin confirmar**: fotos, nombres o cargos de socios, RNC, ICPARD, dirección, horario, sectores, clientes, testimonios ni cifras.
-- **Visual**: navy institucional, azul del logo como único color de acción, papel blanco cálido, dorado apagado escaso; titulares en serif y cuerpo en sans; filetes de 1px, radios de 2 px y superficies planas. Prohibidos degradados, halos, cuadrículas de fondo, dashboards ficticios, baldosas de icono y sombras en reposo. Un tamaño tipográfico nuevo entra primero en `DESIGN.md`.
+- **Visual**: el azul del logo (#0455BB) como color protagonista y de acción, en bloques azules reales; navy profundo, bruma azul, blanco y neutros fríos. Sin dorado. Titulares en serif y cuerpo en sans; filetes de 1px, radios de 2 a 4 px y superficies planas. Prohibidos degradados, halos, cuadrículas de fondo, dashboards ficticios, baldosas de icono y sombras en reposo. Un tamaño tipográfico nuevo entra primero en `DESIGN.md`.
 - **Accesibilidad**: contraste AA, foco visible, `prefers-reduced-motion` y nada flotante que tape contenido en móvil.
 
 ## 14. Git

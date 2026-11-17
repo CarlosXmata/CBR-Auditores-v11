@@ -54,7 +54,7 @@ Lo que distingue a CBR, confirmado por el responsable del proyecto:
 ## Capabilities and Constraints
 
 - **Stack**: SPA en React 18 + Vite.
-  - Interfaz en `src/App.jsx`, estilos en `src/styles.css`, noticias en `src/content/news.js`, metadatos por ruta en `src/seo.js` y envío de formularios en `src/formSubmit.js`.
+  - Armazón en `src/App.jsx`, páginas en `src/pages/`, piezas compartidas en `src/components/`, datos de contacto en `src/config/site.js`, contenido en `src/content/` (servicios y noticias), estilos en `src/styles.css`, metadatos por ruta en `src/seo.js` y envío de formularios en `src/formSubmit.js`.
   - Router propio por `pathname`.
   - Despliegue en Vercel; la salida de build va a `dist`.
 - **Dominio oficial**: `cbrauditores.com`.
@@ -76,12 +76,12 @@ Lo que distingue a CBR, confirmado por el responsable del proyecto:
   - Soluciones Contables Especializadas
 - **Formularios**: contacto y boletín funcionan con FormSubmit. El primer envío exige confirmarlo desde el correo de destino.
 - **Contacto vigente**:
-  - teléfono: +1 (849) 254-4460; WhatsApp: 18492544460;
+  - teléfono: (809) 323-4460; WhatsApp: 18093234460;
   - Instagram: @cbrauditores;
   - correo: `info.cbrauditores@gmail.com`.
 - **Idioma**: español de República Dominicana (`es-DO`).
 
-- **Decisión abierta**: la clienta debería poder actualizar el Centro de Actualizaciones por su cuenta, sin editar código. Hoy las noticias viven en `src/content/news.js` (un archivo de datos, todavía editado por el desarrollador). Cómo cumplirlo (gestor de contenido u otro) está pendiente de consultar.
+- **Decisión abierta**: la clienta debería poder actualizar el Centro de Actualizaciones por su cuenta, sin editar código. Hoy las noticias viven en `src/content/news.js` (un archivo de datos, todavía editado por el desarrollador), con verificación automática de enlaces (`npm run news:check`, semanal en GitHub Actions). La fase de gestor de contenido sin servicios de pago está propuesta en `MANTENIMIENTO_NOTICIAS.md` y pendiente de aprobación.
 
 ## Brand Commitments
 
@@ -90,7 +90,7 @@ Lo que distingue a CBR, confirmado por el responsable del proyecto:
 - **Lema en uso**: «Orden · Cumplimiento · Confianza».
 - **Trato al visitante**: siempre de **usted**, en todo el sitio.
 - **Llamado a la acción principal**: uno solo, con el mismo texto en todo el sitio.
-- **Dirección visual fijada por el responsable del proyecto**: navy profundo, el azul del logo como acento principal, blanco cálido y dorado apagado como acento secundario moderado. Titulares en serif editorial, cuerpo en sans serif profesional, espaciado generoso, filetes sutiles, tarjetas poco redondeadas y fotografía real cuando exista. El desarrollo completo está en `DESIGN.md`.
+- **Dirección visual fijada por el responsable del proyecto** («Confianza en azul», noviembre de 2026): el azul del logo como color protagonista en bloques reales, navy profundo, superficies en azul claro, blanco y grises neutros; el dorado se retiró. Titulares en serif editorial, cuerpo en sans serif profesional, espaciado generoso, filetes sutiles, tarjetas poco redondeadas y fotografía real cuando exista. El desarrollo completo está en `DESIGN.md`.
 
 ## Evidence on Hand
 
@@ -98,7 +98,7 @@ Lo que distingue a CBR, confirmado por el responsable del proyecto:
 
 - el logo original;
 - el dominio `cbrauditores.com`;
-- los textos de los seis servicios (`src/App.jsx`);
+- los textos de los seis servicios (`src/content/services.js`);
 - las noticias, cada una con su fuente oficial enlazada;
 - teléfono, WhatsApp e Instagram;
 - el JSON-LD `ProfessionalService` de `index.html`.

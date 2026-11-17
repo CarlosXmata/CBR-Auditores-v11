@@ -17,9 +17,11 @@ v11 — Entrega final para aprobación y publicación.
 Estos apartados se conservan fuera del menú principal para no cargar la navegación, pero quedan disponibles desde el footer y enlaces internos.
 
 ## Datos configurados
+Una sola fuente: `src/config/site.js` (la web, el pie, Contacto y los enlaces de WhatsApp leen de ahí). El JSON-LD y el texto `noscript` de `index.html` repiten el teléfono y deben cambiarse a la vez.
+
 - Correo: `info.cbrauditores@gmail.com`
-- Teléfono: `+1 (849) 254-4460`
-- WhatsApp: `18492544460`
+- Teléfono: `(809) 323-4460`
+- WhatsApp: `18093234460`
 - Instagram: `https://www.instagram.com/cbrauditores/`
 
 ## Producción en Vercel
