@@ -95,8 +95,8 @@ Una rutina que cabe en una hora a la semana:
 | Resultado | Qué significa | Qué hacer |
 | --- | --- | --- |
 | OK | El enlace responde. | Nada. |
-| Revisión manual | El sitio respondió 403 o 429 a una petición automática (le ocurre a la Superintendencia de Bancos). | Abrir el enlace en un navegador. Si carga, no es un problema. |
-| Roto | 401, 404, 410 u otro error 4xx. | Buscar la nueva dirección oficial y actualizar `sourceUrl` y `verifiedAt`. Si la publicación ya no existe, retirar la entrada. |
+| Revisión manual | El sitio respondió 401, 403 o 429 a una petición automática (le ocurre a la Superintendencia de Bancos y a la DGII). No significa que la página esté eliminada. | Abrir el enlace en un navegador. Si carga, no es un problema y se actualiza `verifiedAt`; si no carga, tratarlo como roto. |
+| Roto | 404, 410 u otro error 4xx distinto de 401, 403 y 429. | Buscar la nueva dirección oficial y actualizar `sourceUrl` y `verifiedAt`. Si la publicación ya no existe, retirar la entrada. |
 | Error de servidor | 5xx tras un reintento. | Repetir más tarde; si persiste una semana, tratarlo como roto. |
 | Sin respuesta | Tiempo agotado, DNS o certificado. | Repetir más tarde y comprobar en un navegador. |
 

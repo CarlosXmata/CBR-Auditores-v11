@@ -1,7 +1,7 @@
 // Pruebas mínimas del verificador de noticias: npm test
 import test from 'node:test'
 import assert from 'node:assert/strict'
-import { buildReport, checkData, isValidHttpsUrl } from './news-check.mjs'
+import { buildReport, checkData, classify, isValidHttpsUrl } from './news-check.mjs'
 
 const valid = {
   slug: 'prueba',
@@ -51,4 +51,17 @@ test('buildReport no consulta URL inválidas, no se detiene y mantiene los enlac
   } finally {
     globalThis.fetch = realFetch
   }
+})
+
+test('classify: 401, 403 y 429 requieren revisión manual (no se marcan como rotos)', () => {
+  for (const status of [401, 403, 429]) assert.equal(classify(status), 'revision-manual', `código ${status}`)
+})
+
+test('classify: 404 y 410 siguen siendo roto', () => {
+  for (const status of [404, 410]) assert.equal(classify(status), 'roto', `código ${status}`)
+})
+
+test('classify: 2xx es ok y 5xx es error-servidor', () => {
+  for (const status of [200, 204, 299]) assert.equal(classify(status), 'ok', `código ${status}`)
+  for (const status of [500, 502, 503, 599]) assert.equal(classify(status), 'error-servidor', `código ${status}`)
 })

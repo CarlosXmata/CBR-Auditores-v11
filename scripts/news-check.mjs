@@ -11,8 +11,9 @@
 //
 // Cómo clasifica cada enlace:
 //   ok               respuesta 2xx (con o sin redirección)
-//   revision-manual  403 o 429: el sitio rechaza peticiones automáticas; no se marca como roto
-//   roto             401, 404, 410 u otro 4xx
+//   revision-manual  401, 403 o 429: el sitio rechaza o limita las peticiones automáticas (WAF, límites de uso).
+//                    No significa que la página esté eliminada: requiere verificación humana en un navegador.
+//   roto             404, 410 u otro 4xx: la dirección ya no existe o cambió
 //   url-invalida     la dirección no es una URL https absoluta válida: error de datos, no se hace ninguna petición
 //   error-servidor   5xx tras un reintento
 //   sin-respuesta    tiempo agotado, DNS o TLS
@@ -127,7 +128,9 @@ async function request(url, method) {
 
 export function classify(status) {
   if (status >= 200 && status < 300) return 'ok'
-  if (status === 403 || status === 429) return 'revision-manual'
+  // 401, 403 y 429 suelen ser bloqueos a clientes automáticos (la DGII responde 401 a páginas publicadas),
+  // no páginas eliminadas: se dejan a verificación humana en vez de marcarlas como rotas.
+  if (status === 401 || status === 403 || status === 429) return 'revision-manual'
   if (status >= 500) return 'error-servidor'
   return 'roto'
 }
@@ -218,7 +221,7 @@ function toMarkdown(report) {
   })
   lines.push('')
   if (report.links.some(link => link.verdict === 'revision-manual')) {
-    lines.push('«Revisión manual»: el sitio respondió 403 o 429 a una petición automática. Abra el enlace en un navegador; si carga, actualice `verifiedAt`.', '')
+    lines.push('«Revisión manual»: el sitio respondió 401, 403 o 429 a una petición automática. Eso no significa que la página esté eliminada: abra el enlace en un navegador; si carga, actualice `verifiedAt`.', '')
   }
   lines.push('Este informe no modifica contenido ni despliega. Las correcciones se hacen a mano siguiendo MANTENIMIENTO_NOTICIAS.md.', '')
   return lines.join('\n')
