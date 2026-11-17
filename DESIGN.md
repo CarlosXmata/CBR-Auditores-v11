@@ -337,6 +337,15 @@ Filas de tres columnas (título serif, línea de descripción, flecha) entre fil
 ### Hero de Inicio con ficha de áreas de práctica
 Dos columnas asimétricas (7/5). A la izquierda: la marca dorada, la tesis en display (hasta 20ch), el párrafo que dice quién es CBR y a quién ayuda, el porqué, el botón primario con WhatsApp como enlace de texto y, bajo un filete, una sola línea con tres hechos confirmados separados por puntos medios (sin checks ni píldoras). A la derecha: una ficha plana de folio con borde rule-strong de 1px, sin sombra ni hojas simuladas detrás; se abre con la marca dorada y un titular serif de 1.25rem, lista los seis servicios con su frase aprobada como filas del índice de servicios (mismo hover), cierra con la fila de la Ley 155-17 marcada con un filete dorado de 2px y el enlace a /servicios. La ficha no lleva antetítulo, logo ni superficie navy. En pantallas de escritorio de menos de 820px de alto se compacta para entrar completa en la primera pantalla.
 
+### Módulos de Inicio (orden y ritmo)
+Una idea por pantalla, con fondos alternos para que ningún módulo se parezca al anterior: hero (papel) → declaración (papel hondo) → perfiles (papel) → banda Ley 155-17 (navy) → metodología (papel hondo) → preguntas frecuentes (papel) → actualizaciones → cierre.
+- **Declaración en tinta** (momento 1): una frase aprobada en serif 500 al tamaño display de Inicio; las palabras pasan de rule-strong a navy a medida que la sección cruza la pantalla. El movimiento ocurre solo dentro de su sección y, con movimiento reducido, la frase aparece completa en navy. Debajo, los cuatro compromisos en columnas separadas por un filete.
+- **Perfiles**: cuatro perfiles confirmados (Empresas, Sujetos Obligados, Emprendedores, Profesionales independientes) en una rejilla 2×2 de filetes, sin cajas; cada uno con su nombre en serif grande, una frase aprobada y enlaces a los servicios relacionados.
+- **Recorrido de cumplimiento**: en la banda navy, los seis componentes del programa como una línea con nodos dorados (el último relleno), de «Del documento» a «al control operativo». Es un diagrama quieto; en móvil pasa a vertical.
+- **Metodología en capítulos** (momento 2): panel fijo a la izquierda con el número en oro texto, el título y el texto del paso en lectura y una barra de progreso navy; a la derecha, los cinco pasos entre filetes. En tableta y móvil el panel desaparece y queda la lista.
+- **Preguntas frecuentes**: introducción fija a la izquierda y acordeón nativo (`details`) con preguntas en serif de 1.25rem y una cruz azul que gira; las respuestas usan solo contenido aprobado.
+- **Entrada del hero**: un único desplazamiento de 14px al cargar, sin ocultar el contenido; nada más aparece con el scroll.
+
 ### Update rows
 Fecha tabular, categoría en oro texto y titular serif con la fuente citada debajo. Cada fila lleva dos acciones explícitas: "Leer el resumen de CBR" (interno) y "Consultar fuente oficial" (externo, flecha diagonal).
 

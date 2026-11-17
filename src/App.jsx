@@ -133,6 +133,23 @@ const commitments = [
   ['Atención profesional', 'Comunicación clara, respuesta oportuna y acompañamiento personalizado.'],
 ]
 
+// Perfiles confirmados en PRODUCT.md y servicios relacionados (navegación editorial; las frases son textos aprobados).
+const audiences = [
+  { name: 'Empresas', line: 'Confianza que se construye con evidencia, no con palabras.', links: [1, 3] },
+  { name: 'Sujetos Obligados', line: 'Del documento al control operativo.', links: ['ley'] },
+  { name: 'Emprendedores', line: 'Precisión técnica donde más se necesita.', links: [0, 5] },
+  { name: 'Profesionales independientes', line: 'Precisión tributaria con visión estratégica.', links: [2] },
+]
+
+// Preguntas frecuentes respondidas solo con contenido ya aprobado o confirmado en el sitio.
+const faqs = [
+  ['¿A quién atiende CBR Auditores & Consultores?', 'A empresas de todos los tamaños, emprendedores, profesionales independientes y Sujetos Obligados conforme a la Ley 155-17.'],
+  ['¿Qué servicios ofrece la firma?', 'Seis líneas de servicio: Outsourcing Estratégico, Auditoría y Aseguramiento, Estrategia y Cumplimiento Fiscal, Consultoría Financiera Corporativa, Estrategia y Valoración de Negocios, y Soluciones Contables Especializadas.'],
+  ['¿Acompañan a Sujetos Obligados en la Ley 155-17?', 'Sí. Acompañamos la implementación, revisión y fortalecimiento de controles para la prevención del lavado de activos y financiamiento del terrorismo.'],
+  ['¿Cómo comienza el trabajo?', 'Con un diagnóstico inicial: conocemos la realidad financiera, fiscal, contable o regulatoria de la empresa. Después identificamos necesidades, definimos un plan de trabajo con alcance, tiempos y entregables, y damos seguimiento hasta los resultados.'],
+  ['¿Cómo es la relación con el cliente?', 'La relación con el cliente se gestiona con comunicación directa, criterio profesional y seguimiento oportuno.'],
+]
+
 const CTA_LABEL = 'Solicitar una consulta'
 const LAW_SOURCE_URL = 'https://www.sb.gob.do/regulacion/compendio-de-leyes-y-reglamentos/ley-no-155-17-lavado-de-activos-y-el-financiamiento-del-terrorismo/'
 
@@ -515,6 +532,93 @@ function Newsletter({ id = 'newsletter' }) {
 
 /* ---------- Pages ---------- */
 
+/* ---------- Momentos de Inicio ---------- */
+
+// Declaración que pasa a tinta a medida que su sección cruza la pantalla (el movimiento queda dentro de la sección).
+function InkStatement({ text, id }) {
+  const ref = useRef(null)
+  const words = useMemo(() => text.split(' '), [text])
+  const [lit, setLit] = useState(words.length)
+
+  useEffect(() => {
+    if (prefersReducedMotion()) { setLit(words.length); return undefined }
+    let frame = 0
+    const update = () => {
+      frame = 0
+      const el = ref.current
+      if (!el) return
+      const rect = el.getBoundingClientRect()
+      const vh = window.innerHeight
+      const start = vh * 0.85
+      const span = vh * 0.55 + rect.height * 0.5
+      const progress = Math.min(1, Math.max(0, (start - rect.top) / span))
+      setLit(Math.round(progress * words.length))
+    }
+    const onScroll = () => { if (!frame) frame = requestAnimationFrame(update) }
+    update()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    window.addEventListener('resize', onScroll)
+    return () => {
+      window.removeEventListener('scroll', onScroll)
+      window.removeEventListener('resize', onScroll)
+      if (frame) cancelAnimationFrame(frame)
+    }
+  }, [words.length])
+
+  return (
+    <h2 className="ink-statement" id={id} ref={ref} aria-label={text}>
+      {words.map((word, index) => (
+        <span key={index} aria-hidden="true" className={index < lit ? 'is-lit' : undefined}>{word} </span>
+      ))}
+    </h2>
+  )
+}
+
+// Metodología en capítulos: el panel fijo muestra el paso que se está leyendo.
+function ProcessChapters() {
+  const [active, setActive] = useState(0)
+  const itemsRef = useRef([])
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) setActive(Number(entry.target.dataset.index))
+        })
+      },
+      { rootMargin: '-45% 0px -45% 0px' }
+    )
+    itemsRef.current.forEach(el => el && observer.observe(el))
+    return () => observer.disconnect()
+  }, [])
+
+  const [number, title, text] = process[active]
+  return (
+    <div className="chapters">
+      <div className="chapters__pin" aria-hidden="true">
+        <span className="chapters__num num">{number}</span>
+        <span className="chapters__title">{title}</span>
+        <span className="chapters__text">{text}</span>
+        <span className="chapters__track"><span style={{ transform: `scaleX(${(active + 1) / process.length})` }}></span></span>
+      </div>
+      <ol className="chapters__list">
+        {process.map(([num, stepTitle, text], index) => (
+          <li
+            key={num}
+            data-index={index}
+            ref={el => { itemsRef.current[index] = el }}
+            className={index === active ? 'is-active' : undefined}
+          >
+            <span className="chapters__step num">{num}</span>
+            <h3>{stepTitle}</h3>
+            <p>{text}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  )
+}
+
 function HomePage({ whatsappLink }) {
   return (
     <>
@@ -567,51 +671,96 @@ function HomePage({ whatsappLink }) {
         </div>
       </section>
 
-      <section className="commitments" aria-label="Compromisos de la firma">
-        <ul className="wrap">
-          {commitments.map(([label, text]) => (
-            <li key={label}>
-              <h2>{label}</h2>
-              <p>{text}</p>
-            </li>
-          ))}
-        </ul>
+      <section className="moment" aria-labelledby="statement-title">
+        <div className="wrap">
+          <InkStatement id="statement-title" text="Detrás de cada empresa exitosa hay información financiera confiable, decisiones bien respaldadas y asesores que realmente entienden el negocio." />
+          <ul className="moment__notes">
+            {commitments.map(([label, text]) => (
+              <li key={label}>
+                <h3>{label}</h3>
+                <p>{text}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
       </section>
 
-      <section className="section">
-        <div className="wrap statement">
-          <h2 className="headline">Una firma cercana, técnica y orientada a resultados.</h2>
-          <div>
-            <p className="body">Ayudamos a empresas, emprendedores, profesionales independientes y Sujetos Obligados a fortalecer su gestión financiera, fiscal y regulatoria.</p>
-            <p className="body">Un portafolio diseñado para acompañar la operación diaria, las decisiones estratégicas y el crecimiento con confianza.</p>
-            <h3 className="title statement__sub">Servicios profesionales con profundidad técnica.</h3>
-            <p className="body">Acompañamos la operación diaria y las decisiones estratégicas con rigor, criterio y visión empresarial.</p>
+      <section className="section" aria-labelledby="audiences-title">
+        <div className="wrap">
+          <div className="section-head">
+            <h2 className="headline" id="audiences-title">Una firma cercana, técnica y orientada a resultados.</h2>
+            <p className="body">Ayudamos a empresas, emprendedores, profesionales independientes y Sujetos Obligados a fortalecer su gestión financiera, fiscal y regulatoria. Un portafolio diseñado para acompañar la operación diaria, las decisiones estratégicas y el crecimiento con confianza.</p>
+          </div>
+          <ul className="audiences">
+            {audiences.map(audience => (
+              <li key={audience.name}>
+                <h3>{audience.name}</h3>
+                <p className="audiences__line">{audience.line}</p>
+                <ul className="audiences__links" aria-label={`Servicios para ${audience.name}`}>
+                  {audience.links.map(link => link === 'ley'
+                    ? <li key="ley"><Link className="textlink" to="/ley-155-17">Cumplimiento Ley 155-17 <ArrowRight /></Link></li>
+                    : <li key={link}><Link className="textlink" to={serviceHref(services[link])}>{services[link].title} <ArrowRight /></Link></li>
+                  )}
+                </ul>
+              </li>
+            ))}
+          </ul>
+          <div className="after-list">
             <Link className="textlink" to="/quienes-somos">Conocer la firma <ArrowRight /></Link>
           </div>
         </div>
       </section>
 
       <section className="band" aria-labelledby="law-title">
-        <div className="wrap band__grid">
-          <div className="band__copy">
+        <div className="wrap">
+          <div className="band__head">
             <h2 className="headline" id="law-title">
               <span className="band__law num">Ley 155-17</span>
               Cumplimiento regulatorio para Sujetos Obligados en República Dominicana.
             </h2>
-            <p className="body">Acompañamos la implementación, revisión y fortalecimiento de controles para la prevención del lavado de activos y financiamiento del terrorismo.</p>
-            <Link className="textlink textlink--light" to="/ley-155-17">Conocer el enfoque de cumplimiento <ArrowRight /></Link>
+            <div>
+              <p className="body">Acompañamos la implementación, revisión y fortalecimiento de controles para la prevención del lavado de activos y financiamiento del terrorismo.</p>
+              <Link className="textlink textlink--light" to="/ley-155-17">Conocer el enfoque de cumplimiento <ArrowRight /></Link>
+            </div>
           </div>
-          <ul className="band__list">
+          <p className="flow__ends" aria-hidden="true"><span>Del documento</span><span>al control operativo</span></p>
+          <ol className="flow" aria-label="Del documento al control operativo">
             {complianceBlocks.map(([title, text]) => (
               <li key={title}>
-                <Check />
-                <div>
-                  <h3>{title}</h3>
-                  <p>{text}</p>
-                </div>
+                <span className="flow__node" aria-hidden="true"></span>
+                <h3>{title}</h3>
+                <p>{text}</p>
               </li>
             ))}
-          </ul>
+          </ol>
+        </div>
+      </section>
+
+      <section className="section section--deep" aria-labelledby="process-title">
+        <div className="wrap">
+          <div className="section-head">
+            <h2 className="headline" id="process-title">Un proceso claro para entregar soluciones oportunas y confiables.</h2>
+            <p className="body">Acompañamos la operación diaria y las decisiones estratégicas con rigor, criterio y visión empresarial.</p>
+          </div>
+          <ProcessChapters />
+        </div>
+      </section>
+
+      <section className="section" aria-labelledby="faq-title">
+        <div className="wrap faq">
+          <div className="faq__intro">
+            <h2 className="headline" id="faq-title">Preguntas frecuentes</h2>
+            <p className="body">Servicios profesionales con profundidad técnica. Si su pregunta no está aquí, escríbanos.</p>
+            <a className="textlink" href={whatsappLink} target="_blank" rel="noreferrer">Escríbanos por WhatsApp <ArrowUpRight /></a>
+          </div>
+          <div className="faq__list">
+            {faqs.map(([question, answer], index) => (
+              <details key={question} open={index === 0}>
+                <summary>{question}<span className="faq__icon" aria-hidden="true"></span></summary>
+                <p>{answer}</p>
+              </details>
+            ))}
+          </div>
         </div>
       </section>
 
