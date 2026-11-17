@@ -3,31 +3,17 @@
 
 export const news = [
   {
-    slug: 'modernizacion-tributaria-dgii-industria-rd',
-    date: '23 de julio de 2026',
+    slug: 'dgii-acompanamiento-facturacion-electronica',
+    date: '16 de noviembre de 2026',
     category: 'DGII',
-    title: 'Modernización tributaria y digitalización de servicios para empresas dominicanas',
-    excerpt: 'La DGII presentó ante el sector industrial su hoja de ruta de simplificación, digitalización y fortalecimiento de servicios tributarios.',
-    sourceLabel: 'DGII — Hoja de ruta de modernización tributaria',
-    sourceUrl: 'https://dgii.gov.do/noticias/Paginas/DGII-presenta-ante-industria-dominicana-hoja-ruta-modernizacion-tributaria.aspx',
+    title: 'Facturación Electrónica: la DGII mantiene el acompañamiento y, por el momento, no aplicará multas ni bloqueos',
+    excerpt: 'La DGII informó que, por el momento, no aplicará multas, penalidades ni bloqueos a quienes no completaron su incorporación a la Facturación Electrónica al 15 de noviembre, y que seguirá asistiendo a los contribuyentes.',
+    sourceLabel: 'DGII — Acompañamiento para Facturación Electrónica (publicado el 16/11/2026)',
+    sourceUrl: 'https://dgii.gov.do/noticias/Paginas/DGII-mantendra-acompa%C3%B1amiento-para-Facturacion-Electronica-sin-aplicar-momento-multas-ni-bloqueos.aspx',
     body: [
-      'La DGII presentó una agenda enfocada en simplificación de procesos, digitalización de servicios y fortalecimiento de la relación con los contribuyentes.',
-      'Para las empresas, este tipo de actualización confirma la importancia de revisar sus procesos fiscales, documentales y tecnológicos de forma preventiva.',
-      'CBR puede acompañar la revisión de obligaciones, evidencias, controles internos y preparación operativa ante cambios en el entorno tributario.'
-    ],
-  },
-  {
-    slug: 'ley-30-26-beneficios-fiscales-formalizacion',
-    date: '16 de julio de 2026',
-    category: 'Fiscal',
-    title: 'Ley 30-26: facilidades fiscales, formalización y decisiones empresariales',
-    excerpt: 'La DGII presentó a empresarios de Santiago beneficios y facilidades de la Ley 30-26, vinculadas a cumplimiento, inversión y formalización.',
-    sourceLabel: 'DGII — Ley 30-26 y formalización',
-    sourceUrl: 'https://dgii.gov.do/noticias/Paginas/Director-DGII-presenta-empresarios-Santiago-beneficios-Ley-30-26.aspx',
-    body: [
-      'La Ley 30-26 fue presentada como un instrumento orientado a facilitar el cumplimiento de obligaciones fiscales y promover la formalización empresarial.',
-      'Las empresas deben analizar con criterio profesional cualquier facilidad, beneficio o ajuste fiscal antes de tomar decisiones financieras o tributarias.',
-      'CBR acompaña la evaluación de escenarios fiscales, organización documental y toma de decisiones con impacto financiero.'
+      'Según la DGII, su actuación se centra en orientar, asistir y acompañar a los contribuyentes en la incorporación a la Facturación Electrónica, y los exhortó a continuar el proceso por sus canales oficiales de atención.',
+      'La institución indicó que la prórroga prevista en el reglamento ya fue otorgada mediante el Aviso 06-26 y que una nueva prórroga general no tendría sustento reglamentario. Aclaró que esto no se traduce, por el momento, en multas, penalidades ni bloqueos.',
+      'Este resumen es de CBR y no sustituye la lectura del texto oficial. Las empresas deben verificar su situación particular con asesoría profesional; CBR puede acompañar la revisión de su estado de incorporación, sus procesos de facturación y sus controles internos.'
     ],
   },
   {
@@ -71,5 +57,22 @@ export const news = [
       'Los Sujetos Obligados deben mantener controles proporcionales a sus riesgos y a la naturaleza de sus operaciones.',
       'La revisión periódica del programa de cumplimiento es clave para demostrar gestión efectiva, trazabilidad y control.'
     ],
+  },
+]
+
+// Retirada temporalmente de la publicación (no se muestra en la web; no la lee ningún componente).
+// Ley 30-26: el resumen original describía una presentación de la DGII a empresarios de Santiago cuya fuente
+// no se pudo verificar (la página devolvía 401). Requiere aprobación de CBR antes de volver a publicarse.
+// La fuente normativa oficial verificada es el texto de la ley:
+// https://dgii.gov.do/transparencia/baseLegal/Documents/Leyes/30-26.pdf
+// Si se republica, debe presentarse como resumen editorial de CBR, no como publicación de la DGII.
+export const pendientesDeAprobacion = [
+  {
+    slug: 'ley-30-26-beneficios-fiscales-formalizacion',
+    category: 'Fiscal',
+    title: 'Ley 30-26: facilidades fiscales, formalización y decisiones empresariales',
+    sourceLabel: 'DGII — Texto de la Ley 30-26',
+    sourceUrl: 'https://dgii.gov.do/transparencia/baseLegal/Documents/Leyes/30-26.pdf',
+    estado: 'Pendiente de aprobación de CBR; fecha y resumen sin verificar contra una fuente oficial.',
   },
 ]

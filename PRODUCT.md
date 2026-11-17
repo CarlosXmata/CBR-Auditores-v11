@@ -73,9 +73,9 @@ Lo que distingue a CBR, confirmado por el responsable del proyecto:
   - Consultoría Financiera Corporativa
   - Estrategia y Valoración de Negocios
   - Soluciones Contables Especializadas
-- **Formularios**: contacto y boletín funcionan con FormSubmit. El primer envío exige confirmarlo desde el correo de destino.
+- **Formularios**: el formulario de contacto funciona con FormSubmit. El boletín está retirado temporalmente (no existía una suscripción real); en su lugar hay un enlace al Centro de Actualizaciones. El primer envío exige confirmarlo desde el correo de destino.
 - **Contacto vigente**:
-  - teléfono y WhatsApp: (809) 323-4460;
+  - teléfono y WhatsApp: +1 (849) 254-4460;
   - Instagram: @cbrauditores;
   - correo: `info.cbrauditores@gmail.com`.
 - **Idioma**: español de República Dominicana (`es-DO`).

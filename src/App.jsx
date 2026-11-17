@@ -3,11 +3,7 @@ import logo from './assets/cbr-logo.png'
 import { news } from './content/news.js'
 import { absoluteUrl, metaFor } from './seo.js'
 
-const CONTACT_EMAIL = 'info.cbrauditores@gmail.com'
-const CONTACT_PHONE = '(809) 323-4460'
-const WHATSAPP_NUMBER = '18093234460'
-const ADDRESS = 'República Dominicana'
-const INSTAGRAM_URL = 'https://www.instagram.com/cbrauditores/'
+import { ADDRESS, CONTACT_EMAIL, INSTAGRAM_URL, PHONE_DISPLAY, PHONE_TEL, whatsappUrl } from './config/site.js'
 
 const navItems = [
   ['/', 'Inicio'],
@@ -254,6 +250,28 @@ const WhatsAppGlyph = () => (
   </svg>
 )
 
+/* ---------- Ilustración: globo (decorativo, sin datos) ---------- */
+
+function GlobeArt({ className = '' }) {
+  const parallels = [-60, -30, 0, 30, 60]
+  const meridians = [22, 45, 68]
+  return (
+    <svg className={className} viewBox="0 0 240 240" aria-hidden="true" focusable="false">
+      <circle className="g-ring" cx="120" cy="120" r="112" strokeDasharray="210 500" transform="rotate(-30 120 120)" />
+      <circle className="g-ring g-ring--thin" cx="120" cy="120" r="100" strokeDasharray="120 600" transform="rotate(95 120 120)" />
+      <g className="g-sphere">
+        <circle className="g-disc" cx="120" cy="120" r="82" />
+        {parallels.map(dy => {
+          const rx = Math.sqrt(82 * 82 - dy * dy)
+          return <ellipse key={dy} cx="120" cy={120 + dy} rx={rx} ry={rx * 0.16} />
+        })}
+        {meridians.map(rx => <ellipse key={rx} cx="120" cy="120" rx={rx} ry="82" />)}
+        <path d="M120 38v164" />
+      </g>
+    </svg>
+  )
+}
+
 /* ---------- Shell ---------- */
 
 function Header({ pathname }) {
@@ -293,6 +311,8 @@ function Header({ pathname }) {
           ))}
         </nav>
 
+        <a className="header-mail" href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
+
         <Link className="btn" to="/contacto">{CTA_LABEL}</Link>
 
         <button
@@ -326,7 +346,6 @@ function PageHero({ title, lead, aside, wide = false }) {
     <section className={`page-hero ${wide ? 'page-hero--wide' : ''}`}>
       <div className="wrap page-hero__grid">
         <div className="page-hero__main">
-          <span className="mark" aria-hidden="true"></span>
           <h1 className="display">{title}</h1>
           {lead && <p className="lead">{lead}</p>}
         </div>
@@ -344,22 +363,11 @@ function Close({
     <section className="close" aria-labelledby="close-title">
       <div className="wrap close__grid">
         <div>
-          <span className="mark" aria-hidden="true"></span>
           <h2 className="headline" id="close-title">{title}</h2>
         </div>
         <div>
           <p className="body">{text}</p>
           <Link className="btn" to="/contacto">{CTA_LABEL}</Link>
-          <div className="signature">
-            <span className="signature__rule" aria-hidden="true"></span>
-            <div className="signature__block">
-              <img src={logo} alt="" width="44" height="44" />
-              <div>
-                <strong>CBR Auditores &amp; Consultores</strong>
-                <span>República Dominicana</span>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </section>
@@ -399,7 +407,8 @@ function Footer({ whatsappLink }) {
           <div>
             <h2>Contacto</h2>
             <ul>
-              <li><a href={whatsappLink} target="_blank" rel="noreferrer">WhatsApp {CONTACT_PHONE}</a></li>
+              <li><a href={PHONE_TEL}>Teléfono {PHONE_DISPLAY}</a></li>
+              <li><a href={whatsappLink} target="_blank" rel="noreferrer">WhatsApp {PHONE_DISPLAY}</a></li>
               <li><a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a></li>
               <li><a href={INSTAGRAM_URL} target="_blank" rel="noreferrer">Instagram @cbrauditores</a></li>
               <li><Link to="/contacto">Formulario de contacto</Link></li>
@@ -484,60 +493,16 @@ async function sendForm(data) {
   }
 }
 
-function Newsletter({ id = 'newsletter' }) {
-  const [status, setStatus] = useState('idle')
-  const check = useFormGuard()
-
-  const handleNewsletter = async event => {
-    event.preventDefault()
-    if (status === 'sending' || status === 'sent') return
-    const form = event.currentTarget
-    const data = new FormData(form)
-    const verdict = check(data)
-    if (verdict === 'bot') { form.reset(); setStatus('sent'); return }
-    if (verdict === 'too-fast') { setStatus('retry'); return }
-    data.append('_subject', 'Nueva suscripción al boletín CBR')
-    data.append('_template', 'table')
-    data.append('_captcha', 'false')
-    setStatus('sending')
-
-    try {
-      await sendForm(data)
-      form.reset()
-      setStatus('sent')
-    } catch (error) {
-      setStatus('error')
-    }
-  }
-
-  return (
-    <form className="newsletter" onSubmit={handleNewsletter}>
-      <label htmlFor={`${id}-email`}>Suscríbase a nuestro boletín</label>
-      <Honeypot />
-      <div className="newsletter__field">
-        <input id={`${id}-email`} name="email" type="email" autoComplete="email" placeholder="correo@empresa.com" maxLength="160" required />
-        <button type="submit" className="btn btn--quiet" disabled={status === 'sending'}>
-          {status === 'sending' ? 'Enviando…' : 'Suscribirse'}
-        </button>
-      </div>
-      <p className={`newsletter__status ${status === 'error' ? 'is-error' : ''}`} role="status" aria-live="polite">
-        {status === 'sent' && 'Suscripción recibida. Gracias.'}
-        {status === 'retry' && 'Revise su correo y vuelva a pulsar «Suscribirse».'}
-        {status === 'error' && <>No se pudo completar la suscripción. Inténtelo de nuevo o escríbanos a <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.</>}
-      </p>
-    </form>
-  )
-}
-
 /* ---------- Pages ---------- */
 
 function HomePage({ whatsappLink }) {
   return (
     <>
       <section className="hero">
+        <GlobeArt className="hero__globe" />
         <div className="wrap hero__grid">
           <div className="hero__main">
-            <span className="mark" aria-hidden="true"></span>
+            <p className="eyebrow">Firma consultora para empresas en República Dominicana</p>
             <h1 className="display">Auditoría, Contabilidad, Impuestos y Consultoría Financiera para empresas en RD</h1>
             <p className="lead">
               Ayudamos a empresas, emprendedores, profesionales independientes y Sujetos Obligados a fortalecer su gestión financiera, fiscal y regulatoria.
@@ -547,20 +512,58 @@ function HomePage({ whatsappLink }) {
             </p>
             <div className="hero__actions">
               <Link className="btn" to="/contacto">{CTA_LABEL}</Link>
-              <a className="textlink" href={whatsappLink} target="_blank" rel="noreferrer">
-                Escríbanos por WhatsApp <ArrowUpRight />
-              </a>
+              <a className="btn btn--quiet" href={whatsappLink} target="_blank" rel="noreferrer">Escríbanos por WhatsApp</a>
             </div>
+            <ul className="chips" aria-label="Marco de trabajo">
+              <li>DGII</li>
+              <li>TSS</li>
+              <li>Ley 155-17</li>
+              <li>Sujetos Obligados</li>
+            </ul>
           </div>
 
-          <nav className="areas" aria-labelledby="areas-title">
-            <p className="label areas__title" id="areas-title">Áreas de práctica</p>
-            <ul>
-              {practiceAreas.map(([label, to]) => (
-                <li key={label}><Link to={to}>{label} <ArrowRight /></Link></li>
-              ))}
-            </ul>
-          </nav>
+          <aside className="panel" aria-labelledby="panel-title">
+            <div className="panel__head">
+              <div>
+                <p className="panel__kicker">República Dominicana</p>
+                <h2 className="panel__title" id="panel-title">Áreas de práctica</h2>
+              </div>
+              <Link className="chip-law" to="/ley-155-17">Ley 155-17</Link>
+            </div>
+            <div className="panel__tiles">
+              <Link className="tile" to="/servicios">
+                <span>Servicios</span>
+                <strong>Seis áreas</strong>
+                <small>Contabilidad · Auditoría · Impuestos</small>
+              </Link>
+              <Link className="tile" to="/quienes-somos">
+                <span>Atención</span>
+                <strong>Directa</strong>
+                <small>Empresas · Profesionales · Sujetos Obligados</small>
+              </Link>
+            </div>
+            <div className="panel__art" aria-hidden="true">
+              <GlobeArt className="panel__globe" />
+            </div>
+            <div className="panel__lists">
+              <nav className="mini" aria-labelledby="areas-title">
+                <h3 id="areas-title">Áreas clave</h3>
+                <ul>
+                  {practiceAreas.slice(0, 4).map(([label, to]) => (
+                    <li key={label}><Link to={to}><Check />{label}</Link></li>
+                  ))}
+                </ul>
+              </nav>
+              <div className="mini">
+                <h3>Cumplimiento</h3>
+                <ul>
+                  <li><Link to="/ley-155-17"><Check />Sujetos Obligados</Link></li>
+                  <li><Link to="/ley-155-17"><Check />Matriz de riesgos</Link></li>
+                  <li><Link to="/ley-155-17"><Check />Debida diligencia</Link></li>
+                </ul>
+              </div>
+            </div>
+          </aside>
         </div>
       </section>
 
@@ -575,15 +578,20 @@ function HomePage({ whatsappLink }) {
         </ul>
       </section>
 
-      <section className="section">
-        <div className="wrap statement">
-          <h2 className="headline">Una firma cercana, técnica y orientada a resultados.</h2>
-          <div>
+      <section className="section" aria-label="La firma">
+        <div className="wrap duo">
+          <article className="duo__card">
+            <p className="eyebrow">Quiénes somos</p>
+            <h2 className="headline">Una firma cercana, técnica y orientada a resultados.</h2>
             <p className="body">CBR Auditores & Consultores brinda asesoría integral a empresas de todos los tamaños, emprendedores, profesionales independientes y Sujetos Obligados conforme a la Ley 155-17.</p>
-            <h3 className="title statement__sub">Servicios profesionales con profundidad técnica.</h3>
+            <Link className="btn btn--quiet duo__action" to="/quienes-somos">Conocer la firma</Link>
+          </article>
+          <article className="duo__card duo__card--blue">
+            <p className="eyebrow">Servicio diferencial</p>
+            <h2 className="headline">Servicios profesionales con profundidad técnica.</h2>
             <p className="body">Acompañamos la operación diaria y las decisiones estratégicas con rigor, criterio y visión empresarial.</p>
-            <Link className="textlink" to="/quienes-somos">Conocer la firma <ArrowRight /></Link>
-          </div>
+            <Link className="btn btn--light duo__action" to="/servicios">Ver servicios</Link>
+          </article>
         </div>
       </section>
 
@@ -643,12 +651,11 @@ function HomePage({ whatsappLink }) {
           <ul className="updates">
             {news.slice(0, 3).map(item => <UpdateRow key={item.slug} item={item} />)}
           </ul>
-          <div className="after-list">
-            <Link className="textlink" to="/noticias">Ver el Centro de Actualizaciones <ArrowRight /></Link>
-          </div>
           <div className="newsletter-row">
-            <p>Reciba las actualizaciones profesionales en su correo.</p>
-            <Newsletter id="home-newsletter" />
+            <p>Las actualizaciones profesionales se publican en el Centro de Actualizaciones, cada una con su fecha y su fuente oficial.</p>
+            <div>
+              <Link className="btn btn--quiet" to="/noticias">Ver el Centro de Actualizaciones</Link>
+            </div>
           </div>
         </div>
       </section>
@@ -849,7 +856,12 @@ function NewsPage() {
       <PageHero
         title="Información oficial, resumida con criterio empresarial."
         lead="Este espacio se alimenta con fuentes oficiales y se presenta como una guía práctica para empresas en República Dominicana: DGII, TSS, Ley 155-17, control interno, auditoría, impuestos y gestión financiera."
-        aside={<Newsletter id="news-newsletter" />}
+        aside={
+          <div>
+            <p className="label">Cómo leer este espacio</p>
+            <p className="body notice-text">Cada actualización indica su fecha, su categoría y el enlace a la fuente oficial. Consulte siempre el texto original antes de tomar decisiones.</p>
+          </div>
+        }
       />
 
       <section className="section" aria-labelledby="refs-title">
@@ -996,7 +1008,7 @@ function ContactPage({ whatsappLink }) {
               </div>
               <div className="field">
                 <label htmlFor="f-phone">Teléfono</label>
-                <input id="f-phone" name="phone" type="tel" autoComplete="tel" inputMode="tel" placeholder="(809) 000-0000" maxLength="30" pattern="[0-9\s\+\(\)\-\.]{7,30}" title="Indique un teléfono de al menos 7 dígitos" required />
+                <input id="f-phone" name="phone" type="tel" autoComplete="tel" inputMode="tel" placeholder="+1 (000) 000-0000" maxLength="30" pattern="[0-9\s\+\(\)\-\.]{7,30}" title="Indique un teléfono de al menos 7 dígitos" required />
               </div>
             </div>
             <div className="field">
@@ -1035,7 +1047,7 @@ function ContactPage({ whatsappLink }) {
             <dl aria-label="Datos de contacto">
               <div>
                 <dt>Teléfono y WhatsApp</dt>
-                <dd><a href={whatsappLink} target="_blank" rel="noreferrer">{CONTACT_PHONE}</a></dd>
+                <dd><a href={PHONE_TEL}>{PHONE_DISPLAY}</a> · <a href={whatsappLink} target="_blank" rel="noreferrer">WhatsApp</a></dd>
               </div>
               <div>
                 <dt>Correo</dt>
@@ -1101,7 +1113,7 @@ function App() {
 
   const whatsappLink = useMemo(() => {
     const message = 'Hola, deseo solicitar una consulta con CBR Auditores & Consultores.'
-    return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`
+    return whatsappUrl(message)
   }, [])
 
   useEffect(() => {

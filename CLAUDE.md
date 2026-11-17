@@ -5,7 +5,7 @@ Esta es la web corporativa de CBR Auditores & Consultores, una firma de auditor�
 ## Documentos de referencia (leer antes de trabajar)
 
 - **`PRODUCT.md`**: público, propósito, posicionamiento, restricciones y material confirmado frente a material pendiente. Manda en todo lo que tiene que ver con el contenido.
-- **`DESIGN.md`**: el sistema visual ("El Dictamen Firmado"). Manda en todo lo visual. Regenerado desde el código tras el rediseño; `.impeccable/design.json` es su complemento.
+- **`DESIGN.md`**: el sistema visual ("Azul corporativo", Manrope e Inter). Manda en todo lo visual. `.impeccable/design.json` pertenece a la dirección anterior y está desactualizado.
 - **`MANTENIMIENTO_NOTICIAS.md`**: criterio editorial del Centro de Actualizaciones Profesionales.
 - **`ENTREGA_FINAL.md`** y **`PRODUCCION.md`**: alcance aprobado de la versión v11 y configuración de Vercel.
 
@@ -46,23 +46,14 @@ Para trabajo de diseño se usa la skill **Impeccable** (`/impeccable …`), que 
 - **La Ley 155-17 gana protagonismo** con bloques y enlaces dentro de las páginas, no con un enlace nuevo en el menú.
 - **El logo** es el archivo original `src/assets/cbr-logo.png`. No se redibuja, no se recolorea y no se repite como marca de agua.
 
-## Reglas visuales (resumen de DESIGN.md)
+## Reglas visuales (resumen de DESIGN.md; dirección "Azul corporativo", aprobada)
 
-- **Paleta**: navy institucional, azul del logo como único color de acción, blanco cálido como fondo y dorado apagado como acento escaso.
-- **Tipografía**: titulares en serif editorial y cuerpo en sans profesional, ambas autoalojadas. Solo se usan pesos que existan en la fuente.
-- **Forma**: filetes de 1px, radios de 2 a 4px y superficies planas.
-- **Prohibido** (aspecto SaaS):
-  - degradados;
-  - halos;
-  - cuadrículas de fondo;
-  - dashboards ficticios;
-  - baldosas de icono;
-  - sombras en reposo.
-- **Accesibilidad**:
-  - contraste AA en todo el texto de lectura;
-  - foco visible en todos los controles;
-  - respetar `prefers-reduced-motion`;
-  - nada flotante que tape el contenido en móvil.
+- **Paleta**: blanco, navy y azul corporativo; degradado azul muy suave en fondos de hero y degradado azul en botones y bandas; verde solo para el distintivo de la Ley 155-17.
+- **Tipografía** (autoalojada): Manrope 700-800 para titulares; Inter 400-600 para texto, navegación y formularios. Sin serif en titulares.
+- **Forma**: tarjetas blancas con radios amplios, botones en píldora, sombras suaves.
+- **Panel del hero**: solo ilustrativo. Sin métricas, cifras de clientes, resultados ni estados de cumplimiento inventados; el globo es un dibujo propio, no el logo.
+- **Logo**: sin tocar, sin marca de agua.
+- **Accesibilidad**: contraste AA, foco visible, `prefers-reduced-motion`, nada flotante que tape el contenido en móvil.
 
 ## Forma de trabajo con Git
 

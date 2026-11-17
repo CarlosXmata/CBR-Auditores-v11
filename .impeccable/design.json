@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-16T22:28:44.874Z",
+  "generatedAt": "2026-11-17T15:10:52.000Z",
   "title": "Design System: CBR Auditores & Consultores",
   "extensions": {
     "colorMeta": {
@@ -8,155 +8,117 @@
         "role": "primary",
         "displayName": "Azul CBR",
         "tonalRamp": [
-          "#001a3d",
-          "#002b66",
-          "#003f8f",
-          "#0052b8",
-          "#3a78cc",
-          "#7aa3dd",
-          "#b6cdee",
-          "#e6eefa"
+          "#031228",
+          "#062450",
+          "#0a408c",
+          "#0f5bc8",
+          "#4b84d6",
+          "#87ade4",
+          "#c3d6f1",
+          "#e7effa"
         ]
       },
       "blue-deep": {
         "role": "primary",
         "displayName": "Azul CBR Profundo",
         "tonalRamp": [
-          "#00142e",
-          "#00214d",
-          "#002f6e",
-          "#003f8f",
-          "#2f63a8",
-          "#6f92c4",
-          "#adc3e0",
-          "#e3ebf5"
+          "#020d1d",
+          "#04193b",
+          "#072c67",
+          "#0a3f93",
+          "#476fae",
+          "#849fc9",
+          "#c2cfe4",
+          "#e6ecf4"
         ]
       },
-      "gold": {
-        "role": "secondary",
-        "displayName": "Oro de Archivo",
-        "tonalRamp": [
-          "#33281a",
-          "#54432a",
-          "#7e6334",
-          "#a8874f",
-          "#c9a96a",
-          "#dcc497",
-          "#ece0c6",
-          "#f8f3ea"
-        ]
-      },
-      "gold-text": {
-        "role": "secondary",
-        "displayName": "Oro de Archivo Texto",
-        "tonalRamp": [
-          "#2a2113",
-          "#463720",
-          "#62502b",
-          "#7e6334",
-          "#a08458",
-          "#bfa784",
-          "#dccab0",
-          "#f4ede2"
-        ]
-      },
-      "gold-light": {
-        "role": "secondary",
-        "displayName": "Oro de Archivo Claro",
-        "tonalRamp": [
-          "#3a2f1c",
-          "#5f4d2e",
-          "#8b7143",
-          "#a8874f",
-          "#c9a96a",
-          "#d9c08f",
-          "#e9d9b8",
-          "#f7f0e2"
-        ]
+      "blue-soft": {
+        "role": "primary",
+        "displayName": "Azul Suave"
       },
       "navy": {
         "role": "neutral",
         "displayName": "Navy Institucional",
         "tonalRamp": [
-          "#050f1d",
-          "#0b1f3a",
-          "#1a3150",
-          "#2f4767",
-          "#52657f",
-          "#7f8ea3",
-          "#b4bdca",
-          "#e6e9ee"
+          "#02060f",
+          "#040c1e",
+          "#071634",
+          "#0a1f4a",
+          "#475777",
+          "#848fa4",
+          "#c2c7d2",
+          "#e6e9ed"
         ]
       },
-      "paper": {
+      "navy-deep": {
         "role": "neutral",
-        "displayName": "Papel Lino",
-        "tonalRamp": [
-          "#2b2925",
-          "#55524b",
-          "#807b70",
-          "#aaa497",
-          "#cfc8ba",
-          "#e4dfd5",
-          "#f3efe7",
-          "#fbf9f5"
-        ]
+        "displayName": "Navy Profundo"
       },
-      "paper-deep": {
+      "bg": {
         "role": "neutral",
-        "displayName": "Papel Hondo",
-        "tonalRamp": [
-          "#2a2720",
-          "#524c41",
-          "#7b7362",
-          "#a49a85",
-          "#c9bfab",
-          "#e1d9ca",
-          "#f3efe7",
-          "#faf8f3"
-        ]
+        "displayName": "Blanco"
       },
-      "folio": {
+      "wash": {
         "role": "neutral",
-        "displayName": "Blanco Folio"
+        "displayName": "Lavado"
+      },
+      "wash-2": {
+        "role": "neutral",
+        "displayName": "Lavado 2"
+      },
+      "card": {
+        "role": "neutral",
+        "displayName": "Tarjeta"
       },
       "ink": {
         "role": "neutral",
         "displayName": "Tinta",
         "tonalRamp": [
-          "#0d121a",
-          "#1b2433",
-          "#323c4c",
-          "#4a5363",
-          "#6b7383",
-          "#9097a3",
-          "#bcc1c9",
-          "#e7e9ec"
+          "#06080d",
+          "#0b111a",
+          "#141d2d",
+          "#1c2a40",
+          "#555f70",
+          "#8e94a0",
+          "#c6cacf",
+          "#e8eaec"
         ]
       },
       "ink-2": {
         "role": "neutral",
-        "displayName": "Tinta Secundaria"
+        "displayName": "Tinta 2"
       },
-      "rule": {
+      "ink-3": {
+        "role": "neutral",
+        "displayName": "Tinta 3"
+      },
+      "line": {
         "role": "neutral",
         "displayName": "Filete"
       },
-      "rule-strong": {
+      "line-strong": {
         "role": "neutral",
         "displayName": "Filete Marcado"
       },
       "on-navy": {
         "role": "neutral",
-        "displayName": "Texto sobre Navy"
+        "displayName": "Texto sobre azul"
       },
       "on-navy-2": {
         "role": "neutral",
-        "displayName": "Texto de Apoyo sobre Navy"
+        "displayName": "Texto de apoyo sobre azul"
       },
-      "rule-navy": {
+      "line-navy": {
         "role": "neutral",
-        "displayName": "Filete sobre Navy"
+        "displayName": "Filete sobre azul"
+      },
+      "green": {
+        "role": "secondary",
+        "displayName": "Verde Ley 155-17"
+      },
+      "green-wash": {
+        "role": "secondary",
+        "displayName": "Lavado verde"
       },
       "error": {
         "role": "neutral",
@@ -166,143 +128,119 @@
         "role": "neutral",
         "displayName": "Lavado de Error",
         "canonical": "#fbf1ef"
-      },
-      "ink-3": {
-        "role": "neutral",
-        "displayName": "Tinta Terciaria",
-        "canonical": "#6b7280"
       }
     },
     "typographyMeta": {
       "display": {
         "displayName": "Display",
-        "purpose": "La tesis de cada página; una por página."
+        "purpose": "Tesis de cada página: Manrope 800, 2.25 a 3.5rem en Inicio (15ch) y 2.125 a 3.25rem en páginas interiores (20ch)."
+      },
+      "display-page": {
+        "displayName": "Display de página",
+        "purpose": "Tesis de páginas interiores."
       },
       "headline": {
         "displayName": "Headline",
-        "purpose": "Titular de sección y del cierre."
+        "purpose": "Titular de sección, bandas y cierre: Manrope 800, 1.75 a 2.625rem."
       },
       "title": {
         "displayName": "Title",
-        "purpose": "Filas del índice de servicios, subtítulos y titulares de lista."
+        "purpose": "Títulos de tarjetas de servicio y subtítulos: Manrope 700, 1.25rem."
       },
       "lead": {
         "displayName": "Lead",
-        "purpose": "Párrafo bajo la tesis, máximo 60ch."
+        "purpose": "Párrafo bajo la tesis: Inter 400, máximo 60ch."
       },
       "body": {
         "displayName": "Body",
-        "purpose": "Lectura, máximo 68ch."
+        "purpose": "Lectura: Inter 400, 1rem, máximo 66ch; no baja de 16px en móvil."
       },
-      "label": {
-        "displayName": "Label",
-        "purpose": "Títulos de columnas laterales, encabezados del pie y rótulos de datos; nunca como antetítulo."
-      },
-      "law-numeral": {
-        "displayName": "law-numeral",
-        "purpose": "Ley 155-17 como primera línea del titular de la banda"
-      },
-      "display-home": {
-        "displayName": "display-home",
-        "purpose": "Tesis de Inicio"
-      },
-      "headline-service": {
-        "displayName": "headline-service",
-        "purpose": "Nombre de servicio en /servicios"
-      },
-      "headline-compact": {
-        "displayName": "headline-compact",
-        "purpose": "Titular de contacto y números de pasos"
-      },
-      "motto": {
-        "displayName": "motto",
-        "purpose": "Lema de Nosotros"
-      },
-      "signature": {
-        "displayName": "signature",
-        "purpose": "Nombre de la firma en el cierre"
-      },
-      "title-list": {
-        "displayName": "title-list",
-        "purpose": "Títulos de lista"
-      },
-      "title-small": {
-        "displayName": "title-small",
-        "purpose": "Títulos de lista compactos"
-      },
-      "prose": {
-        "displayName": "prose",
-        "purpose": "Prosa de artículos"
-      },
-      "body-compact": {
-        "displayName": "body-compact",
-        "purpose": "Cuerpo compacto"
-      },
-      "small": {
-        "displayName": "small",
-        "purpose": "Texto de apoyo"
-      },
-      "caption": {
-        "displayName": "caption",
-        "purpose": "Fechas, fuentes, rótulos de campo"
-      },
-      "micro": {
-        "displayName": "micro",
-        "purpose": "Línea secundaria de la marca"
+      "eyebrow": {
+        "displayName": "Eyebrow",
+        "purpose": "Antetítulo y rótulos de panel: Inter 600, 0.75rem, mayúsculas, azul."
       }
     },
-    "shadows": [
+    "gradients": [
       {
-        "name": "fixed-float",
-        "value": "0 8px 24px rgba(11, 31, 58, 0.22)",
-        "purpose": "Solo el acceso fijo de WhatsApp, que flota sobre el contenido."
+        "name": "button",
+        "value": "linear-gradient(135deg, #1763d1 0%, #0a2f74 100%)",
+        "purpose": "Botón primario."
       },
       {
-        "name": "menu-open",
-        "value": "0 16px 32px rgba(11, 31, 58, 0.08)",
-        "purpose": "Menú móvil desplegado (estado)."
+        "name": "band",
+        "value": "linear-gradient(135deg, #0a2559 0%, #0d4aaa 100%)",
+        "purpose": "Compromisos, Ley 155-17, cierre y tarjeta azul de pares."
+      },
+      {
+        "name": "hero",
+        "value": "radial-gradient(900px 520px at 88% 8%, #dbe9fc 0%, transparent 70%), linear-gradient(180deg, #f6f9fe 0%, #ffffff 100%)",
+        "purpose": "Fondo suave de los hero."
+      },
+      {
+        "name": "tile",
+        "value": "linear-gradient(135deg, #0a2e72 0%, #1366d6 100%)",
+        "purpose": "Tarjetas azules del panel del hero."
+      }
+    ],
+    "shadows": [
+      {
+        "name": "card",
+        "value": "0 1px 2px rgba(10, 31, 74, 0.05), 0 10px 30px -12px rgba(10, 31, 74, 0.14)",
+        "purpose": "Tarjetas y paneles en reposo."
+      },
+      {
+        "name": "card-lift",
+        "value": "0 2px 4px rgba(10, 31, 74, 0.06), 0 18px 40px -14px rgba(10, 31, 74, 0.22)",
+        "purpose": "Tarjetas interactivas en hover."
+      },
+      {
+        "name": "panel",
+        "value": "0 30px 70px -30px rgba(10, 47, 116, 0.35)",
+        "purpose": "Panel visual del hero."
       },
       {
         "name": "field-focus",
-        "value": "0 0 0 3px rgba(0, 82, 184, 0.18)",
-        "purpose": "Anillo de foco de campos, junto al borde azul."
+        "value": "0 0 0 3px rgba(15, 91, 200, 0.2)",
+        "purpose": "Anillo de foco de campos."
       }
     ],
     "motion": [
       {
         "name": "ease-out",
         "value": "cubic-bezier(0.16, 1, 0.3, 1)",
-        "purpose": "Curva de los movimientos con recorrido: marca, filete del índice, flechas."
+        "purpose": "Movimientos con recorrido: elevación de tarjetas y flechas."
       },
       {
-        "name": "mark-draw",
-        "value": "scaleX(0.3) to scaleX(1), 0.9s ease-out, 0.1s delay",
-        "purpose": "La marca dorada se dibuja al cargar; solo con prefers-reduced-motion: no-preference."
-      },
-      {
-        "name": "index-rule",
-        "value": "scaleX(0) to scaleX(1), 0.55s ease-out",
-        "purpose": "Filete azul del índice de servicios en hover/foco."
+        "name": "lift",
+        "value": "translateY(-1px a -3px), 0.25 a 0.3s",
+        "purpose": "Botones y tarjetas en hover."
       },
       {
         "name": "arrow-nudge",
         "value": "translateX(3-4px), 0.3-0.35s ease-out",
-        "purpose": "La flecha de enlaces y filas avanza en hover."
+        "purpose": "La flecha de enlaces y tarjetas avanza en hover."
       },
       {
         "name": "color-state",
         "value": "0.2s ease",
-        "purpose": "Cambios de color, borde y fondo en hover."
+        "purpose": "Cambios de color y borde. Todo se anula con prefers-reduced-motion."
       }
     ],
     "breakpoints": [
       {
+        "name": "mail",
+        "value": "1240px",
+        "purpose": "Oculta el correo del membrete."
+      },
+      {
         "name": "collapse",
-        "value": "1080px"
+        "value": "1080px",
+        "purpose": "Menú a botón; retículas a una columna; servicios a 2 columnas."
       },
       {
         "name": "mobile",
-        "value": "720px"
+        "value": "720px",
+        "purpose": "Botones a ancho completo, panel compacto, pie en una columna, WhatsApp solo icono."
       }
     ]
   },
@@ -313,104 +251,106 @@
       "refersTo": "button-primary",
       "description": "El único llamado a la acción del sitio: Solicitar una consulta.",
       "html": "<a class=\"ds-btn\" href=\"#\">Solicitar una consulta</a>",
-      "css": ".ds-btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 48px; padding: 0 24px; border: 1px solid var(--blue, #0052b8); border-radius: 2px; background: var(--blue, #0052b8); color: #fff; font-family: 'Public Sans Variable', 'Segoe UI', system-ui, sans-serif; font-size: 0.9375rem; font-weight: 600; letter-spacing: 0.01em; text-decoration: none; transition: background-color 0.2s ease, border-color 0.2s ease; } .ds-btn:hover { background: var(--blue-deep, #003f8f); border-color: var(--blue-deep, #003f8f); } .ds-btn:focus-visible { outline: 2px solid var(--blue, #0052b8); outline-offset: 3px; }"
+      "css": ".ds-btn { display: inline-flex; align-items: center; justify-content: center; min-height: 50px; padding: 0 28px; border-radius: 999px; background: linear-gradient(135deg, #1763d1 0%, #0a2f74 100%); color: #fff; font-family: 'Manrope Variable', 'Segoe UI', system-ui, sans-serif; font-size: 0.9375rem; font-weight: 700; text-decoration: none; box-shadow: 0 10px 24px -10px rgba(10, 47, 116, 0.55); transition: transform 0.25s ease; } .ds-btn:hover { transform: translateY(-1px); } .ds-btn:focus-visible { outline: 2px solid #0f5bc8; outline-offset: 3px; }"
     },
     {
       "name": "Quiet Button",
       "kind": "button",
       "refersTo": "button-quiet",
-      "description": "Acción secundaria sobre papel.",
-      "html": "<a class=\"ds-btn-quiet\" href=\"#\">Ver todas las actualizaciones</a>",
-      "css": ".ds-btn-quiet { display: inline-flex; align-items: center; min-height: 48px; padding: 0 24px; border: 1px solid var(--rule-strong, #cfc8ba); border-radius: 2px; background: transparent; color: var(--navy, #0b1f3a); font-family: 'Public Sans Variable', 'Segoe UI', system-ui, sans-serif; font-size: 0.9375rem; font-weight: 600; text-decoration: none; transition: border-color 0.2s ease; } .ds-btn-quiet:hover { border-color: var(--navy, #0b1f3a); } .ds-btn-quiet:focus-visible { outline: 2px solid var(--blue, #0052b8); outline-offset: 3px; }"
+      "description": "Acción secundaria: blanco con borde.",
+      "html": "<a class=\"ds-btn-quiet\" href=\"#\">Escríbanos por WhatsApp</a>",
+      "css": ".ds-btn-quiet { display: inline-flex; align-items: center; min-height: 50px; padding: 0 28px; border: 1px solid #c9d5e6; border-radius: 999px; background: #fff; color: #0a1f4a; font-family: 'Manrope Variable', 'Segoe UI', system-ui, sans-serif; font-size: 0.9375rem; font-weight: 700; text-decoration: none; transition: border-color 0.2s ease; } .ds-btn-quiet:hover { border-color: #0f5bc8; } .ds-btn-quiet:focus-visible { outline: 2px solid #0f5bc8; outline-offset: 3px; }"
     },
     {
       "name": "Text Link",
       "kind": "custom",
-      "description": "Enlace de acción secundario con subrayado fino y flecha que avanza.",
-      "html": "<a class=\"ds-textlink\" href=\"#\">Ver todos los servicios <svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M5 12h14M13 6l6 6-6 6\"/></svg></a>",
-      "css": ".ds-textlink { display: inline-flex; align-items: center; gap: 8px; color: var(--blue, #0052b8); font-family: 'Public Sans Variable', 'Segoe UI', system-ui, sans-serif; font-weight: 600; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 5px; text-decoration-color: color-mix(in srgb, currentColor 35%, transparent); transition: color 0.2s ease, text-decoration-color 0.2s ease; } .ds-textlink svg { width: 16px; height: 16px; transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1); } .ds-textlink:hover { color: var(--blue-deep, #003f8f); text-decoration-color: currentColor; } .ds-textlink:hover svg { transform: translateX(3px); } .ds-textlink:focus-visible { outline: 2px solid var(--blue, #0052b8); outline-offset: 3px; }"
+      "description": "Enlace de acción secundario en azul 600 con flecha que avanza.",
+      "html": "<a class=\"ds-textlink\" href=\"#\">Ver todos los servicios <svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M5 12h14M13 6l6 6-6 6\"/></svg></a>",
+      "css": ".ds-textlink { display: inline-flex; align-items: center; gap: 8px; color: #0f5bc8; font-family: 'Inter Variable', 'Segoe UI', system-ui, sans-serif; font-weight: 600; text-decoration: none; transition: color 0.2s ease; } .ds-textlink svg { width: 16px; height: 16px; transition: transform 0.3s ease; } .ds-textlink:hover { color: #0a3f93; } .ds-textlink:hover svg { transform: translateX(3px); } .ds-textlink:focus-visible { outline: 2px solid #0f5bc8; outline-offset: 3px; }"
     },
     {
       "name": "Text Field",
       "kind": "input",
       "refersTo": "input",
-      "description": "Campo de formulario sobre blanco folio con foco azul.",
+      "description": "Campo blanco con borde y foco azul.",
       "html": "<label class=\"ds-field\"><span>Correo electrónico</span><input type=\"email\" placeholder=\"nombre@empresa.com\"></label>",
-      "css": ".ds-field { display: grid; gap: 8px; font-family: 'Public Sans Variable', 'Segoe UI', system-ui, sans-serif; } .ds-field span { font-size: 0.875rem; font-weight: 600; color: var(--navy, #0b1f3a); } .ds-field input { width: 100%; min-height: 48px; padding: 11px 14px; background: var(--folio, #fff); color: var(--ink, #1b2433); border: 1px solid var(--rule-strong, #cfc8ba); border-radius: 2px; font: inherit; transition: border-color 0.2s ease, box-shadow 0.2s ease; } .ds-field input:hover { border-color: var(--ink-2, #4a5363); } .ds-field input:focus { outline: none; border-color: var(--blue, #0052b8); box-shadow: 0 0 0 3px rgba(0, 82, 184, 0.18); }"
+      "css": ".ds-field { display: grid; gap: 8px; font-family: 'Inter Variable', 'Segoe UI', system-ui, sans-serif; } .ds-field span { font-size: 0.875rem; font-weight: 600; color: #0a1f4a; } .ds-field input { width: 100%; min-height: 50px; padding: 11px 16px; background: #fff; color: #1c2a40; border: 1px solid #c9d5e6; border-radius: 12px; font: inherit; transition: border-color 0.2s ease, box-shadow 0.2s ease; } .ds-field input:focus { outline: none; border-color: #0f5bc8; box-shadow: 0 0 0 3px rgba(15, 91, 200, 0.2); }"
     },
     {
       "name": "Header Navigation",
       "kind": "nav",
-      "description": "Menú del membrete; la página actual lleva subrayado dorado.",
+      "description": "Menú del membrete blanco; la página actual va en azul con subrayado.",
       "html": "<nav class=\"ds-nav\"><a href=\"#\" aria-current=\"page\">Inicio</a><a href=\"#\">Servicios</a><a href=\"#\">Nosotros</a><a href=\"#\">Contacto</a></nav>",
-      "css": ".ds-nav { display: flex; gap: 28px; font-family: 'Public Sans Variable', 'Segoe UI', system-ui, sans-serif; font-size: 0.9375rem; padding: 20px 0; border-bottom: 1px solid var(--rule, #e4dfd5); background: var(--paper, #fbf9f5); } .ds-nav a { color: var(--ink, #1b2433); padding-block: 6px; text-decoration: underline; text-decoration-color: transparent; text-underline-offset: 8px; text-decoration-thickness: 1px; transition: color 0.2s ease, text-decoration-color 0.2s ease; } .ds-nav a:hover { color: var(--blue, #0052b8); } .ds-nav a[aria-current=\"page\"] { color: var(--navy, #0b1f3a); text-decoration-color: var(--gold, #a8874f); } .ds-nav a:focus-visible { outline: 2px solid var(--blue, #0052b8); outline-offset: 3px; }"
+      "css": ".ds-nav { display: flex; gap: 28px; padding: 20px 0; border-bottom: 1px solid #e1e8f2; background: #fff; font-family: 'Inter Variable', 'Segoe UI', system-ui, sans-serif; font-size: 0.9375rem; font-weight: 500; } .ds-nav a { color: #1c2a40; padding-block: 8px; border-bottom: 2px solid transparent; text-decoration: none; transition: color 0.2s ease; } .ds-nav a:hover { color: #0f5bc8; } .ds-nav a[aria-current=\"page\"] { color: #0f5bc8; border-bottom-color: #0f5bc8; font-weight: 600; } .ds-nav a:focus-visible { outline: 2px solid #0f5bc8; outline-offset: 3px; }"
     },
     {
       "name": "Filter Chip",
       "kind": "chip",
       "refersTo": "filter-chip",
-      "description": "Filtro de categoría en Noticias; el activo se rellena de navy.",
-      "html": "<div class=\"ds-filters\"><button aria-pressed=\"true\">Todas</button><button aria-pressed=\"false\">Fiscal</button><button aria-pressed=\"false\">Laboral</button></div>",
-      "css": ".ds-filters { display: flex; flex-wrap: wrap; gap: 8px; } .ds-filters button { min-height: 40px; padding: 0 16px; border: 1px solid var(--rule-strong, #cfc8ba); border-radius: 2px; background: transparent; color: var(--ink, #1b2433); font-family: 'Public Sans Variable', 'Segoe UI', system-ui, sans-serif; font-size: 0.875rem; cursor: pointer; transition: border-color 0.2s ease, background-color 0.2s ease, color 0.2s ease; } .ds-filters button:hover { border-color: var(--navy, #0b1f3a); } .ds-filters button[aria-pressed=\"true\"] { background: var(--navy, #0b1f3a); border-color: var(--navy, #0b1f3a); color: var(--paper, #fbf9f5); font-weight: 600; } .ds-filters button:focus-visible { outline: 2px solid var(--blue, #0052b8); outline-offset: 3px; }"
+      "description": "Filtro de categoría en píldora; el activo se rellena de azul.",
+      "html": "<div class=\"ds-filters\"><button aria-pressed=\"true\">Todas</button><button aria-pressed=\"false\">DGII</button><button aria-pressed=\"false\">TSS</button></div>",
+      "css": ".ds-filters { display: flex; flex-wrap: wrap; gap: 8px; } .ds-filters button { min-height: 42px; padding: 0 18px; border: 1px solid #c9d5e6; border-radius: 999px; background: #fff; color: #1c2a40; font-family: 'Inter Variable', 'Segoe UI', system-ui, sans-serif; font-size: 0.875rem; font-weight: 500; cursor: pointer; transition: border-color 0.2s ease; } .ds-filters button:hover { border-color: #0f5bc8; } .ds-filters button[aria-pressed=\"true\"] { background: #0f5bc8; border-color: #0f5bc8; color: #fff; font-weight: 600; } .ds-filters button:focus-visible { outline: 2px solid #0f5bc8; outline-offset: 3px; }"
     },
     {
-      "name": "Services Index Row",
-      "kind": "custom",
-      "description": "Firma interactiva: fila del índice de servicios cuyo filete inferior se tiñe de azul y cuya flecha avanza.",
-      "html": "<div class=\"ds-index\"><a href=\"#\"><span class=\"ds-index__title\">Auditoría</span><span class=\"ds-index__line\">Revisión independiente de estados financieros.</span><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M5 12h14M13 6l6 6-6 6\"/></svg></a></div>",
-      "css": ".ds-index { border-top: 1px solid var(--rule-strong, #cfc8ba); } .ds-index a { position: relative; display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr) 24px; gap: 24px; align-items: baseline; padding: 28px 0; border-bottom: 1px solid var(--rule, #e4dfd5); color: inherit; text-decoration: none; } .ds-index a::after { content: ''; position: absolute; left: 0; right: 0; bottom: -1px; height: 1px; background: var(--blue, #0052b8); transform: scaleX(0); transform-origin: left center; transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1); } .ds-index__title { font-family: 'Source Serif 4 Variable', Georgia, serif; font-size: 1.375rem; font-weight: 600; line-height: 1.3; color: var(--navy, #0b1f3a); transition: color 0.2s ease; } .ds-index__line { font-family: 'Public Sans Variable', 'Segoe UI', system-ui, sans-serif; color: var(--ink-2, #4a5363); font-size: 1rem; line-height: 1.55; } .ds-index svg { width: 20px; height: 20px; color: var(--blue, #0052b8); align-self: center; transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1); } .ds-index a:hover::after, .ds-index a:focus-visible::after { transform: scaleX(1); } .ds-index a:hover .ds-index__title { color: var(--blue, #0052b8); } .ds-index a:hover svg { transform: translateX(4px); } .ds-index a:focus-visible { outline: 2px solid var(--blue, #0052b8); outline-offset: 3px; }"
-    },
-    {
-      "name": "Close with Signature",
+      "name": "Service Card",
       "kind": "card",
-      "description": "Cierre de cada página sobre papel hondo: marca dorada, titular, CTA y bloque de firma.",
-      "html": "<section class=\"ds-close\"><span class=\"ds-close__mark\"></span><h2>Fortalezca la gestión financiera de su empresa.</h2><a class=\"ds-close__btn\" href=\"#\">Solicitar una consulta</a><div class=\"ds-close__sig\"><span class=\"ds-close__rule\"></span><strong>CBR Auditores &amp; Consultores</strong><span>República Dominicana</span></div></section>",
-      "css": ".ds-close { padding: 56px 40px; background: var(--paper-deep, #f3efe7); font-family: 'Public Sans Variable', 'Segoe UI', system-ui, sans-serif; } .ds-close__mark { display: block; width: 56px; height: 2px; margin-bottom: 32px; background: var(--gold, #a8874f); } .ds-close h2 { margin: 0 0 28px; font-family: 'Source Serif 4 Variable', Georgia, serif; font-size: 2rem; font-weight: 500; line-height: 1.14; letter-spacing: -0.012em; color: var(--navy, #0b1f3a); } .ds-close__btn { display: inline-flex; align-items: center; min-height: 48px; padding: 0 24px; border-radius: 2px; background: var(--blue, #0052b8); color: #fff; font-size: 0.9375rem; font-weight: 600; text-decoration: none; transition: background-color 0.2s ease; } .ds-close__btn:hover { background: var(--blue-deep, #003f8f); } .ds-close__btn:focus-visible { outline: 2px solid var(--blue, #0052b8); outline-offset: 3px; } .ds-close__sig { margin-top: 48px; } .ds-close__rule { display: block; width: min(100%, 320px); height: 1px; background: var(--navy, #0b1f3a); margin-bottom: 18px; } .ds-close__sig strong { display: block; font-family: 'Source Serif 4 Variable', Georgia, serif; font-size: 1.5rem; font-weight: 600; color: var(--navy, #0b1f3a); line-height: 1.2; } .ds-close__sig > span:last-child { display: block; margin-top: 2px; font-size: 0.875rem; color: var(--ink-2, #4a5363); }"
+      "description": "Tarjeta blanca numerada de servicio: número azul suave, título y línea del servicio; se eleva en hover.",
+      "html": "<a class=\"ds-svc\" href=\"#\"><span class=\"ds-svc__n\">01</span><span class=\"ds-svc__t\">Outsourcing Estratégico</span><span class=\"ds-svc__l\">Enfócate en crecer. Nosotros nos ocupamos del resto.</span></a>",
+      "css": ".ds-svc { display: grid; gap: 10px; padding: 28px 26px 24px; background: #fff; border: 1px solid #e1e8f2; border-radius: 22px; text-decoration: none; transition: transform 0.3s ease, box-shadow 0.3s ease; } .ds-svc:hover { transform: translateY(-3px); box-shadow: 0 2px 4px rgba(10, 31, 74, 0.06), 0 18px 40px -14px rgba(10, 31, 74, 0.22); } .ds-svc__n { font-family: 'Manrope Variable', 'Segoe UI', system-ui, sans-serif; font-size: 2.5rem; font-weight: 800; line-height: 1; letter-spacing: -0.04em; color: #dce9fb; } .ds-svc__t { font-family: 'Manrope Variable', 'Segoe UI', system-ui, sans-serif; font-size: 1.25rem; font-weight: 700; line-height: 1.3; color: #0a1f4a; } .ds-svc__l { font-family: 'Inter Variable', 'Segoe UI', system-ui, sans-serif; font-size: 0.9375rem; line-height: 1.55; color: #4b5870; } .ds-svc:focus-visible { outline: 2px solid #0f5bc8; outline-offset: 3px; }"
+    },
+    {
+      "name": "Hero Panel",
+      "kind": "card",
+      "description": "Panel visual ilustrativo del hero: sin cifras, clientes ni estados.",
+      "html": "<div class=\"ds-panel\"><p class=\"ds-panel__k\">República Dominicana</p><p class=\"ds-panel__t\">Áreas de práctica</p><div class=\"ds-panel__tile\"><span>Servicios</span><strong>Seis áreas</strong></div></div>",
+      "css": ".ds-panel { padding: 24px; background: rgba(255, 255, 255, 0.92); border: 1px solid #e1e8f2; border-radius: 28px; box-shadow: 0 30px 70px -30px rgba(10, 47, 116, 0.35); font-family: 'Inter Variable', 'Segoe UI', system-ui, sans-serif; } .ds-panel__k { margin: 0; font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #66748b; } .ds-panel__t { margin: 4px 0 18px; font-family: 'Manrope Variable', 'Segoe UI', system-ui, sans-serif; font-size: 1.375rem; font-weight: 800; letter-spacing: -0.025em; color: #0a1f4a; } .ds-panel__tile { display: grid; gap: 4px; padding: 18px; border-radius: 18px; color: #fff; background: linear-gradient(135deg, #0a2e72 0%, #1366d6 100%); } .ds-panel__tile span { font-size: 0.75rem; color: #cfe0fa; } .ds-panel__tile strong { font-family: 'Manrope Variable', 'Segoe UI', system-ui, sans-serif; font-size: 1.625rem; font-weight: 800; letter-spacing: -0.03em; }"
+    },
+    {
+      "name": "Closing Band",
+      "kind": "card",
+      "description": "Cierre de cada página: banda de degradado azul con titular, texto y botón blanco.",
+      "html": "<section class=\"ds-close\"><h2>Fortalezca la gestión financiera de su empresa.</h2><a class=\"ds-close__btn\" href=\"#\">Solicitar una consulta</a></section>",
+      "css": ".ds-close { padding: 56px 40px; background: linear-gradient(135deg, #0a2559 0%, #0d4aaa 100%); font-family: 'Inter Variable', 'Segoe UI', system-ui, sans-serif; } .ds-close h2 { margin: 0 0 24px; font-family: 'Manrope Variable', 'Segoe UI', system-ui, sans-serif; font-size: 2rem; font-weight: 800; line-height: 1.12; letter-spacing: -0.03em; color: #fff; } .ds-close__btn { display: inline-flex; align-items: center; min-height: 50px; padding: 0 28px; border-radius: 999px; background: #fff; color: #0a1f4a; font-family: 'Manrope Variable', 'Segoe UI', system-ui, sans-serif; font-size: 0.9375rem; font-weight: 700; text-decoration: none; } .ds-close__btn:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }"
     },
     {
       "name": "WhatsApp Quick Access",
       "kind": "button",
       "refersTo": "whatsapp-quick",
-      "description": "Acceso fijo a WhatsApp; el único elemento con sombra en reposo. Oculto en /contacto.",
+      "description": "Acceso fijo en píldora verde; solo icono en móvil. Oculto en /contacto.",
       "html": "<a class=\"ds-wa\" href=\"#\"><svg viewBox=\"0 0 24 24\" fill=\"currentColor\"><path d=\"M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2z\"/></svg><span>WhatsApp</span></a>",
-      "css": ".ds-wa { display: inline-flex; align-items: center; gap: 10px; height: 48px; padding: 0 18px 0 14px; background: var(--navy, #0b1f3a); color: var(--paper, #fbf9f5); border-radius: 2px; font-family: 'Public Sans Variable', 'Segoe UI', system-ui, sans-serif; font-size: 0.875rem; font-weight: 600; text-decoration: none; box-shadow: 0 8px 24px rgba(11, 31, 58, 0.22); transition: background-color 0.2s ease; } .ds-wa svg { width: 22px; height: 22px; } .ds-wa:hover { background: var(--blue-deep, #003f8f); } .ds-wa:focus-visible { outline: 2px solid var(--blue, #0052b8); outline-offset: 3px; }"
+      "css": ".ds-wa { display: inline-flex; align-items: center; gap: 10px; height: 52px; padding: 0 20px 0 16px; background: #128c5a; color: #fff; border-radius: 999px; font-family: 'Inter Variable', 'Segoe UI', system-ui, sans-serif; font-size: 0.875rem; font-weight: 700; text-decoration: none; box-shadow: 0 12px 28px -8px rgba(10, 31, 74, 0.4); } .ds-wa svg { width: 24px; height: 24px; } .ds-wa:hover { background: #0e7a4e; } .ds-wa:focus-visible { outline: 2px solid #0f5bc8; outline-offset: 3px; }"
     }
   ],
   "narrative": {
-    "northStar": "El Dictamen Firmado",
-    "overview": "La web se compone como el documento que una firma de auditoría entrega a su cliente: papel membretado, una tesis en serif, apartados separados por filetes finos, cifras tabulares y una firma al pie. La autoridad no viene de efectos visuales, sino del orden de la composición y de lo que se afirma con respaldo: cada actualización cita su fuente oficial.\n\nLa densidad es media-baja y hay mucho aire. Cada página avanza igual: membrete fijo, una marca dorada corta sobre la tesis en serif display, el desarrollo en una retícula editorial de 12 columnas con filetes de 1px y, al final, un cierre en papel hondo con el único llamado a la acción y un bloque de firma. Una sola superficie navy por página marca el momento de peso (la Ley 155-17).\n\nEl color es contenido: navy para la voz de la firma, el azul del logo solo para la acción y el dorado de archivo, escaso, para marcar. Se rechaza de forma explícita el aspecto de plantilla SaaS: dashboards ficticios, cuadrículas de fondo, halos y resplandores, degradados, marcas de agua repetidas del logo, baldosas de icono y tarjetas flotantes con sombra.",
+    "northStar": "Azul corporativo",
+    "overview": "Una oficina profesional clara: fondos blancos y azul muy pálido, titulares grandes en azul marino con una sans gruesa y moderna (Manrope), tarjetas blancas con esquinas amplias y bandas de azul corporativo para los momentos de peso. La autoridad viene del orden, del contraste y de que cada actualización cita su fuente oficial, no de efectos.\n\nEl hero de Inicio tiene dos columnas: contenido comercial a la izquierda y un panel visual ilustrativo a la derecha, con un globo vectorial decorativo detrás. Las páginas interiores abren con un hero claro y una tarjeta de apoyo, y todas cierran con una banda azul con el único llamado a la acción.\n\nSe rechaza el aspecto de plantilla SaaS genérica: métricas, clientes o gráficas inventadas, estados de cumplimiento ficticios, halos de neón, iconos en baldosas, cualquier serif en titulares y todo dato no confirmado.",
     "keyCharacteristics": [
-      "Serif editorial (Source Serif 4, corte óptico automático) para la voz de la firma; Public Sans para leer y operar.",
-      "Filetes de 1px como estructura; no hay tarjetas con sombra.",
-      "Papel lino como fondo, papel hondo para los apartados de apoyo y un único navy plano para la banda de la Ley 155-17.",
-      "Azul del logo como único color de acción; dorado como marca escasa (la marca de apertura, los checks y los números de paso).",
-      "Esquinas casi rectas (2px) en todo lo que se pulsa o se rellena.",
-      "Sin fotografía mientras no exista material real: la tipografía hace el trabajo."
+      "Manrope 800 para titulares y Inter 400 a 600 para texto e interfaz, ambas autoalojadas.",
+      "Fondos blancos con degradado azul muy suave en los hero; tarjetas blancas con filete de 1px y sombra suave.",
+      "Botones en píldora con degradado azul corporativo y un único llamado a la acción.",
+      "Bandas de degradado azul marino a azul corporativo para compromisos, Ley 155-17 y cierre; pie en navy profundo.",
+      "Globo vectorial propio como elemento gráfico decorativo; nunca el logo ni marca de agua.",
+      "Sin fotografía mientras no exista material real."
     ],
     "rules": [
       {
-        "name": "La Regla de la Tinta Única",
-        "body": "Hay un solo navy y un solo azul. Ningún hex suelto fuera de los tokens.",
+        "name": "La Regla de los Tokens",
+        "body": "Hay un solo navy, un solo azul de acción y un solo verde. Ningún hex suelto fuera de los tokens.",
         "section": "colors"
       },
       {
-        "name": "La Regla del Oro Escaso",
-        "body": "El dorado marca, no decora: la marca de apertura, los checks, la categoría y los números de paso. Nunca rellena una superficie ni un botón.",
+        "name": "La Regla del Verde Escaso",
+        "body": "El verde solo marca el distintivo de la Ley 155-17 y los checks de las listas.",
         "section": "colors"
       },
       {
-        "name": "La Regla de la Única Banda",
-        "body": "El navy como superficie aparece una vez por página, en la banda de la Ley 155-17 (Inicio y /ley-155-17). El cierre y el pie van sobre papel.",
-        "section": "colors"
-      },
-      {
-        "name": "La Regla sin Degradados",
-        "body": "Ningún fondo, botón ni icono lleva degradado. El color es plano.",
+        "name": "La Regla de los Cuatro Degradados",
+        "body": "Solo existen los degradados de botón, banda, hero y tarjeta del panel. Ningún degradado en texto ni en otras superficies.",
         "section": "colors"
       },
       {
         "name": "La Regla de los Pesos Reales",
-        "body": "Serif 500/600 y sans 400/600. Ningún otro peso.",
+        "body": "Manrope 700/800 e Inter 400/500/600. Ningún otro peso ni ninguna serif en titulares.",
         "section": "typography"
       },
       {
@@ -419,33 +359,31 @@
         "section": "typography"
       },
       {
-        "name": "La Regla del Papel Plano",
-        "body": "Ninguna superficie en reposo que forme parte del flujo lleva sombra. Solo lleva sombra lo que flota fijo sobre el contenido o aparece por un estado.",
-        "section": "elevation"
+        "name": "La Regla del Panel Ilustrativo",
+        "body": "El panel del hero no contiene cifras, clientes, gráficas ni estados de cumplimiento; es una ilustración.",
+        "section": "components"
       },
       {
-        "name": "La Regla de la Escala Cerrada",
-        "body": "Un tamaño nuevo entra primero en esta tabla y en el frontmatter; nunca directamente en el CSS.",
-        "section": "typography"
+        "name": "La Regla de la Elevación Suave",
+        "body": "Las tarjetas llevan filete de 1px y sombra suave en reposo; solo las interactivas se elevan en hover. Todo movimiento se anula con prefers-reduced-motion.",
+        "section": "elevation"
       }
     ],
     "dos": [
-      "Do usar el azul (#0052b8) como el único color de acción, con el mismo texto de llamado a la acción en todo el sitio.",
-      "Do abrir la tesis de cada página y el titular del cierre con la marca dorada de 56 × 2px, sin texto.",
-      "Do separar secciones y filas con filetes de 1px y con cambios de tono entre papel y papel hondo, antes que con tarjetas.",
-      "Do cerrar cada página con el bloque de firma sobre papel hondo.",
+      "Do usar el azul corporativo como único color de acción, con el mismo texto de llamado a la acción en todo el sitio.",
+      "Do separar bloques con tarjetas blancas, filetes de 1px y cambios entre blanco y lavado.",
+      "Do cerrar cada página con la banda azul y el botón blanco.",
       "Do citar la fuente oficial de cada actualización con su propio enlace.",
-      "Do reservar la numeración para secuencias con significado (los pasos de la metodología).",
-      "Do usar cifras tabulares en fechas, números de ley y pasos."
+      "Do mantener contraste AA, foco visible y respetar prefers-reduced-motion.",
+      "Do dejar que el salto de línea de los titulares en móvil lo decida el ancho, con text-wrap: balance."
     ],
     "donts": [
-      "Don't usar dashboards, gráficos o métricas decorativas, ni estados simulados como \"Validado\", \"360°\" o \"B2B\".",
-      "Don't usar cuadrículas de fondo, halos, resplandores ni degradados.",
-      "Don't repetir el logo como marca de agua por las secciones.",
-      "Don't poner antetítulos ni folios de texto sobre los titulares; la marca dorada cumple esa función.",
-      "Don't usar sombras en superficies en reposo dentro del flujo, ni efectos de elevación en hover.",
-      "Don't usar más de un navy, hex fuera de los tokens ni pesos tipográficos distintos de 400, 500 y 600.",
-      "Don't pintar de navy el cierre o el pie: la banda de la Ley 155-17 es la única superficie navy.",
+      "Don't mostrar métricas, cifras de clientes, resultados o estados de cumplimiento inventados, ni gráficas que parezcan datos reales.",
+      "Don't usar serif en titulares ni pesos distintos de los definidos.",
+      "Don't añadir degradados fuera de los cuatro definidos ni resplandores de neón.",
+      "Don't repetir, recolorear ni usar el logo como marca de agua; el globo decorativo es un dibujo propio.",
+      "Don't poner elementos flotantes que tapen el contenido en móvil.",
+      "Don't ofrecer formularios que prometan servicios inexistentes, como un boletín sin integración.",
       "Don't usar fotografía de stock presentada como el equipo o la oficina de CBR."
     ]
   }

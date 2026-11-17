@@ -18,8 +18,8 @@ Estos apartados se conservan fuera del menú principal para no cargar la navegac
 
 ## Datos configurados
 - Correo: `info.cbrauditores@gmail.com`
-- Teléfono: `(809) 323-4460`
-- WhatsApp: `18093234460`
+- Teléfono: `+1 (849) 254-4460`
+- WhatsApp: `18492544460`
 - Instagram: `https://www.instagram.com/cbrauditores/`
 
 ## Producción en Vercel

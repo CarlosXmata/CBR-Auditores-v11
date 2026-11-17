@@ -3,6 +3,11 @@
   "trailingSlash": false,
   "redirects": [
     {
+      "source": "/noticias/ley-30-26-beneficios-fiscales-formalizacion",
+      "destination": "/noticias",
+      "statusCode": 301
+    },
+    {
       "source": "/:path(.*)",
       "has": [{ "type": "host", "value": "cbrauditores.com" }],
       "destination": "https://www.cbrauditores.com/:path",

@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import '@fontsource-variable/source-serif-4/opsz.css'
-import '@fontsource-variable/public-sans/wght.css'
+import '@fontsource-variable/manrope/wght.css'
+import '@fontsource-variable/inter/wght.css'
 import App from './App.jsx'
 import './styles.css'
 

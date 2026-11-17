@@ -1,371 +1,214 @@
 ---
 name: CBR Auditores & Consultores
-description: Firma de auditoría, contabilidad, impuestos y cumplimiento en República Dominicana; la web como un dictamen profesional bien compuesto.
+description: Firma de auditoría, contabilidad, impuestos y cumplimiento en República Dominicana; la web como una oficina profesional clara, azul y ordenada ("Azul corporativo").
 colors:
-  blue: "#0052b8"
-  blue-deep: "#003f8f"
-  gold: "#a8874f"
-  gold-text: "#7e6334"
-  gold-light: "#c9a96a"
-  navy: "#0b1f3a"
-  paper: "#fbf9f5"
-  paper-deep: "#f3efe7"
-  folio: "#ffffff"
-  ink: "#1b2433"
-  ink-2: "#4a5363"
-  rule: "#e4dfd5"
-  rule-strong: "#cfc8ba"
-  on-navy: "#f4f1ea"
-  on-navy-2: "#b9c2d0"
-  rule-navy: "rgba(244, 241, 234, 0.16)"
+  bg: "#ffffff"
+  wash: "#f5f8fd"
+  wash-2: "#eaf1fb"
+  card: "#ffffff"
+  ink: "#1c2a40"
+  ink-2: "#4b5870"
+  ink-3: "#66748b"
+  navy: "#0a1f4a"
+  navy-deep: "#071633"
+  blue: "#0f5bc8"
+  blue-deep: "#0a3f93"
+  blue-soft: "#dce9fb"
+  green: "#12805c"
+  green-wash: "#e7f5ef"
+  line: "#e1e8f2"
+  line-strong: "#c9d5e6"
+  on-navy: "#f3f7fd"
+  on-navy-2: "#b8c7de"
+  line-navy: "rgba(243, 247, 253, 0.16)"
   error: "#a3261d"
   error-wash: "#fbf1ef"
-  ink-3: "#6b7280"
+gradients:
+  button: "linear-gradient(135deg, #1763d1 0%, #0a2f74 100%)"
+  band: "linear-gradient(135deg, #0a2559 0%, #0d4aaa 100%)"
+  hero: "radial-gradient(900px 520px at 88% 8%, #dbe9fc 0%, transparent 70%), linear-gradient(180deg, #f6f9fe 0%, #ffffff 100%)"
+  tile: "linear-gradient(135deg, #0a2e72 0%, #1366d6 100%)"
 typography:
-  law-numeral:
-    fontFamily: "'Source Serif 4 Variable', Georgia, 'Times New Roman', serif"
-    fontSize: "clamp(3rem, 2rem + 3vw, 4.5rem)"
-    fontWeight: 500
-    lineHeight: 1
-    letterSpacing: "-0.02em"
   display:
-    fontFamily: "'Source Serif 4 Variable', Georgia, 'Times New Roman', serif"
-    fontSize: "clamp(2.375rem, 1.35rem + 3.2vw, 4.25rem)"
-    fontWeight: 500
+    fontFamily: "'Manrope Variable', 'Segoe UI', system-ui, sans-serif"
+    fontSize: "clamp(2.25rem, 1.3rem + 2.8vw, 3.5rem)"
+    fontWeight: 800
     lineHeight: 1.06
-    letterSpacing: "-0.018em"
-  display-home:
-    fontFamily: "'Source Serif 4 Variable', Georgia, 'Times New Roman', serif"
-    fontSize: "clamp(2.375rem, 1.35rem + 2.8vw, 4rem)"
-    fontWeight: 500
+    letterSpacing: "-0.035em"
+  display-page:
+    fontFamily: "'Manrope Variable', 'Segoe UI', system-ui, sans-serif"
+    fontSize: "clamp(2.125rem, 1.3rem + 2.6vw, 3.25rem)"
+    fontWeight: 800
     lineHeight: 1.06
-    letterSpacing: "-0.018em"
-  headline-service:
-    fontFamily: "'Source Serif 4 Variable', Georgia, 'Times New Roman', serif"
-    fontSize: "clamp(1.75rem, 1.3rem + 1.3vw, 2.375rem)"
-    fontWeight: 500
-    lineHeight: 1.14
-  headline-compact:
-    fontFamily: "'Source Serif 4 Variable', Georgia, 'Times New Roman', serif"
-    fontSize: "1.75rem"
-    fontWeight: 500
-    lineHeight: 1.14
-  motto:
-    fontFamily: "'Source Serif 4 Variable', Georgia, 'Times New Roman', serif"
-    fontSize: "1.625rem"
-    fontWeight: 500
-    lineHeight: 1.2
-  signature:
-    fontFamily: "'Source Serif 4 Variable', Georgia, 'Times New Roman', serif"
-    fontSize: "1.5rem"
-    fontWeight: 600
-    lineHeight: 1.2
-  title-list:
-    fontFamily: "'Source Serif 4 Variable', Georgia, 'Times New Roman', serif"
-    fontSize: "1.25rem"
-    fontWeight: 600
-    lineHeight: 1.35
-  title-small:
-    fontFamily: "'Source Serif 4 Variable', Georgia, 'Times New Roman', serif"
-    fontSize: "1.1875rem"
-    fontWeight: 600
-    lineHeight: 1.3
-  prose:
-    fontFamily: "'Public Sans Variable', 'Segoe UI', system-ui, -apple-system, sans-serif"
-    fontSize: "1.125rem"
-    fontWeight: 400
-    lineHeight: 1.75
-  body-compact:
-    fontFamily: "'Public Sans Variable', 'Segoe UI', system-ui, -apple-system, sans-serif"
-    fontSize: "1rem"
-    fontWeight: 400
-    lineHeight: 1.55
-  small:
-    fontFamily: "'Public Sans Variable', 'Segoe UI', system-ui, -apple-system, sans-serif"
-    fontSize: "0.9375rem"
-    fontWeight: 400
-    lineHeight: 1.55
-  caption:
-    fontFamily: "'Public Sans Variable', 'Segoe UI', system-ui, -apple-system, sans-serif"
-    fontSize: "0.875rem"
-    fontWeight: 400
-    lineHeight: 1.5
-  micro:
-    fontFamily: "'Public Sans Variable', 'Segoe UI', system-ui, -apple-system, sans-serif"
-    fontSize: "0.75rem"
-    fontWeight: 400
-    letterSpacing: "0.08em"
+    letterSpacing: "-0.035em"
   headline:
-    fontFamily: "'Source Serif 4 Variable', Georgia, 'Times New Roman', serif"
-    fontSize: "clamp(1.875rem, 1.3rem + 1.8vw, 2.75rem)"
-    fontWeight: 500
-    lineHeight: 1.14
-    letterSpacing: "-0.012em"
+    fontFamily: "'Manrope Variable', 'Segoe UI', system-ui, sans-serif"
+    fontSize: "clamp(1.75rem, 1.25rem + 1.8vw, 2.625rem)"
+    fontWeight: 800
+    lineHeight: 1.12
+    letterSpacing: "-0.03em"
   title:
-    fontFamily: "'Source Serif 4 Variable', Georgia, 'Times New Roman', serif"
-    fontSize: "1.375rem"
-    fontWeight: 600
+    fontFamily: "'Manrope Variable', 'Segoe UI', system-ui, sans-serif"
+    fontSize: "1.25rem"
+    fontWeight: 700
     lineHeight: 1.3
+    letterSpacing: "-0.015em"
   lead:
-    fontFamily: "'Public Sans Variable', 'Segoe UI', system-ui, -apple-system, sans-serif"
-    fontSize: "clamp(1.125rem, 1rem + 0.35vw, 1.25rem)"
-    fontWeight: 400
-    lineHeight: 1.6
-  body:
-    fontFamily: "'Public Sans Variable', 'Segoe UI', system-ui, -apple-system, sans-serif"
-    fontSize: "1.0625rem"
+    fontFamily: "'Inter Variable', 'Segoe UI', system-ui, sans-serif"
+    fontSize: "clamp(1.0625rem, 1rem + 0.25vw, 1.1875rem)"
     fontWeight: 400
     lineHeight: 1.65
-  label:
-    fontFamily: "'Public Sans Variable', 'Segoe UI', system-ui, -apple-system, sans-serif"
-    fontSize: "0.8125rem"
+  body:
+    fontFamily: "'Inter Variable', 'Segoe UI', system-ui, sans-serif"
+    fontSize: "1rem"
+    fontWeight: 400
+    lineHeight: 1.65
+  eyebrow:
+    fontFamily: "'Inter Variable', 'Segoe UI', system-ui, sans-serif"
+    fontSize: "0.75rem"
     fontWeight: 600
-    letterSpacing: "0.06em"
+    letterSpacing: "0.14em"
 rounded:
-  sm: "2px"
+  control: "12px"
+  card: "22px"
+  panel: "28px"
+  pill: "999px"
 spacing:
   gutter: "clamp(20px, 4vw, 48px)"
-  section: "clamp(72px, 9vw, 128px)"
-  section-tight: "clamp(48px, 6vw, 80px)"
-  container: "1240px"
-  grid-gap: "32px"
+  section: "clamp(64px, 8vw, 112px)"
+  section-tight: "clamp(40px, 5vw, 72px)"
+  container: "1200px"
 components:
   button-primary:
-    backgroundColor: "{colors.blue}"
-    textColor: "{colors.folio}"
-    rounded: "{rounded.sm}"
-    padding: "0 24px"
-    height: "48px"
-  button-primary-hover:
-    backgroundColor: "{colors.blue-deep}"
+    background: "{gradients.button}"
+    textColor: "#ffffff"
+    rounded: "{rounded.pill}"
+    padding: "0 28px"
+    height: "50px"
   button-quiet:
-    backgroundColor: "transparent"
+    backgroundColor: "#ffffff"
     textColor: "{colors.navy}"
-    rounded: "{rounded.sm}"
-    padding: "0 24px"
-    height: "48px"
+    border: "1px solid {colors.line-strong}"
+    rounded: "{rounded.pill}"
   button-light:
-    backgroundColor: "{colors.paper}"
+    backgroundColor: "#ffffff"
     textColor: "{colors.navy}"
-    rounded: "{rounded.sm}"
-    padding: "0 24px"
-    height: "48px"
+    rounded: "{rounded.pill}"
   input:
-    backgroundColor: "{colors.folio}"
+    backgroundColor: "#ffffff"
     textColor: "{colors.ink}"
-    rounded: "{rounded.sm}"
-    padding: "11px 14px"
-    height: "48px"
-  filter-chip:
-    backgroundColor: "transparent"
-    textColor: "{colors.ink}"
-    rounded: "{rounded.sm}"
-    padding: "0 16px"
-    height: "40px"
-  filter-chip-active:
-    backgroundColor: "{colors.navy}"
-    textColor: "{colors.paper}"
-  whatsapp-quick:
-    backgroundColor: "{colors.navy}"
-    textColor: "{colors.paper}"
-    rounded: "{rounded.sm}"
-    padding: "0 18px 0 14px"
-    height: "48px"
-  whatsapp-quick-hover:
-    backgroundColor: "{colors.blue-deep}"
+    rounded: "{rounded.control}"
+    height: "50px"
 ---
 
 # Design System: CBR Auditores & Consultores
 
+Dirección visual "Azul corporativo", aprobada por CBR sobre la referencia de diseño de la clienta. Sustituye al sistema anterior ("El Dictamen Firmado"). Este documento describe lo implementado en `src/styles.css`; si el código cambia, se actualiza aquí.
+
 ## Overview
 
-**Creative North Star: "El Dictamen Firmado"**
+Una oficina profesional clara: fondos blancos y azul muy pálido, titulares grandes en azul marino con una sans gruesa y moderna, tarjetas blancas con esquinas amplias y bandas de azul corporativo para los momentos de peso. La autoridad viene del orden, del contraste y de que cada actualización cita su fuente oficial, no de efectos.
 
-La web se compone como el documento que una firma de auditoría entrega a su cliente: papel membretado, una tesis en serif, apartados separados por filetes finos, cifras tabulares y una firma al pie. La autoridad no viene de efectos visuales, sino del orden de la composición y de lo que se afirma con respaldo: cada actualización cita su fuente oficial.
+**Rasgos:**
 
-La densidad es media-baja y hay mucho aire. Cada página avanza igual: membrete fijo, una marca dorada corta sobre la tesis en serif display, el desarrollo en una retícula editorial de 12 columnas con filetes de 1px y, al final, un cierre en papel hondo con el único llamado a la acción y un bloque de firma. Una sola superficie navy por página marca el momento de peso (la Ley 155-17).
+- Manrope 800 para titulares y cifras; Inter para leer y operar. Ambas autoalojadas (`@fontsource-variable`).
+- Fondo blanco con un degradado azul muy suave en los hero; paneles y tarjetas blancas con filete de 1px y sombra suave.
+- Botones en píldora con degradado azul corporativo; un único llamado a la acción con el mismo texto en todo el sitio.
+- Bandas de degradado azul marino a azul corporativo para compromisos, Ley 155-17 y el cierre; pie en navy profundo.
+- Elementos gráficos inspirados en el globo del logo, dibujados como SVG propio y decorativo (nunca el logo, nunca como marca de agua).
+- Sin fotografía mientras no exista material real.
 
-El color es contenido: navy para la voz de la firma, el azul del logo solo para la acción y el dorado de archivo, escaso, para marcar. Se rechaza de forma explícita el aspecto de plantilla SaaS: dashboards ficticios, cuadrículas de fondo, halos y resplandores, degradados, marcas de agua repetidas del logo, baldosas de icono y tarjetas flotantes con sombra.
-
-**Key Characteristics:**
-
-- Serif editorial (Source Serif 4, corte óptico automático) para la voz de la firma; Public Sans para leer y operar.
-- Filetes de 1px como estructura; no hay tarjetas con sombra.
-- Papel lino como fondo, papel hondo para los apartados de apoyo y un único navy plano para la banda de la Ley 155-17.
-- Azul del logo como único color de acción; dorado como marca escasa (la marca de apertura, los checks y los números de paso).
-- Esquinas casi rectas (2px) en todo lo que se pulsa o se rellena.
-- Sin fotografía mientras no exista material real: la tipografía hace el trabajo.
+**Se rechaza:** el aspecto de plantilla SaaS genérica (métricas, clientes o gráficas inventadas, estados de cumplimiento ficticios, halos de neón, iconos en baldosas), cualquier serif en titulares y todo dato no confirmado.
 
 ## Colors
 
-Paleta contenida: tinta navy sobre papel blanco cálido, un azul de acción tomado del logo y un dorado de archivo que aparece poco.
+### Marca y acción
+- **Azul CBR** (blue `#0f5bc8`): enlaces, foco, fecha de actualización, filtro activo, números de paso. Es el único color de acción.
+- **Azul CBR Profundo** (blue-deep): hover de enlaces, categorías y lemas de servicio.
+- **Azul Suave** (blue-soft): números grandes de las tarjetas de servicio y texto claro sobre bandas.
 
-### Primary
-- **Azul CBR** (blue): muestreado del logo. Es el único color de acción: botón primario, enlaces de texto, filtro en hover, filete del índice de servicios en hover, anillo de foco.
-- **Azul CBR Profundo** (blue-deep): hover del azul de acción y de los enlaces; también el lema de cada servicio en /servicios y el hover del acceso de WhatsApp.
+### Neutros
+- **Navy** (navy `#0a1f4a`): titulares, nombre de marca, texto fuerte. **Navy Profundo** (navy-deep): fondo del pie.
+- **Blanco** (bg, card): fondo y tarjetas. **Lavado** (wash `#f5f8fd`): secciones de apoyo y la tarjeta izquierda de pares.
+- **Tinta** (ink), **Tinta 2** (ink-2) y **Tinta 3** (ink-3): texto de lectura, apoyo y placeholders (todos con contraste AA sobre blanco).
+- **Filete** (line) y **Filete Marcado** (line-strong): bordes de 1px de tarjetas, campos y separadores.
+- **Texto sobre azul** (on-navy, on-navy-2, line-navy): texto principal, de apoyo y divisores dentro de bandas y pie.
 
-### Secondary
-- **Oro de Archivo** (gold): la marca de apertura (56 × 2px), los checks de las listas y el subrayado del enlace activo del menú. Solo en elementos gráficos.
-- **Oro de Archivo Texto** (gold-text): la variante legible sobre papel para texto pequeño: categoría de cada actualización y números de los pasos de la metodología.
-- **Oro de Archivo Claro** (gold-light): la variante sobre navy: el rótulo grande "Ley 155-17" de la banda, sus checks y el anillo de foco dentro de la banda.
+### Funcionales
+- **Verde** (green, green-wash): solo el distintivo "Ley 155-17" y los checks de listas.
+- **Error** (error, error-wash): alerta del formulario de contacto.
 
-### Neutral
-- **Navy Institucional** (navy): titulares serif, nombre de la firma, la banda de la Ley 155-17, el filtro activo, el filete de la firma y el acceso de WhatsApp. Es un único navy para todo el sitio.
-- **Papel Lino** (paper): fondo general, membrete y pie de página.
-- **Papel Hondo** (paper-deep): fondo secundario para el bloque de servicios de Inicio, el apartado "por qué" de Nosotros, la fila del boletín, la banda de nota de /servicios y el cierre con firma.
-- **Blanco Folio** (folio): campos de formulario y la ficha del formulario de contacto, que se apoyan sobre el papel.
-- **Tinta** (ink): texto de lectura.
-- **Tinta Secundaria** (ink-2): leads, texto de apoyo, fechas, rótulos de datos.
-- **Filete** (rule): divisores de 1px entre filas.
-- **Filete Marcado** (rule-strong): bordes de campos y botones discretos, filete superior de cada lista, filetes verticales de las columnas laterales y filete superior del pie.
-- **Texto sobre Navy** (on-navy / on-navy-2) y **Filete sobre Navy** (rule-navy): texto principal, texto de apoyo y divisores dentro de la banda navy.
-- **Error** (error): borde y título de la alerta de formulario y estado de error del boletín.
-- **Lavado de Error** (error-wash): fondo de la alerta de error del formulario de contacto.
-- **Tinta Terciaria** (ink-3): texto de los placeholders de los campos (≈ 4.8:1 sobre blanco folio).
+### Degradados (los únicos permitidos)
+- **button**: botón primario. **band**: compromisos, Ley 155-17, cierre y la tarjeta azul de "Servicio diferencial". **hero**: fondo de los hero (resplandor azul pálido arriba a la derecha sobre blanco). **tile**: tarjetas azules del panel del hero.
 
-### Named Rules
-**La Regla de la Tinta Única.** Hay un solo navy y un solo azul. Ningún hex suelto fuera de los tokens.
-
-**La Regla del Oro Escaso.** El dorado marca, no decora: la marca de apertura, los checks, la categoría y los números de paso. Nunca rellena una superficie ni un botón.
-
-**La Regla de la Única Banda.** El navy como superficie aparece una vez por página, en la banda de la Ley 155-17 (Inicio y /ley-155-17). El cierre y el pie van sobre papel.
-
-**La Regla sin Degradados.** Ningún fondo, botón ni icono lleva degradado. El color es plano.
+**Reglas.** Ningún hex suelto fuera de los tokens. El verde no decora. Los degradados no se aplican a texto ni a otras superficies.
 
 ## Typography
 
-**Display Font:** Source Serif 4 Variable, con `font-optical-sizing: auto` (fallback: Georgia, "Times New Roman", serif)
-**Body Font:** Public Sans Variable (fallback: "Segoe UI", system-ui, sans-serif)
+**Display:** Manrope Variable (800 en titulares, 700 en títulos de lista). **Cuerpo e interfaz:** Inter Variable (400 a 600).
 
-**Character:** una serif transicional e institucional para la voz de la firma y una sans neutra de origen gubernamental para el texto y la interfaz. Ambas se autoalojan (@fontsource-variable) y las cifras se componen tabulares y de caja alta (`tabular-nums lining-nums`) en fechas, la ley y los pasos.
+### Jerarquía
+- **Display** (800, interlineado 1.06, tracking −0.035em, `text-wrap: balance`): tesis de cada página. Hero de Inicio: clamp(2.25rem → 3.5rem), limitado a 15ch. Páginas interiores: clamp(2.125rem → 3.25rem), 20ch.
+- **Headline** (800, 1.12, −0.03em): titulares de sección, bandas y cierre. En la ficha de servicio baja a clamp(1.625rem → 2.25rem).
+- **Title** (700, 1.25rem): títulos de tarjetas de servicio.
+- **Lead** (Inter 400, clamp 1.0625rem → 1.1875rem, 1.65, máximo 60ch) y **Body** (Inter 400, 1rem, 1.65, máximo 66ch).
+- **Eyebrow / label** (Inter 600, 0.75rem, mayúsculas, tracking 0.1 a 0.14em, azul): antetítulo del hero y rótulos de panel.
+- **Texto de interfaz**: botones en Manrope 700 a 0.9375rem; navegación en Inter 500 a 0.9375rem; campos y listas en Inter 14 a 15px.
 
-### Hierarchy
-- **Display** (serif 500, interlineado 1.06, tracking −0.018em, `text-wrap: balance`): la tesis de cada página, una por página. En el hero de Inicio se limita a 22ch y a un clamp algo menor (hasta 4rem).
-- **Headline** (serif 500, interlineado 1.14): titular de sección y del cierre. En la ficha de servicio baja a clamp(1.75rem → 2.375rem).
-- **Title** (serif 600, 1.375rem, interlineado 1.3): filas del índice de servicios y subtítulos. Las variantes de lista (banda, actualizaciones, checklist) usan serif 600 entre 1.1875 y 1.25rem.
-- **Lead** (sans 400, interlineado 1.6, ink-2, máximo 60ch): el párrafo bajo la tesis.
-- **Body** (sans 400, 17px, interlineado 1.65, máximo 68ch; 16px por debajo de 720px). La prosa de los artículos sube a 1.125rem con interlineado 1.75.
-- **Label** (sans 600, 0.8125rem, tracking 0.06em, caja normal): títulos de columnas laterales ("Áreas de práctica", "Índice de servicios"), encabezados del pie y rótulos de datos. Nunca se coloca sobre un titular como antetítulo.
+**Móvil:** los titulares conservan peso 800 y bajan por `clamp`; se anula el `max-width` en caracteres del hero para que el salto de línea lo decida el ancho. El cuerpo no baja de 16px.
 
-### Escala completa (aprobada visualmente; los tamaños del código son estos y solo estos)
-| Paso | Tamaño | Voz | Dónde |
-|---|---|---|---|
-| law-numeral | clamp(3rem → 4.5rem) | serif 500 | "Ley 155-17" como primera línea del titular de la banda |
-| display | clamp(2.375rem → 4.25rem) | serif 500 | tesis (H1) de páginas interiores |
-| display-home | clamp(2.375rem → 4rem) | serif 500 | tesis de Inicio, limitada a 22ch |
-| headline | clamp(1.875rem → 2.75rem) | serif 500 | titulares de sección y del cierre |
-| headline-service | clamp(1.75rem → 2.375rem) | serif 500 | nombre de cada servicio en /servicios |
-| headline-compact | 1.75rem | serif 500 | titular de la columna de contacto y números de los pasos |
-| motto | 1.625rem | serif 500 | Orden · Cumplimiento · Confianza (Nosotros) |
-| signature | 1.5rem | serif 600 | nombre de la firma en el cierre |
-| title | 1.375rem | serif 600 | filas del índice de servicios, subtítulo de Inicio |
-| title-list | 1.25rem | serif 600 | títulos de actualizaciones, línea de servicio, nota de /servicios, mobile-nav |
-| title-small | 1.1875rem | serif 600 | lista de la banda, nombre de marca, checklist detallado |
-| lead | clamp(1.125rem → 1.25rem) | sans 400 | párrafo bajo la tesis |
-| prose | 1.125rem | sans/serif | prosa de artículos; enlaces de áreas de práctica (serif) |
-| body | 1.0625rem | sans 400 | texto de lectura |
-| body-compact | 1rem | sans | cuerpo por debajo de 720px, ítems de alcance y checklist |
-| small | 0.9375rem | sans | texto de apoyo en listas, nav, pie, botones, enlaces de acción |
-| caption | 0.875rem | sans | fechas, fuentes, rótulos de campos, mensajes de estado |
-| label | 0.8125rem | sans 600 | rótulos de columna y categorías |
-| micro | 0.75rem | sans 400, tracking 0.08em | "& Consultores" bajo el nombre de marca |
-
-**La Regla de la Escala Cerrada.** Un tamaño nuevo entra primero en esta tabla y en el frontmatter; nunca directamente en el CSS.
-
-### Named Rules
-**La Regla de los Pesos Reales.** Serif 500/600 y sans 400/600. Ningún otro peso.
-
-**La Regla de la Cifra Tabular.** Toda fecha, número de ley o número de paso lleva cifras tabulares.
+**Reglas.** Solo pesos que existen en la fuente (Manrope 700/800, Inter 400/500/600). Cifras de fechas y pasos en `tabular-nums`. Nunca una serif en un titular.
 
 ## Layout
 
-- **Retícula editorial de 12 columnas** con un hueco de 32px, dentro de un contenedor de hasta 1240px y márgenes laterales fluidos (gutter).
-- **Composición asimétrica**: la tesis ocupa unas 8 columnas; las columnas laterales (áreas de práctica, índice, datos) se separan con un filete vertical de rule-strong y 32px de sangría. Las secciones de dos ideas reparten 5 + 6 columnas con una de aire entre ambas; las cabeceras de sección, 6 + 5.
-- **Ritmo vertical**: secciones de clamp(72px → 128px) y secciones ajustadas de clamp(48px → 80px). Dos secciones de papel seguidas se separan con un filete de 1px; las de papel hondo y la banda se separan por tono.
-- **Listas como filas**: servicios, actualizaciones, alcances y canales son filas con filete inferior y un filete superior más marcado que abre la lista; no son cuadrículas de tarjetas.
-- **Breakpoints**: a 1080px el menú pasa a botón y todas las retículas colapsan a una columna (las columnas laterales pasan debajo con filete superior); a 720px el membrete baja a 64px, los botones del hero ocupan todo el ancho y el acceso de WhatsApp queda solo como icono.
-- El membrete es fijo (76px) y el desplazamiento a anclas lo compensa.
+- Contenedor de 1200px con gutter fluido. Secciones de clamp(64px → 112px).
+- **Hero de Inicio** a dos columnas (contenido comercial a la izquierda, panel visual a la derecha) con un globo vectorial decorativo detrás. Páginas interiores: hero claro con tesis a la izquierda y una tarjeta de apoyo (índice, datos) a la derecha.
+- **Pares de tarjetas**: "Una firma cercana…" (blanca) y "Servicio diferencial" (azul), 50/50.
+- **Servicios en Inicio**: cuadrícula de 3 columnas de tarjetas numeradas por contador CSS. En /servicios: una tarjeta ancha por servicio, cabecera a la izquierda y alcance a la derecha.
+- **Actualizaciones**: lista de tarjetas con fecha en píldora azul, categoría en mayúsculas, titular y dos enlaces (resumen de CBR y fuente oficial).
+- **Breakpoints**: 1240px oculta el correo del membrete; 1080px pasa el menú a botón y colapsa las retículas a una columna (servicios a 2 columnas); 720px reduce paneles, apila botones a ancho completo, deja el pie en una sola columna con enlaces de 8px de relleno vertical y el acceso de WhatsApp solo como icono.
+- Membrete fijo de 76px (64px en móvil); el desplazamiento a anclas lo compensa.
 
 ## Elevation & Depth
 
-El sistema es **plano**. La profundidad se construye con tono (papel → papel hondo → blanco folio, y la banda navy) y con filetes, no con sombras. Hay dos excepciones justificadas por su posición, no por decoración.
-
-### Shadow Vocabulary
-- **Flotante fijo** (`box-shadow: 0 8px 24px rgba(11, 31, 58, 0.22)`): solo el acceso de WhatsApp, que queda fijo sobre el contenido y necesita separarse de lo que pasa por debajo.
-- **Menú desplegado** (`box-shadow: 0 16px 32px rgba(11, 31, 58, 0.08)`): el menú móvil abierto, como respuesta a un estado.
-- **Anillo de foco de campo** (`box-shadow: 0 0 0 3px rgba(0, 82, 184, 0.18)`): estado de foco de los campos.
-
-### Named Rules
-**La Regla del Papel Plano.** Ninguna superficie en reposo que forme parte del flujo lleva sombra. Solo lleva sombra lo que flota fijo sobre el contenido o aparece por un estado.
+Superficies blancas sobre fondo blanco o lavado, separadas por un filete de 1px y una sombra suave de dos capas (`--shadow`); las tarjetas interactivas suben 3px y toman `--shadow-lift` en hover. El panel del hero lleva una sombra larga azulada. El acceso de WhatsApp y el menú móvil llevan sombra por posición. Todo respeta `prefers-reduced-motion`.
 
 ## Shapes
 
-- **Esquinas casi rectas**: 2px en botones, campos, filtros, alertas, el acceso de WhatsApp y el contorno de foco. No hay píldoras.
-- **Filetes de 1px** como estructura principal (rule entre filas y rule-strong para abrir listas y separar columnas). Los pasos de la metodología se abren con un filete navy de 2px.
-- **La marca**: un filete dorado de 56 × 2px que abre la tesis de cada página y el titular del cierre. Es la única marca de apertura del sistema; no lleva texto.
-- **Logo**: el original, a 44px en el membrete, el pie y la firma del cierre (38px en móvil). Nunca como marca de agua.
-- **Iconos** de trazo de 1.6px, extremos redondeados, entre 16 y 22px, en currentColor.
+- Radios: 12px en campos, 18 a 22px en tarjetas y bandas internas, 28px en el panel del hero, 999px en botones, etiquetas y filtros (14px en fechas largas de dos líneas).
+- **Globo**: SVG propio de meridianos, paralelos y arcos en azul pálido, `aria-hidden`. Aparece detrás del hero y dentro del panel. Es ilustrativo: no representa datos.
+- **Logo**: el original, 46px en el membrete y el pie (40px en móvil), sin tocar ni recolorear.
+- Iconos de trazo de 1.8px, extremos redondeados, en `currentColor`.
 
 ## Components
 
-### Buttons
-Firmes y sobrios: el botón azul es el único llamado a la acción y siempre dice lo mismo ("Solicitar una consulta").
-- **Shape:** casi recto (2px), alto mínimo de 48px, sans 600 a 0.9375rem.
-- **Primary:** fondo azul, texto blanco; en hover pasa a azul profundo (transición de color de 0.2s).
-- **Quiet:** transparente, texto navy, borde rule-strong; en hover el borde pasa a navy.
-- **Light:** papel sobre navy, para usar dentro de la banda.
-- **Focus:** contorno azul de 2px separado 3px (gold-light dentro de la banda).
+### Botones
+Píldora, alto mínimo de 50px, Manrope 700.
+- **Primary:** degradado azul, texto blanco, sombra azul; en hover sube 1px. Es el único llamado a la acción y siempre dice "Solicitar una consulta".
+- **Quiet:** blanco con borde `line-strong`, texto navy; en hover el borde pasa a azul. Se usa para acciones secundarias (WhatsApp, "Conocer la firma").
+- **Light:** blanco sobre bandas azules (cierre, "Ver servicios").
+- **Foco:** contorno azul de 2px a 3px (blanco dentro de bandas y pie).
 
-### Text links
-Enlace de acción secundario: azul 600, subrayado de 1px a 5px de la línea base con 35% de opacidad, que se completa al pasar el ratón. La flecha avanza 3px en hover. Variante clara sobre navy.
+### Panel del hero (ilustrativo)
+Tarjeta blanca translúcida con: cabecera ("Áreas de práctica" y distintivo verde "Ley 155-17"), dos tarjetas azules con texto descriptivo, una franja con el globo y dos listas con enlaces reales (áreas clave y cumplimiento). **No contiene cifras, clientes, gráficas ni estados de cumplimiento**, y ningún texto del panel afirma un resultado.
 
-### Inputs / Fields
-- **Style:** blanco folio, borde de 1px rule-strong, 2px de radio, 48px de alto (140px el área de texto); etiqueta sans 600 navy de 0.875rem encima.
-- **Hover:** el borde pasa a ink-2.
-- **Focus:** borde azul y anillo azul de 3px al 18%; sin contorno extra.
-- **Error:** alerta con borde de error de 1px, fondo rosado muy claro y título en color de error.
+### Tarjetas
+Blancas, filete `line`, radio 22px. Variantes: servicio (número azul suave + título + línea del servicio), compromiso (translúcida sobre banda), Ley 155-17 (translúcida con check verde), paso y checklist (blancas con filete).
 
-### Filters
-Filtros de categoría en Noticias: 40px de alto, borde rule-strong, 2px de radio. El activo (`aria-pressed`) se rellena de navy con texto papel.
+### Campos
+Blancos, borde `line-strong`, radio 12px, alto 50px, etiqueta Inter 600 navy encima. Foco: borde azul y anillo azul de 3px al 20%. Error: alerta con borde de error y fondo `error-wash`.
 
-### Navigation
-Membrete fijo sobre papel con filete inferior: logo de 44px, nombre en serif 600 y "& Consultores" en sans pequeña con tracking; menú sans de 0.9375rem en tinta, azul en hover; la página actual va en navy con subrayado dorado a 8px. El botón primario cierra el membrete. Por debajo de 1080px, botón de menú de 44px y un panel desplegable con enlaces serif de 1.25rem separados por filetes.
+### Filtros y etiquetas
+Filtros de categoría en píldora de 42px; el activo (`aria-pressed`) se rellena de azul. La fecha de cada actualización es una píldora azul con texto blanco.
 
-### Services index (signature)
-Filas de tres columnas (título serif, línea de descripción, flecha) entre filetes. En hover o foco, un filete azul se dibuja de izquierda a derecha sobre el filete inferior (0.55s), el título pasa a azul y la flecha avanza 4px. Cada fila lleva a su apartado en /servicios. Las filas no se numeran.
+### Pie
+Navy profundo con texto `on-navy-2`; en escritorio, marca a la izquierda y tres columnas (sitio, servicios, contacto); en móvil, una columna con separadores.
 
-### Update rows
-Fecha tabular, categoría en oro texto y titular serif con la fuente citada debajo. Cada fila lleva dos acciones explícitas: "Leer el resumen de CBR" (interno) y "Consultar fuente oficial" (externo, flecha diagonal).
-
-### Ley 155-17 band
-La única superficie navy: el rótulo "Ley 155-17" en serif gold-light de hasta 4.5rem, la explicación en on-navy-2 y una lista de puntos con checks dorados separados por filetes translúcidos.
-
-### Close & signature
-El cierre de cada página va sobre papel hondo: la marca dorada, el titular, un párrafo, el botón primario y, debajo, el bloque de firma: un filete navy de 1px (hasta 320px), el logo de 44px, "CBR Auditores & Consultores" en serif 600 de 1.5rem y "República Dominicana" en sans pequeña.
-
-### WhatsApp quick access
-Acceso fijo abajo a la derecha: navy, 2px de radio, 48px de alto, icono y la palabra "WhatsApp"; azul profundo en hover. Es el único elemento con sombra en reposo. Se oculta en /contacto, donde el canal ya está en la página, y en móvil se reduce a un cuadrado de 48px con solo el icono.
-
-### Methodology steps
-Cinco pasos en columnas, cada uno abierto por un filete navy de 2px, con un número serif en oro texto. Es la única numeración del sitio, porque ahí el orden tiene significado.
+### Bloque informativo del boletín
+Mientras no exista una integración real de suscripción, no hay formulario ni campo de correo: solo un texto y un enlace al Centro de Actualizaciones.
 
 ## Do's and Don'ts
 
-### Do:
-- **Do** usar el azul (#0052b8) como el único color de acción, con el mismo texto de llamado a la acción en todo el sitio.
-- **Do** abrir la tesis de cada página y el titular del cierre con la marca dorada de 56 × 2px, sin texto.
-- **Do** separar secciones y filas con filetes de 1px y con cambios de tono entre papel y papel hondo, antes que con tarjetas.
-- **Do** cerrar cada página con el bloque de firma sobre papel hondo.
-- **Do** citar la fuente oficial de cada actualización con su propio enlace.
-- **Do** reservar la numeración para secuencias con significado (los pasos de la metodología).
-- **Do** usar cifras tabulares en fechas, números de ley y pasos.
+**Hacer:** mantener un solo llamado a la acción con el mismo texto; conservar contraste AA; mantener foco visible y `prefers-reduced-motion`; mostrar solo contenido confirmado.
 
-### Don't:
-- **Don't** usar dashboards, gráficos o métricas decorativas, ni estados simulados como "Validado", "360°" o "B2B".
-- **Don't** usar cuadrículas de fondo, halos, resplandores ni degradados.
-- **Don't** repetir el logo como marca de agua por las secciones.
-- **Don't** poner antetítulos ni folios de texto sobre los titulares; la marca dorada cumple esa función.
-- **Don't** usar sombras en superficies en reposo dentro del flujo, ni efectos de elevación en hover.
-- **Don't** usar más de un navy, hex fuera de los tokens ni pesos tipográficos distintos de 400, 500 y 600.
-- **Don't** pintar de navy el cierre o el pie: la banda de la Ley 155-17 es la única superficie navy.
-- **Don't** usar fotografía de stock presentada como el equipo o la oficina de CBR.
+**No hacer:** inventar métricas, clientes, certificaciones o estados; usar serif en titulares; añadir degradados fuera de los cuatro listados; repetir o recolorear el logo; poner elementos flotantes que tapen contenido en móvil.
