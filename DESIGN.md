@@ -212,8 +212,8 @@ Paleta contenida: tinta navy sobre papel blanco cálido, un azul de acción toma
 ### Neutral
 - **Navy Institucional** (navy): titulares serif, nombre de la firma, la banda de la Ley 155-17, el filtro activo, el filete de la firma y el acceso de WhatsApp. Es un único navy para todo el sitio.
 - **Papel Lino** (paper): fondo general, membrete y pie de página.
-- **Papel Hondo** (paper-deep): fondo secundario para el bloque de servicios de Inicio, el apartado "por qué" de Nosotros, la fila del boletín, la banda de nota de /servicios y el cierre con firma.
-- **Blanco Folio** (folio): campos de formulario y la ficha del formulario de contacto, que se apoyan sobre el papel.
+- **Papel Hondo** (paper-deep): fondo secundario para el apartado "por qué" de Nosotros, la fila del boletín, la banda de nota de /servicios y el cierre con firma.
+- **Blanco Folio** (folio): campos de formulario, la ficha del formulario de contacto y la ficha de áreas de práctica del hero de Inicio, que se apoyan sobre el papel.
 - **Tinta** (ink): texto de lectura.
 - **Tinta Secundaria** (ink-2): leads, texto de apoyo, fechas, rótulos de datos.
 - **Filete** (rule): divisores de 1px entre filas.
@@ -334,6 +334,9 @@ Membrete fijo sobre papel con filete inferior: logo de 44px, nombre en serif 600
 ### Services index (signature)
 Filas de tres columnas (título serif, línea de descripción, flecha) entre filetes. En hover o foco, un filete azul se dibuja de izquierda a derecha sobre el filete inferior (0.55s), el título pasa a azul y la flecha avanza 4px. Cada fila lleva a su apartado en /servicios. Las filas no se numeran.
 
+### Hero de Inicio con ficha de áreas de práctica
+Dos columnas asimétricas (7/5). A la izquierda: la marca dorada, la tesis en display (hasta 20ch), el párrafo que dice quién es CBR y a quién ayuda, el porqué, el botón primario con WhatsApp como enlace de texto y, bajo un filete, una sola línea con tres hechos confirmados separados por puntos medios (sin checks ni píldoras). A la derecha: una ficha plana de folio con borde rule-strong de 1px, sin sombra ni hojas simuladas detrás; se abre con la marca dorada y un titular serif de 1.25rem, lista los seis servicios con su frase aprobada como filas del índice de servicios (mismo hover), cierra con la fila de la Ley 155-17 marcada con un filete dorado de 2px y el enlace a /servicios. La ficha no lleva antetítulo, logo ni superficie navy. En pantallas de escritorio de menos de 820px de alto se compacta para entrar completa en la primera pantalla.
+
 ### Update rows
 Fecha tabular, categoría en oro texto y titular serif con la fuente citada debajo. Cada fila lleva dos acciones explícitas: "Leer el resumen de CBR" (interno) y "Consultar fuente oficial" (externo, flecha diagonal).
 
@@ -344,7 +347,10 @@ La única superficie navy: el rótulo "Ley 155-17" en serif gold-light de hasta 
 El cierre de cada página va sobre papel hondo: la marca dorada, el titular, un párrafo, el botón primario y, debajo, el bloque de firma: un filete navy de 1px (hasta 320px), el logo de 44px, "CBR Auditores & Consultores" en serif 600 de 1.5rem y "República Dominicana" en sans pequeña.
 
 ### WhatsApp quick access
-Acceso fijo abajo a la derecha: navy, 2px de radio, 48px de alto, icono y la palabra "WhatsApp"; azul profundo en hover. Es el único elemento con sombra en reposo. Se oculta en /contacto, donde el canal ya está en la página, y en móvil se reduce a un cuadrado de 48px con solo el icono.
+Acceso fijo abajo a la derecha: navy, 2px de radio, 48px de alto, icono y la palabra "WhatsApp"; azul profundo en hover. Es el único elemento con sombra en reposo y el único acceso flotante. Se oculta en /contacto, donde el canal ya está en la página, y en móvil se reduce a un cuadrado de 48px con solo el icono.
+
+### Instagram
+Botón con filete (no flotante) en el pie de página y en la columna de datos de Contacto: icono de trazo de 20px, "@cbrauditores" en sans 600 de 0.9375rem, borde rule-strong de 1px y 2px de radio, 44px de alto; en hover el borde pasa a navy y el texto a azul. Abre en pestaña nueva con rel="noopener noreferrer" y una etiqueta accesible que nombra la cuenta.
 
 ### Methodology steps
 Cinco pasos en columnas, cada uno abierto por un filete navy de 2px, con un número serif en oro texto. Es la única numeración del sitio, porque ahí el orden tiene significado.

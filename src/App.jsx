@@ -141,14 +141,6 @@ const slugify = text =>
 
 const serviceHref = service => `/servicios#${slugify(service.title)}`
 
-const practiceAreas = [
-  ['Auditoría', serviceHref(services[1])],
-  ['Contabilidad', serviceHref(services[5])],
-  ['Impuestos', serviceHref(services[2])],
-  ['Consultoría financiera', serviceHref(services[3])],
-  ['Cumplimiento Ley 155-17', '/ley-155-17'],
-]
-
 const prefersReducedMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
 /* ---------- Routing ---------- */
@@ -229,6 +221,30 @@ const MenuIcon = ({ open }) => (
     {open ? <path d="M6 6l12 12M18 6L6 18" /> : <path d="M4 7h16M4 12h16M4 17h16" />}
   </svg>
 )
+const InstagramGlyph = () => (
+  <svg className="icon" viewBox="0 0 24 24" aria-hidden="true">
+    <rect x="3.5" y="3.5" width="17" height="17" rx="4.5" />
+    <circle cx="12" cy="12" r="4" />
+    <circle cx="17.3" cy="6.7" r="0.9" fill="currentColor" stroke="none" />
+  </svg>
+)
+
+// Acceso a la cuenta oficial de Instagram (pie de página y Contacto). No es flotante.
+function InstagramButton({ className = '' }) {
+  return (
+    <a
+      className={`ig-button ${className}`}
+      href={INSTAGRAM_URL}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Instagram de CBR Auditores & Consultores, @cbrauditores (se abre en una pestaña nueva)"
+    >
+      <InstagramGlyph />
+      <span>@cbrauditores</span>
+    </a>
+  )
+}
+
 const WhatsAppGlyph = () => (
   <svg viewBox="0 0 32 32" aria-hidden="true">
     <path d="M16.02 3.2A12.76 12.76 0 0 0 5.06 22.5L3.6 28.8l6.44-1.38A12.78 12.78 0 1 0 16.02 3.2Zm0 2.28a10.5 10.5 0 1 1-5.34 19.54l-.38-.22-3.6.77.82-3.5-.25-.4A10.5 10.5 0 0 1 16.02 5.48Zm-3.4 5.34c-.23-.55-.48-.56-.7-.57h-.6c-.22 0-.57.08-.87.4-.3.33-1.14 1.12-1.14 2.72 0 1.6 1.17 3.15 1.33 3.37.16.22 2.26 3.62 5.58 4.93 2.76 1.09 3.32.87 3.92.82.6-.06 1.94-.8 2.22-1.56.27-.77.27-1.43.19-1.56-.08-.14-.3-.22-.63-.38l-1.86-.91c-.33-.17-.57-.25-.81.24-.25.5-.93 1.21-1.14 1.46-.21.25-.42.28-.78.12-.36-.17-1.5-.55-2.86-1.76-1.06-.94-1.77-2.1-1.98-2.46-.2-.36-.02-.55.15-.72.16-.16.36-.42.55-.63.18-.21.24-.36.36-.6.12-.25.06-.46-.03-.64l-.9-1.97Z" />
@@ -382,9 +398,9 @@ function Footer({ whatsappLink }) {
             <ul>
               <li><a href={whatsappLink} target="_blank" rel="noreferrer">WhatsApp {CONTACT_PHONE}</a></li>
               <li><a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a></li>
-              <li><a href={INSTAGRAM_URL} target="_blank" rel="noreferrer">Instagram @cbrauditores</a></li>
               <li><Link to="/contacto">Formulario de contacto</Link></li>
             </ul>
+            <InstagramButton className="ig-button--footer" />
           </div>
         </div>
       </div>
@@ -502,13 +518,13 @@ function Newsletter({ id = 'newsletter' }) {
 function HomePage({ whatsappLink }) {
   return (
     <>
-      <section className="hero">
+      <section className="hero hero--dossier">
         <div className="wrap hero__grid">
           <div className="hero__main">
             <span className="mark" aria-hidden="true"></span>
             <h1 className="display">Auditoría, Contabilidad, Impuestos y Consultoría Financiera</h1>
             <p className="lead">
-              Ayudamos a empresas, emprendedores, profesionales independientes y Sujetos Obligados a fortalecer su gestión financiera, fiscal y regulatoria.
+              CBR Auditores & Consultores brinda asesoría integral a empresas de todos los tamaños, emprendedores, profesionales independientes y Sujetos Obligados conforme a la Ley 155-17.
             </p>
             <p className="hero__sub">
               Soluciones personalizadas, oportunas y confiables para operar con seguridad, cumplir obligaciones legales y tomar mejores decisiones de negocio.
@@ -519,16 +535,35 @@ function HomePage({ whatsappLink }) {
                 Escríbanos por WhatsApp <ArrowUpRight />
               </a>
             </div>
+            <p className="hero__traits">Firma dominicana · Especialistas en Ley 155-17 · Trato directo con los socios</p>
           </div>
 
-          <nav className="areas" aria-labelledby="areas-title">
-            <p className="label areas__title" id="areas-title">Áreas de práctica</p>
-            <ul>
-              {practiceAreas.map(([label, to]) => (
-                <li key={label}><Link to={to}>{label} <ArrowRight /></Link></li>
-              ))}
-            </ul>
-          </nav>
+          {/* Composición derecha: índice de las seis áreas de práctica sobre una ficha plana de folio. */}
+          <aside className="dossier" aria-labelledby="dossier-title">
+            <div className="dossier__sheet">
+              <span className="mark" aria-hidden="true"></span>
+              <h2 className="dossier__title" id="dossier-title">Soluciones profesionales para empresas que no se conforman.</h2>
+              <ul className="dossier__list">
+                {services.map(service => (
+                  <li key={service.title}>
+                    <Link to={serviceHref(service)}>
+                      <span className="dossier__name">{service.title}</span>
+                      <span className="dossier__line">{service.headline}</span>
+                      <ArrowRight />
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+              <Link className="dossier__law" to="/ley-155-17">
+                <span className="dossier__law-name">Cumplimiento Ley 155-17</span>
+                <span className="dossier__law-line">Prevención LA/FT para Sujetos Obligados</span>
+                <ArrowRight />
+              </Link>
+              <div className="dossier__more">
+                <Link className="textlink" to="/servicios">Ver los seis servicios en detalle <ArrowRight /></Link>
+              </div>
+            </div>
+          </aside>
         </div>
       </section>
 
@@ -547,33 +582,11 @@ function HomePage({ whatsappLink }) {
         <div className="wrap statement">
           <h2 className="headline">Una firma cercana, técnica y orientada a resultados.</h2>
           <div>
-            <p className="body">CBR Auditores & Consultores brinda asesoría integral a empresas de todos los tamaños, emprendedores, profesionales independientes y Sujetos Obligados conforme a la Ley 155-17.</p>
+            <p className="body">Ayudamos a empresas, emprendedores, profesionales independientes y Sujetos Obligados a fortalecer su gestión financiera, fiscal y regulatoria.</p>
+            <p className="body">Un portafolio diseñado para acompañar la operación diaria, las decisiones estratégicas y el crecimiento con confianza.</p>
             <h3 className="title statement__sub">Servicios profesionales con profundidad técnica.</h3>
             <p className="body">Acompañamos la operación diaria y las decisiones estratégicas con rigor, criterio y visión empresarial.</p>
             <Link className="textlink" to="/quienes-somos">Conocer la firma <ArrowRight /></Link>
-          </div>
-        </div>
-      </section>
-
-      <section className="section section--deep" aria-labelledby="services-title">
-        <div className="wrap">
-          <div className="section-head">
-            <h2 className="headline" id="services-title">Soluciones profesionales para empresas que no se conforman.</h2>
-            <p className="body">Un portafolio diseñado para acompañar la operación diaria, las decisiones estratégicas y el crecimiento con confianza.</p>
-          </div>
-          <ul className="service-index">
-            {services.map(service => (
-              <li key={service.title}>
-                <Link to={serviceHref(service)}>
-                  <span className="title">{service.title}</span>
-                  <span className="service-index__line">{service.headline}</span>
-                  <ArrowRight />
-                </Link>
-              </li>
-            ))}
-          </ul>
-          <div className="after-list">
-            <Link className="textlink" to="/servicios">Ver los seis servicios en detalle <ArrowRight /></Link>
           </div>
         </div>
       </section>
@@ -1011,7 +1024,7 @@ function ContactPage({ whatsappLink }) {
               </div>
               <div>
                 <dt>Instagram</dt>
-                <dd><a href={INSTAGRAM_URL} target="_blank" rel="noreferrer">@cbrauditores</a></dd>
+                <dd><InstagramButton /></dd>
               </div>
               <div>
                 <dt>Ubicación</dt>

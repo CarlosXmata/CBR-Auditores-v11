@@ -477,3 +477,68 @@ input:focus, select:focus, textarea:focus { outline: none; border-color: var(--b
 
 /* Campo trampa de los formularios: fuera de la vista y del orden de tabulación */
 .hp-field { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+
+/* Acceso a Instagram (pie y Contacto): botón discreto con filete, nunca flotante */
+.ig-button {
+  display: inline-flex; align-items: center; gap: 10px; min-height: 44px; padding: 0 16px 0 12px;
+  border: 1px solid var(--rule-strong); border-radius: var(--radius); background: transparent;
+  color: var(--navy); font-size: 0.9375rem; font-weight: 600; text-decoration: none;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+.ig-button:hover { border-color: var(--navy); color: var(--blue); }
+.ig-button svg { width: 20px; height: 20px; flex: none; }
+.ig-button--footer { margin-top: 20px; }
+.channels dd .ig-button { margin-top: 6px; color: var(--navy); text-decoration: none; }
+.channels dd .ig-button:hover { color: var(--blue); }
+
+/* ---------- Hero de Inicio: dos columnas con el índice de las áreas de práctica ---------- */
+.hero--dossier { padding-block: clamp(48px, 5vw, 72px) clamp(56px, 6vw, 88px); }
+.hero--dossier .hero__grid { align-items: center; row-gap: 56px; }
+.hero--dossier .hero__main { grid-column: 1 / span 7; }
+.hero--dossier .hero__main .display { max-width: 20ch; }
+
+/* Tres hechos confirmados, en una sola línea bajo un filete */
+.hero__traits { margin-top: 36px; padding-top: 18px; border-top: 1px solid var(--rule); max-width: 60ch; font-size: 0.875rem; font-weight: 600; line-height: 1.5; color: var(--navy); }
+
+/* Ficha plana de folio: sin sombra ni hoja simulada; la profundidad es el cambio de tono papel → folio */
+.dossier { grid-column: 8 / span 5; }
+.dossier__sheet { background: var(--folio); border: 1px solid var(--rule-strong); padding: 26px 28px 6px; }
+.dossier__sheet .mark { margin-bottom: 18px; }
+.dossier__title { font-family: var(--serif); font-size: 1.25rem; font-weight: 600; line-height: 1.35; color: var(--navy); text-wrap: balance; }
+.dossier__list { margin-top: 18px; border-top: 1px solid var(--rule-strong); }
+.dossier__list a { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) 18px; column-gap: 12px; row-gap: 2px; padding: 11px 0; border-bottom: 1px solid var(--rule); }
+.dossier__list a::after { content: ''; position: absolute; left: 0; right: 0; bottom: -1px; height: 1px; background: var(--blue); transform: scaleX(0); transform-origin: left center; transition: transform 0.55s var(--ease-out); }
+.dossier__list a:hover::after, .dossier__list a:focus-visible::after { transform: scaleX(1); }
+.dossier__name { font-family: var(--serif); font-size: 1.0625rem; font-weight: 600; line-height: 1.3; color: var(--navy); transition: color 0.2s ease; }
+.dossier__line { grid-column: 1; font-size: 0.875rem; line-height: 1.5; color: var(--ink-2); }
+.dossier__list svg { grid-column: 2; grid-row: 1 / span 2; align-self: center; width: 18px; height: 18px; color: var(--blue); transition: transform 0.35s var(--ease-out); }
+.dossier__list a:hover .dossier__name { color: var(--blue); }
+.dossier__list a:hover svg { transform: translateX(3px); }
+
+/* Ley 155-17: fila final de la ficha, marcada en oro (la superficie navy de la página sigue siendo la banda) */
+.dossier__law { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) 18px; column-gap: 12px; row-gap: 2px; padding: 14px 0 12px; border-bottom: 2px solid var(--gold); }
+.dossier__law-name { font-family: var(--serif); font-size: 1.0625rem; font-weight: 600; line-height: 1.3; color: var(--navy); transition: color 0.2s ease; }
+.dossier__law-line { grid-column: 1; font-size: 0.875rem; line-height: 1.5; color: var(--gold-text); }
+.dossier__law svg { grid-column: 2; grid-row: 1 / span 2; align-self: center; width: 18px; height: 18px; color: var(--gold); transition: transform 0.35s var(--ease-out); }
+.dossier__law:hover .dossier__law-name { color: var(--blue); }
+.dossier__law:hover svg { transform: translateX(3px); }
+.dossier__more { padding: 14px 0 16px; }
+.dossier__more .textlink { font-size: 0.9375rem; }
+
+@media (max-width: 1080px) {
+  .hero--dossier .hero__main, .dossier { grid-column: 1 / -1; }
+  .dossier { max-width: 640px; }
+}
+@media (max-width: 720px) {
+  .dossier__sheet { padding: 20px 20px 4px; }
+}
+/* Pantallas de escritorio bajas (p. ej. 1366×768): la ficha completa sigue en la primera pantalla */
+@media (min-width: 1081px) and (max-height: 820px) {
+  .hero--dossier { padding-block: 32px 64px; }
+  .dossier__sheet { padding-top: 20px; }
+  .dossier__sheet .mark { margin-bottom: 14px; }
+  .dossier__list { margin-top: 14px; }
+  .dossier__list a { padding: 7px 0; }
+  .dossier__law { padding: 10px 0 9px; }
+  .dossier__more { padding: 10px 0 12px; }
+}
