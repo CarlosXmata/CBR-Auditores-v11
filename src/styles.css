@@ -241,7 +241,7 @@ ul, ol { padding: 0; list-style: none; }
 }
 .service-index a::before {
   content: counter(svc, decimal-leading-zero);
-  font-family: var(--display); font-size: 2.5rem; font-weight: 800; line-height: 1; letter-spacing: -0.04em; color: var(--blue-soft);
+  font-family: var(--display); font-size: 2.5rem; font-weight: 800; line-height: 1; letter-spacing: -0.04em; color: var(--blue);
 }
 .service-index a:hover, .service-index a:focus-visible { transform: translateY(-3px); box-shadow: var(--shadow-lift); border-color: var(--line-strong); }
 .service-index .title { transition: color 0.2s ease; }
@@ -268,9 +268,9 @@ ul, ol { padding: 0; list-style: none; }
 
 /* ---------- Updates list ---------- */
 .updates { display: grid; gap: 16px; }
-.update { position: relative; display: grid; grid-template-columns: 170px 150px minmax(0, 1fr); gap: 24px; align-items: baseline; padding: 26px 28px; background: var(--card); border: 1px solid var(--line); border-radius: var(--radius-lg); transition: box-shadow 0.3s ease, border-color 0.2s ease; }
+.update { position: relative; display: grid; grid-template-columns: 190px 150px minmax(0, 1fr); gap: 24px; align-items: baseline; padding: 26px 28px; background: var(--card); border: 1px solid var(--line); border-radius: var(--radius-lg); transition: box-shadow 0.3s ease, border-color 0.2s ease; }
 .update:hover { box-shadow: var(--shadow); border-color: var(--line-strong); }
-.update__date { display: inline-block; justify-self: start; padding: 4px 12px; border-radius: 14px; line-height: 1.35; background: var(--blue); color: #fff; font-family: var(--display); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.03em; }
+.update__date { display: inline-block; justify-self: start; white-space: nowrap; padding: 4px 12px; border-radius: 14px; line-height: 1.35; background: var(--blue); color: #fff; font-family: var(--display); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.03em; }
 .update__cat { font-family: var(--display); font-size: 0.75rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--blue-deep); }
 .update h3 { font-family: var(--display); font-size: 1.1875rem; font-weight: 800; line-height: 1.3; letter-spacing: -0.02em; color: var(--navy); text-wrap: pretty; }
 .update h3 a:hover { color: var(--blue); }
