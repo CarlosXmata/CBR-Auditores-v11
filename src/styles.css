@@ -184,7 +184,8 @@ ul, ol { padding: 0; list-style: none; }
 .tile small { font-size: 0.75rem; line-height: 1.45; color: #dbe7fb; }
 .panel__art { position: relative; height: 170px; margin-top: 14px; overflow: hidden; border: 1px solid var(--line); border-radius: 18px; background: linear-gradient(180deg, #f3f8ff 0%, #e3eefc 100%); }
 .panel__globe { position: absolute; left: 50%; top: 50%; width: 250px; height: 250px; transform: translate(-50%, -50%); }
-.panel__lists { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 14px; }
+.panel__lists { display: grid; grid-template-columns: 1fr; gap: 14px; margin-top: 14px; }
+.mini ul { columns: 2; column-gap: 16px; }
 .mini { padding: 16px 16px 12px; border: 1px solid var(--line); border-radius: 18px; background: #fff; }
 .mini h3 { font-family: var(--display); font-size: 0.9375rem; font-weight: 800; color: var(--navy); margin-bottom: 8px; letter-spacing: -0.01em; }
 .mini li a { display: flex; align-items: flex-start; gap: 10px; padding: 6px 0; font-size: 0.875rem; font-weight: 600; color: var(--ink); line-height: 1.35; transition: color 0.2s ease; }

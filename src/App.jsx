@@ -533,7 +533,6 @@ function HomePage({ whatsappLink }) {
             <ul className="chips" aria-label="Marco de trabajo">
               <li>DGII</li>
               <li>TSS</li>
-              <li>Ley 155-17</li>
               <li>Sujetos Obligados</li>
             </ul>
           </div>
@@ -570,14 +569,6 @@ function HomePage({ whatsappLink }) {
                   ))}
                 </ul>
               </nav>
-              <div className="mini">
-                <h3>Cumplimiento</h3>
-                <ul>
-                  <li><Link to="/ley-155-17"><Check />Sujetos Obligados</Link></li>
-                  <li><Link to="/ley-155-17"><Check />Matriz de riesgos</Link></li>
-                  <li><Link to="/ley-155-17"><Check />Debida diligencia</Link></li>
-                </ul>
-              </div>
             </div>
           </aside>
         </div>
