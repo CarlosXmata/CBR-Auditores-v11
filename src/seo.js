@@ -9,27 +9,27 @@ export const OG_IMAGE_ALT = 'CBR Auditores & Consultores: auditoría, contabilid
 
 export const routes = {
   '/': {
-    title: 'CBR Auditores & Consultores | Firma de Auditoría, Contabilidad y Consultoría en RD',
-    description: 'CBR Auditores & Consultores ofrece auditoría, contabilidad empresarial, impuestos, consultoría financiera, control interno y cumplimiento Ley 155-17 para empresas y Sujetos Obligados en República Dominicana.',
+    title: 'Auditoría, Contabilidad e Impuestos en RD | CBR Auditores',
+    description: 'Firma dominicana de auditoría, contabilidad, impuestos y cumplimiento de la Ley 155-17. Trato directo con los socios. Solicite una consulta.',
     priority: '1.0',
   },
   '/servicios': {
     title: 'Servicios | CBR Auditores & Consultores',
-    description: 'Outsourcing estratégico, auditoría y aseguramiento, cumplimiento fiscal, consultoría financiera corporativa, valoración de negocios y soluciones contables especializadas en República Dominicana.',
+    description: 'Outsourcing contable, auditoría, cumplimiento fiscal, consultoría financiera, valoración de negocios y soluciones contables en República Dominicana.',
     priority: '0.9',
   },
   '/quienes-somos': {
     title: 'Nosotros | CBR Auditores & Consultores',
-    description: 'Firma especializada en contabilidad, auditoría, impuestos, finanzas y consultoría empresarial para empresas, emprendedores, profesionales independientes y Sujetos Obligados.',
+    description: 'Firma de contabilidad, auditoría, impuestos y consultoría para empresas, emprendedores, profesionales y Sujetos Obligados en República Dominicana.',
     priority: '0.8',
   },
   '/ley-155-17': {
     title: 'Cumplimiento Ley 155-17 | CBR Auditores & Consultores',
-    description: 'Acompañamiento a Sujetos Obligados en la implementación, revisión y fortalecimiento de controles para la prevención del lavado de activos y financiamiento del terrorismo.',
+    description: 'Manual de prevención, matriz de riesgos, debida diligencia y evaluación independiente para Sujetos Obligados por la Ley 155-17 en RD.',
     priority: '0.8',
   },
   '/noticias': {
-    title: 'Centro de Actualizaciones Profesionales | CBR Auditores & Consultores',
+    title: 'Actualizaciones DGII, TSS y Ley 155-17 | CBR Auditores',
     description: 'Información oficial de DGII, TSS, Superintendencia de Bancos y Ley 155-17, resumida con criterio empresarial y enlazada a su fuente oficial.',
     priority: '0.7',
   },
