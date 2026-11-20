@@ -1045,9 +1045,9 @@ function ContactPage({ whatsappLink }) {
               {formStatus === 'sending' ? 'Enviando solicitud…' : 'Enviar solicitud'}
             </button>
             <p className={`contact-form__status ${formStatus === 'sent' ? 'is-sent' : ''}`} role="status" aria-live="polite">
-              {formStatus === 'sent' && 'Solicitud enviada correctamente. Nos pondremos en contacto pronto.'}
+              {formStatus === 'sent' && 'Solicitud enviada correctamente. Le respondemos en un plazo máximo de un día hábil.'}
               {formStatus === 'retry' && 'Revise los datos y vuelva a pulsar «Enviar solicitud».'}
-              {!['sent', 'retry'].includes(formStatus) && `El mensaje será enviado a ${CONTACT_EMAIL}.`}
+              {!['sent', 'retry'].includes(formStatus) && `El mensaje será enviado a ${CONTACT_EMAIL}. Le respondemos en un plazo máximo de un día hábil.`}
             </p>
           </form>
 
@@ -1066,6 +1066,10 @@ function ContactPage({ whatsappLink }) {
               <div>
                 <dt>Instagram</dt>
                 <dd><a href={INSTAGRAM_URL} target="_blank" rel="noreferrer">@cbrauditores</a></dd>
+              </div>
+              <div>
+                <dt>Plazo de respuesta</dt>
+                <dd>Un día hábil como máximo</dd>
               </div>
               <div>
                 <dt>Ubicación</dt>
