@@ -56,8 +56,9 @@ export function metaFor(pathname) {
     const item = news.find(entry => entry.slug === pathname.split('/').pop())
     if (item) {
       return {
-        title: `${item.title} | ${SITE_NAME}`,
-        description: item.excerpt,
+        // Google corta los títulos de más de 60 caracteres y las descripciones de más de 160 (lo vigila news:check).
+        title: `${item.seoTitle || item.title} | CBR Auditores`,
+        description: item.seoDescription || item.excerpt,
         path: `/noticias/${item.slug}`,
         priority: '0.6',
         type: 'article',

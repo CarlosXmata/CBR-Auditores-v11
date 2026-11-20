@@ -4,8 +4,8 @@
 //   npm run news:check -- --out <dir>  otra carpeta para el informe
 //
 // Qué revisa:
-//   1. Los datos de src/content/news.js: campos obligatorios, fechas ISO, slugs únicos, tipo de publicación
-//      y antigüedad de la última verificación manual (verifiedAt).
+//   1. Los datos de src/content/news.js: campos obligatorios, fechas ISO, slugs únicos, tipo de publicación,
+//      antigüedad de la última verificación manual (verifiedAt) y largo del título (60) y la descripción (160) para buscadores.
 //   2. Cada enlace oficial (sourceUrl de las publicaciones y LAW_SOURCES de src/config/site.js):
 //      HEAD y, si el servidor no lo admite o falla, GET; sigue redirecciones; tiempo límite por petición.
 //
@@ -86,6 +86,11 @@ export function checkData(items = news, sources = LAW_SOURCES) {
       else if (daysSince(item.publishedAt) < 0) errors.push(`${at}: publishedAt está en el futuro.`)
     }
     if (item.type === 'recurso' && item.publishedAt) warnings.push(`${at}: un recurso permanente no lleva publishedAt; se mostrará como «Recurso permanente».`)
+
+    const seoTitle = `${item.seoTitle || item.title} | CBR Auditores`
+    if (item.title && seoTitle.length > 60) errors.push(`${at}: el título para buscadores tiene ${seoTitle.length} caracteres (máximo 60). Añada un seoTitle más corto.`)
+    const seoDescription = item.seoDescription || item.excerpt
+    if (seoDescription && seoDescription.length > 160) errors.push(`${at}: la descripción para buscadores tiene ${seoDescription.length} caracteres (máximo 160). Añada un seoDescription más corto.`)
 
     if (item.sourceUrl && !isValidHttpsUrl(item.sourceUrl)) errors.push(`${at}: sourceUrl no es una URL https válida: «${item.sourceUrl}».`)
     if (item.verifiedAt) {

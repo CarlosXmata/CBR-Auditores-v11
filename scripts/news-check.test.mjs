@@ -23,6 +23,12 @@ test('isValidHttpsUrl acepta https absolutas y rechaza el resto', () => {
   }
 })
 
+test('checkData exige título de 60 y descripción de 160 caracteres para buscadores', () => {
+  const long = { ...valid, title: 'x'.repeat(50), excerpt: 'y'.repeat(161) }
+  assert.equal(checkData([long], {}).errors.length, 2)
+  assert.deepEqual(checkData([{ ...long, seoTitle: 'Corto', seoDescription: 'Corta.' }], {}).errors, [])
+})
+
 test('checkData registra la URL inválida como error sin lanzar excepción', () => {
   const { errors } = checkData([{ ...valid, sourceUrl: 'https://' }], { ley: { url: 'https://' } })
   assert.ok(errors.some(e => e.includes('sourceUrl no es una URL https válida')))

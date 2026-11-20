@@ -23,6 +23,8 @@ export const news = [
     type: 'noticia',
     title: 'DGII mantendrá el acompañamiento para la Facturación Electrónica sin aplicar, por el momento, multas ni bloqueos',
     excerpt: 'La DGII llamó a los contribuyentes a continuar su incorporación a la Facturación Electrónica e informó que, por ahora, no aplicará multas, penalidades ni bloqueos a quienes no la completaron al 15 de noviembre.',
+    seoTitle: 'Facturación electrónica: DGII no multará aún',
+    seoDescription: 'La DGII pide seguir incorporándose a la Facturación Electrónica y, por ahora, no aplicará multas ni bloqueos a quien no la completó al 15 de noviembre.',
     summary: [
       'Tras el vencimiento del plazo del 15 de noviembre de 2026, la Dirección General de Impuestos Internos informó que, por el momento, no aplicará multas, penalidades ni bloqueos a los contribuyentes que aún no han completado su incorporación a la Facturación Electrónica, y que mantendrá la asistencia para que avancen.',
       'La institución precisó que la prórroga prevista en el Reglamento núm. 587-24 ya fue otorgada mediante el Aviso 06-26, por lo que no contempla una nueva prórroga general.',
@@ -40,6 +42,8 @@ export const news = [
     type: 'noticia',
     title: 'Desde noviembre, los contribuyentes Grandes Locales y Medianos deben emitir facturas electrónicas tipo «E»',
     excerpt: 'La DGII recordó que, a partir del 1 de noviembre de 2026, los contribuyentes Grandes Locales y Medianos deben emitir sus comprobantes fiscales exclusivamente en formato electrónico (e-CF).',
+    seoTitle: 'e-CF obligatorio: Grandes Locales y Medianos',
+    seoDescription: 'Desde el 1 de noviembre de 2026, los Grandes Locales y Medianos deben emitir sus comprobantes fiscales solo en formato electrónico (e-CF), recuerda la DGII.',
     summary: [
       'La Dirección General de Impuestos Internos recordó que, desde el 1 de noviembre de 2026, los contribuyentes clasificados como Grandes Locales y Medianos deben emitir sus comprobantes fiscales solo en formato electrónico, con secuencias tipo «E».',
       'Las secuencias no electrónicas tipo «B» asignadas a estos contribuyentes tuvieron validez hasta el 31 de octubre de 2026, según el artículo 55 del Reglamento núm. 587-24. Después de esa fecha, los comprobantes no electrónicos solo pueden usarse en el procedimiento de contingencia previsto en el mismo reglamento.',
@@ -57,6 +61,7 @@ export const news = [
     type: 'recurso',
     title: 'Seguimiento a obligaciones de seguridad social para empleadores',
     excerpt: 'La TSS mantiene un canal oficial de noticias y actualizaciones relevantes para empleadores, aportes y cumplimiento de obligaciones laborales vinculadas al SDSS.',
+    seoTitle: 'TSS: obligaciones de los empleadores',
     summary: [
       'Las obligaciones vinculadas a seguridad social requieren seguimiento oportuno, revisión de nómina y control de pagos conforme al marco aplicable.',
     ],
@@ -72,6 +77,8 @@ export const news = [
     type: 'recurso',
     title: 'Actualidad regulatoria y financiera desde fuentes oficiales',
     excerpt: 'La sección de prensa de la Superintendencia de Bancos permite dar seguimiento a publicaciones del sistema financiero, avisos, regulación y temas de interés empresarial.',
+    seoTitle: 'Prensa de la Superintendencia de Bancos',
+    seoDescription: 'La sección de prensa de la Superintendencia de Bancos publica avisos, regulación y temas del sistema financiero de interés para las empresas.',
     summary: [
       'El entorno financiero y regulatorio dominicano exige seguimiento constante para empresas que interactúan con entidades financieras o que requieren información de mercado.',
     ],
@@ -87,6 +94,7 @@ export const news = [
     type: 'recurso',
     title: 'Ley 155-17: marco de prevención de lavado de activos y financiamiento del terrorismo',
     excerpt: 'Un recurso oficial para comprender el marco legal aplicable a Sujetos Obligados y programas de cumplimiento en República Dominicana.',
+    seoTitle: 'Ley 155-17: prevención del lavado de activos',
     summary: [
       'La Ley 155-17 establece el marco dominicano contra el lavado de activos y el financiamiento del terrorismo.',
       'Los Sujetos Obligados deben mantener controles proporcionales a sus riesgos y a la naturaleza de sus operaciones.',

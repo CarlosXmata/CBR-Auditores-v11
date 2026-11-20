@@ -23,6 +23,8 @@ Todo vive en `src/content/news.js`, en la lista `export const news = [ … ]`. C
 | `type` | Sí | `'noticia'` o `'recurso'`. |
 | `title` | Sí | Titular propio, fiel a la fuente. |
 | `excerpt` | Sí | Una frase para listados y buscadores. |
+| `seoTitle` | Si hace falta | Titular corto solo para Google. Se publica como «seoTitle | CBR Auditores» y no puede pasar de 60 caracteres en total. Se usa cuando el `title` no cabe. |
+| `seoDescription` | Si hace falta | Versión del `excerpt` de 160 caracteres como máximo, solo para Google. Se usa cuando el `excerpt` es más largo. |
 | `summary` | Sí | Lista de 1 a 3 párrafos propios. |
 | `relevance` | Sí | Por qué importa a las empresas. |
 | `cbrNote` | No | Cómo puede orientar CBR, sin prometer resultados. |
