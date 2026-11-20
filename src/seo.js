@@ -5,7 +5,7 @@ import { news } from './content/news.js'
 export const SITE_URL = 'https://www.cbrauditores.com'
 export const SITE_NAME = 'CBR Auditores & Consultores'
 export const OG_IMAGE = '/og-cbr.png'
-export const OG_IMAGE_ALT = 'Logotipo de CBR Auditores & Consultores'
+export const OG_IMAGE_ALT = 'CBR Auditores & Consultores: auditoría, contabilidad, impuestos y Ley 155-17 en República Dominicana'
 
 export const routes = {
   '/': {
