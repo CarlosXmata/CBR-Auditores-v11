@@ -60,7 +60,7 @@ Lo que distingue a CBR, confirmado por el responsable del proyecto:
 - **Dominio oficial**: `cbrauditores.com`.
   - El DNS se administra desde Squarespace.
   - El correo del dominio lo gestiona Google Workspace.
-  - **Pendiente**: confirmar la dirección pública profesional definitiva. Hasta entonces, el correo público sigue siendo `info.cbrauditores@gmail.com`.
+  - **Confirmado (20/11/2026)**: el correo público definitivo es `info.cbrauditores@gmail.com`, que también recibe el formulario (FormSubmit).
   - Dominio canónico: `www.cbrauditores.com`. El `sitemap.xml` y el HTML con metadatos de cada ruta se generan en cada build; `vercel.json` redirige `cbrauditores.com` a `www`.
 - **Navegación principal aprobada**: Inicio, Servicios, Nosotros y Contacto.
   - No se modifica sin autorización.

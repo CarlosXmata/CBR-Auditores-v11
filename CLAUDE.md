@@ -42,7 +42,7 @@ Para trabajo de diseño se usa la skill **Impeccable** (`/impeccable …`), que 
 3. **Trato de usted** en todo el sitio. Nada de "tú".
 4. **Un solo llamado a la acción principal**, con el mismo texto en todo el sitio.
 5. **Las noticias** siempre llevan fecha, categoría, resumen propio, fuente oficial y enlace a esa fuente. No se copian artículos.
-6. **El correo público** sigue siendo `info.cbrauditores@gmail.com` hasta que se confirme la dirección definitiva de Google Workspace en `cbrauditores.com`.
+6. **El correo público** es `info.cbrauditores@gmail.com` (confirmado por la clienta el 20/11/2026). Se cambia solo en `src/config/site.js`; si cambia, el formulario (FormSubmit) exige activar la nueva dirección antes de recibir mensajes.
 
 ## Reglas de arquitectura
 
