@@ -58,12 +58,19 @@ Requisitos: cuenta de Cloudflare (plan gratuito) y acceso de administración al 
 
 - No hay variables secretas ni funciones de servidor. Solo `NODE_VERSION`.
 - **Versión mínima de Node:** el proyecto usa Vite 8 (con `@vitejs/plugin-react` 6), que requiere Node `^20.19.0` o `>=22.12.0`. Con `NODE_VERSION=22` Cloudflare usa la última 22.x, que cumple el requisito. No usar `20` a secas: puede resolverse a una 20.x anterior a 20.19 y el build fallaría. Node 18 ya no es válido.
-- El build es `vite build` seguido de `node scripts/prerender.mjs` (ya incluido en `npm run build`).
+- El build tiene tres pasos, todos dentro de `npm run build` (no hay que escribirlos en Cloudflare):
+  1. `vite build`: la web para el navegador, en `dist/`.
+  2. `vite build --ssr src/entry-server.jsx --outDir dist-server`: una versión de la web que se ejecuta en Node solo durante el build, en `dist-server/`.
+  3. `node scripts/prerender.mjs`: usa `dist-server/` para escribir en `dist/` un HTML por ruta con el contenido de la página ya dibujado (React lo hidrata en el navegador) y sus metadatos, más `404.html` y `sitemap.xml`.
+- Cloudflare publica solo `dist/`. `dist-server/` es intermedio y no se publica (Vite 8 también copia ahí `public/`; no afecta).
+- Comprobado el 20/11/2026 con Vite 8.3.8 y Node 24.11: build y pruebas sin errores, y el HTML de cada ruta es idéntico al que genera Vite 5 salvo los nombres con hash de `assets/`.
 - La migración a Cloudflare no añadió dependencias. Después se actualizó la cadena de compilación (Vite 5 -> 8 y `@vitejs/plugin-react` 4 -> 6, ver «Seguridad de dependencias»).
 
 ## 4.1 Seguridad de dependencias
 
-Tras actualizar a Vite 8, `npm audit` informa de una advertencia de severidad alta sobre `picomatch` (ReDoS, GHSA-fc5q-39xc-vjpf). No existe versión corregida (`picomatch` 4.0.7 es la última y está afectada). Es una dependencia **solo de compilación** que usa Vite para sus patrones internos; no llega al sitio publicado y no recibe patrones de usuarios. No se fuerza ninguna «corrección» (la sugerida por `npm audit fix --force` sería bajar a Vite 6.2.7, que reintroduce otras vulnerabilidades). Revisar de nuevo con `npm audit` cuando salga una versión corregida de `picomatch`.
+**Actualización 20/11/2026:** `npm audit` ya no informa de ninguna vulnerabilidad (con `picomatch` 4.0.7). Se conserva la nota original como historial:
+
+Tras actualizar a Vite 8, `npm audit` informaba de una advertencia de severidad alta sobre `picomatch` (ReDoS, GHSA-fc5q-39xc-vjpf). No existe versión corregida (`picomatch` 4.0.7 es la última y está afectada). Es una dependencia **solo de compilación** que usa Vite para sus patrones internos; no llega al sitio publicado y no recibe patrones de usuarios. No se fuerza ninguna «corrección» (la sugerida por `npm audit fix --force` sería bajar a Vite 6.2.7, que reintroduce otras vulnerabilidades). Revisar de nuevo con `npm audit` cuando salga una versión corregida de `picomatch`.
 
 ## 5. Dominio personalizado (NO hacer hasta validar la vista previa)
 
@@ -93,6 +100,9 @@ for r in "" servicios quienes-somos ley-155-17 noticias contacto aviso-privacida
 
 # Redirección de Ley 30-26 (301, Location: /noticias)
 curl -sI https://HOST/noticias/ley-30-26-beneficios-fiscales-formalizacion | grep -iE "^HTTP|^location"
+
+# Contenido prerenderizado: el HTML ya trae el texto de la página, no solo el contenedor vacío (debe imprimir 1 o más)
+curl -s https://HOST/servicios | grep -c "Outsourcing Estratégico"
 
 # Ruta inexistente (404 con el HTML de 404.html)
 curl -s -o /dev/null -w "%{http_code}\n" https://HOST/ruta-que-no-existe
