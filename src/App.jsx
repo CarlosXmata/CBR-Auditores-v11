@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
-import logo from './assets/cbr-logo.png'
+// Copia escalada a 138 px (3× los 46 px en pantalla) de cbr-logo.png, que se conserva intacto.
+import logo from './assets/cbr-logo-138.png'
 import { datedNews, formatDate, news } from './content/news.js'
 import { absoluteUrl, metaFor } from './seo.js'
 
