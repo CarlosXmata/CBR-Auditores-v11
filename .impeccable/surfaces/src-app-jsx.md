@@ -1,3 +1,5 @@
+> **OBSOLETO.** Este brief describe la dirección anterior («Dictamen»: serif, papel lino, oro). La dirección vigente es «Azul corporativo» y está en `DESIGN.md`. No lo use como referencia.
+
 ---
 version: 1
 slug: "src-app-jsx"
