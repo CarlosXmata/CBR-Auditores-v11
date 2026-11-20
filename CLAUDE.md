@@ -9,6 +9,9 @@ Esta es la web corporativa de CBR Auditores & Consultores, una firma de auditor�
 - **`MANTENIMIENTO_NOTICIAS.md`**: criterio editorial del Centro de Actualizaciones Profesionales.
 - **`ENTREGA_FINAL.md`** y **`PRODUCCION.md`**: alcance aprobado de la versión v11 y configuración de Vercel.
 
+- Antes de buscar o abrir archivos, consulta `graphify-out/GRAPH_REPORT.md`.
+- `.impeccable/design.json` y `.impeccable/surfaces/` pertenecen a la dirección anterior y no deben usarse como referencia.
+
 Para trabajo de diseño se usa la skill **Impeccable** (`/impeccable …`), que lee `PRODUCT.md` y `DESIGN.md`.
 
 ## Stack
