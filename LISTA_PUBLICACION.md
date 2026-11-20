@@ -4,7 +4,8 @@ Pasos en orden. Cada uno dice quién lo hace y cómo saber que quedó bien. Ning
 
 ## Antes de empezar
 
-- [ ] La rama con los cambios aprobados está unida a `main` y la versión de prueba se ve bien en computadora y en teléfono.
+- [x] La rama con los cambios aprobados está unida a `main` (20/11/2026).
+- [ ] La versión publicada en Vercel (dirección `.vercel.app` del proyecto) se ve bien en computadora y en teléfono.
 - [ ] Tener a mano el acceso a: Squarespace (donde está el dominio), la cuenta de Google de la firma, el correo info.cbrauditores@gmail.com y el teléfono de la firma (Google puede llamar o enviar un SMS para verificar).
 
 ## 1. Decidir dónde se aloja la web
@@ -31,7 +32,9 @@ Pasos:
 - [ ] Probar la dirección de prueba que da Cloudflare (termina en `.pages.dev`): todas las páginas, el menú en el teléfono, el botón de WhatsApp y una página inexistente, que debe decir «Este apartado no está disponible».
 - [ ] Conectar `www.cbrauditores.com` a Cloudflare desde Squarespace y hacer que `cbrauditores.com` lleve a `www.cbrauditores.com`.
 - [ ] Comprobar en el navegador: al escribir `cbrauditores.com` se termina en `https://www.cbrauditores.com` con el candado.
-- [ ] Si existe un proyecto en Vercel, dejarlo encendido una o dos semanas y luego borrarlo, para que no haya dos copias de la web.
+- [ ] Apagar Vercel. Hoy hay un proyecto en Vercel (equipo `polenzconsultingweb`, proyecto `cbr-auditores-v11`) conectado a este repositorio: cada cambio que llega a `main` se publica solo en su dirección `.vercel.app`, y cada rama nueva genera una vista previa. Esa copia no está en `cbrauditores.com`, pero Google podría encontrarla. Pasos:
+  1. Cuando `www.cbrauditores.com` ya funcione en Cloudflare, entrar en Vercel → proyecto `cbr-auditores-v11` → **Settings** → **Git** → **Disconnect**, para que deje de publicar.
+  2. Una o dos semanas después, si todo sigue bien, borrar el proyecto en **Settings** → **General** → **Delete Project**, para que no queden dos copias de la web.
 
 ## 2. Comprobar que llegan los mensajes del formulario
 
