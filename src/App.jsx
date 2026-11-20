@@ -199,9 +199,10 @@ function navigate(to) {
   }
 }
 
-function useLocation() {
+// En el prerenderizado no hay window: la ruta llega como initialPath.
+function useLocation(initialPath) {
   const read = () => ({ pathname: window.location.pathname, hash: window.location.hash })
-  const [location, setLocation] = useState(read)
+  const [location, setLocation] = useState(() => (typeof window === 'undefined' ? { pathname: initialPath, hash: '' } : read()))
   useEffect(() => {
     const onPop = () => setLocation(read())
     window.addEventListener('popstate', onPop)
@@ -428,7 +429,8 @@ function Footer({ whatsappLink }) {
         </div>
       </div>
       <div className="wrap site-footer__base">
-        <span>© {new Date().getFullYear()} CBR Auditores &amp; Consultores. Todos los derechos reservados.</span>
+        {/* El año del HTML compilado puede quedar atrás hasta la próxima compilación. */}
+        <span suppressHydrationWarning>© {new Date().getFullYear()} CBR Auditores &amp; Consultores. Todos los derechos reservados.</span>
         <Link to="/aviso-privacidad">Aviso de privacidad</Link>
       </div>
     </footer>
@@ -1114,8 +1116,8 @@ function NotFoundPage() {
   )
 }
 
-function App() {
-  const { pathname, hash } = useLocation()
+function App({ initialPath = '/' }) {
+  const { pathname, hash } = useLocation(initialPath)
   const mainRef = useRef(null)
   const firstRender = useRef(true)
 

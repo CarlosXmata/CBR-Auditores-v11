@@ -1,11 +1,12 @@
-// Prerenderizado de metadatos. Se ejecuta después de `vite build`.
-// Para cada ruta indexable escribe un HTML con su <title>, description, canonical,
-// Open Graph y Twitter propios (la app React sigue montándose igual en el cliente),
+// Prerenderizado. Se ejecuta después de `vite build` y `vite build --ssr` (ver package.json).
+// Para cada ruta indexable escribe un HTML con el contenido de la página ya dibujado
+// (React lo hidrata en el navegador) y su <title>, description, canonical, Open Graph y Twitter propios,
 // y genera dist/sitemap.xml a partir de las mismas rutas. Fuente: src/seo.js.
 import { readFileSync, writeFileSync, mkdirSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { absoluteUrl, allIndexablePaths, metaFor, NOT_FOUND } from '../src/seo.js'
+import { render as renderPage } from '../dist-server/entry-server.js'
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..')
 const dist = join(root, 'dist')
@@ -17,6 +18,13 @@ const escapeText = value => value.replace(/&/g, '&amp;').replace(/</g, '&lt;')
 function replaceOnce(html, pattern, replacement, label) {
   if (!pattern.test(html)) throw new Error(`prerender: no se encontró ${label} en dist/index.html`)
   return html.replace(pattern, replacement)
+}
+
+function withContent(html, path) {
+  const body = renderPage(path)
+  // Autocomprobación: cada página debe salir con su titular, nunca vacía.
+  if (!body.includes('<h1')) throw new Error(`prerender: ${path} no tiene <h1> en el HTML`)
+  return replaceOnce(html, /<div id="root"><\/div>/, `<div id="root">${body}</div>`, '<div id="root">')
 }
 
 function render(meta, { canonical, robots }) {
@@ -39,7 +47,7 @@ function render(meta, { canonical, robots }) {
 const written = []
 for (const path of allIndexablePaths()) {
   const meta = metaFor(path)
-  const html = render(meta, { canonical: absoluteUrl(path), robots: 'index, follow' })
+  const html = withContent(render(meta, { canonical: absoluteUrl(path), robots: 'index, follow' }), path)
   // "/" -> index.html ; "/servicios" -> servicios.html ; "/noticias/x" -> noticias/x.html (cleanUrls en Vercel)
   const file = path === '/' ? join(dist, 'index.html') : join(dist, `${path.slice(1)}.html`)
   mkdirSync(dirname(file), { recursive: true })
@@ -48,7 +56,7 @@ for (const path of allIndexablePaths()) {
 }
 
 // Plantilla para rutas desconocidas (Vercel la sirve con estado 404): noindex y sin canonical.
-const notFound = render(NOT_FOUND, { canonical: absoluteUrl('/'), robots: 'noindex, follow' })
+const notFound = withContent(render(NOT_FOUND, { canonical: absoluteUrl('/'), robots: 'noindex, follow' }), '/pagina-no-encontrada')
   .replace(/\s*<link rel="canonical" href="[^"]*" \/>/, '')
   .replace(/\s*<meta property="og:url" content="[^"]*" \/>/, '')
 writeFileSync(join(dist, '404.html'), notFound)
@@ -63,4 +71,4 @@ const sitemap = [
 ].join('\n')
 writeFileSync(join(dist, 'sitemap.xml'), sitemap)
 
-console.log(`prerender: ${written.length} rutas con metadatos propios, 404.html y sitemap.xml`)
+console.log(`prerender: ${written.length} rutas con contenido y metadatos propios, 404.html y sitemap.xml`)

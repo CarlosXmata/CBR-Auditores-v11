@@ -17,7 +17,7 @@ Para trabajo de diseño se usa la skill **Impeccable** (`/impeccable …`), que 
 - Interfaz en `src/App.jsx`, estilos globales en `src/styles.css`, noticias en `src/content/news.js` y metadatos SEO por ruta en `src/seo.js`. El router es propio y funciona por `window.location.pathname`.
 - Comandos:
   - `npm run dev`: desarrollo.
-  - `npm run build`: compila con Vite y ejecuta `scripts/prerender.mjs`, que escribe un HTML por ruta con title, description, canonical y Open Graph propios, `404.html` y `sitemap.xml`.
+  - `npm run build`: compila con Vite, compila `src/entry-server.jsx` para Node (`vite build --ssr`, salida en `dist-server/`) y ejecuta `scripts/prerender.mjs`, que escribe un HTML por ruta con el contenido de la página ya dibujado (React lo hidrata en el navegador) y su title, description, canonical y Open Graph propios, `404.html` y `sitemap.xml`. Nada que se dibuje puede leer `window` o `document` fuera de efectos o eventos.
   - `npm run preview`: sirve el build.
   - `npm run news:check` y `npm run news:feeds`: verifican los datos y enlaces oficiales de las noticias y listan candidatos desde RSS oficiales (informan, no publican). GitHub Actions ejecuta la verificación cada lunes (`.github/workflows/news-check.yml`).
 - Despliegue en Vercel con el preset Vite. `vercel.json`: URLs limpias (`/servicios` sirve `servicios.html`), redirección 301 de `cbrauditores.com` a `www.cbrauditores.com`, cabeceras de seguridad y caché de `/assets`. Las rutas desconocidas reciben `404.html` con estado 404.
