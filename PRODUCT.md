@@ -86,7 +86,7 @@ Lo que distingue a CBR, confirmado por el responsable del proyecto:
 - **Logo**: se usa el archivo original existente, `src/assets/cbr-logo.png`, sin redibujarlo ni alterarlo.
 - **Trato al visitante**: siempre de **usted**, en todo el sitio.
 - **Llamado a la acción principal**: uno solo, con el mismo texto en todo el sitio.
-- **Dirección visual fijada por el responsable del proyecto**: navy profundo, el azul del logo como acento principal, blanco cálido y dorado apagado como acento secundario moderado. Titulares en serif editorial, cuerpo en sans serif profesional, espaciado generoso, filetes sutiles, tarjetas poco redondeadas y fotografía real cuando exista. El desarrollo completo está en `DESIGN.md`.
+- **Dirección visual vigente**: «Azul corporativo». El detalle está en `DESIGN.md`.
 
 ## Evidence on Hand
 
