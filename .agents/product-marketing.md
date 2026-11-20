@@ -1,6 +1,6 @@
 # Product Marketing Context: CBR Auditores & Consultores
 
-**Document version:** v1
+**Document version:** v2
 **Last updated:** 2026-11-20
 
 > Borrador generado a partir de `PRODUCT.md`, `CLAUDE.md` y los textos actuales de la web. Lo que dice **Pendiente** no se inventa: se completa con la clienta. Si este documento y `PRODUCT.md` se contradicen, manda `PRODUCT.md`.
@@ -121,6 +121,7 @@
 | Rigor y trazabilidad | Centro de Actualizaciones con fuente oficial enlazada en cada noticia |
 | Especialización Ley 155-17 | Página `/ley-155-17` con fuentes de la Superintendencia de Bancos y la UAF |
 | Servicio integral | Seis líneas de servicio aprobadas |
+| Respuesta rápida | Plazo máximo de un día hábil, confirmado por la clienta y publicado en `/contacto` |
 | Trato directo | Declarado. Se demuestra cuando se publiquen socios y credenciales (pendiente) |
 
 ## Goals
@@ -132,10 +133,12 @@
 *Decisions and tested lessons. Newest first. Keep it to about 20 active entries.*
 | Date | Learning | Evidence | Applies to | Status |
 |------|----------|----------|------------|--------|
+| 2026-11 | Plazo de respuesta publicado: «Le respondemos en un plazo máximo de un día hábil.» Correo público definitivo: info.cbrauditores@gmail.com | Aprobación de la clienta (20/11/2026) | copywriting, cro | active |
 | 2026-11 | Los botones flotantes de WhatsApp e Instagram se quedan: la clienta quiere que el visitante la contacte directo sin leer mucho | Decisión de la clienta | cro, copywriting | active |
 | 2026-11 | Todo el sitio se escribe de usted | Decisión de la clienta | todas | active |
 | 2026-11 | Los textos de los seis servicios no se reescriben sin autorización | `PRODUCT.md` | copywriting, cro | active |
 
 ## Changelog
 *Newest first. One line per revision: what changed and why.*
+- v2 (2026-11-20) — Aprobación de la clienta: plazo de respuesta (un día hábil) como prueba de «Respuesta rápida», correo público confirmado y etiqueta de Inicio «Trato directo con los socios · Ley 155-17». Ningún «Pendiente» de este documento quedó resuelto con esta aprobación.
 - v1 (2026-11-20) — Contexto inicial redactado a partir de PRODUCT.md, CLAUDE.md y los textos de la web; los huecos se marcan como pendientes en lugar de inventarse.
