@@ -15,7 +15,7 @@ const navItems = [
 const services = [
   {
     title: 'Outsourcing Estratégico',
-    headline: 'Enfócate en crecer. Nosotros nos ocupamos del resto.',
+    headline: 'Enfóquese en crecer. Nosotros nos ocupamos del resto.',
     description: 'Delegue las funciones críticas de su operación en un equipo especialista. Reducimos su carga administrativa con procesos eficientes, exactos y siempre en cumplimiento, para que su equipo invierta su energía donde realmente genera valor.',
     items: [
       'Gestión contable integral y administración del ciclo financiero',
